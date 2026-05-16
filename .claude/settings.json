@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wget -O wiki/raw/0711.1243v2.pdf https://arxiv.org/pdf/0711.1243)",
+      "Bash(wget -O wiki/raw/1205.4377v1.pdf https://arxiv.org/pdf/1205.4377)",
+      "Bash(wget -O wiki/raw/1603.02125v2.pdf https://arxiv.org/pdf/1603.02125)",
+      "Bash(wget -O wiki/raw/0502210v2.pdf https://arxiv.org/pdf/astro-ph/0502210)",
+      "Bash(wget -O wiki/raw/0711.2455v1.pdf https://arxiv.org/pdf/0711.2455)",
+      "Bash(wget -O wiki/raw/1606.03407v1.pdf https://arxiv.org/pdf/1606.03407)",
+      "Bash(python -c ' *)",
+      "Bash(python src/01_reduction/batch_summary.py --batch 1 --clusters Abell_0068 Abell_0611 MACSJ0429.6-0253)",
+      "Bash(python src/01_reduction/batch_summary.py --batch 2 --clusters Abell_0697 Abell_0750 MACSJ0647.7+7015 MACSJ1115.9+0129)",
+      "Bash(pdftotext \"/data/jyz/X_scale/wiki/raw/Donahue 等 - 2014 - CLASH-X A Comparison of Lensing and X-ray Techniques for Measuring the Mass Profiles of Galaxy Clus.pdf\" -)",
+      "Bash(cp /tmp/claude-1005/-data-jyz-X-scale/f5cc9f25-d864-4173-a991-dc7034411133/tasks/baorqpeof.output /data/jyz/X_scale/output/logs/pipeline/batch3.log)"
+    ],
+    "additionalDirectories": [
+      "/tmp/claude-1005/-data-jyz-X-scale/f5cc9f25-d864-4173-a991-dc7034411133/tasks"
+    ]
+  }
+}

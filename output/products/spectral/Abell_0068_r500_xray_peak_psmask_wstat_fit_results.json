@@ -1,0 +1,55 @@
+{
+  "abundance_solar": 0.3,
+  "apec_norm": 0.0076054203237348045,
+  "confidence_intervals": {
+    "icm.kT": {
+      "best": 33.421438725062835,
+      "lower_delta_1sigma": -5.620191839032827,
+      "upper_delta_1sigma": 8.919165336149675
+    },
+    "icm.norm": {
+      "best": 0.0076054203237348045,
+      "lower_delta_1sigma": -0.00026148966313029997,
+      "upper_delta_1sigma": 0.00037355666161471325
+    }
+  },
+  "diagnostic_checks": {
+    "background_check": "look for systematic high-energy residuals where particle/background mismatch is common",
+    "background_treatment": "WSTAT non-subtractive source+background likelihood",
+    "energy_band_keV": [
+      0.5,
+      7.0
+    ],
+    "fit_strategy": "joint fit to individual exposure spectra; each spectrum keeps its own ARF/RMF",
+    "line_check": "for Fe-K, compare residuals near observed 6.7/(1+z) keV",
+    "model": "xsphabs * xsapec",
+    "reduced_statistic_rule_of_thumb": "near 1 is usually acceptable; much below 1 can indicate conservative errors or grouping; much above 1 suggests model/background/calibration issues",
+    "visual_check": "inspect data/model agreement and residuals in fit_plot_png"
+  },
+  "dof": 443,
+  "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/postprocess_r500/Abell_0068_r500_xray_peak_psmask_wstat_fit_plot.png",
+  "fit_quality_flag": "acceptable_reduced_statistic",
+  "nH_1e22_cm2": 0.0165,
+  "n_spectra": 1,
+  "q_value": 0.017751769253833788,
+  "redshift": 0.2546,
+  "residual_summaries": [
+    {
+      "dataset_id": 1,
+      "max_abs_residual": 0.1654810254591036,
+      "mean_residual": 0.017652678300776114,
+      "median_residual": 0.01425509989164869,
+      "n_bins": 445,
+      "rms_residual": 0.036469428196520985,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/postprocess_r500/Abell_0068_obs3250_r500_xray_peak_psmask.pi"
+    }
+  ],
+  "rstat": 1.1463747503667612,
+  "sherpa_background_mode": "wstat",
+  "spectra": [
+    "/data/jyz/X_scale/chandra_data_evt/Abell_0068/postprocess_r500/Abell_0068_obs3250_r500_xray_peak_psmask.pi"
+  ],
+  "statname": "wstat",
+  "statval": 507.8440144124752,
+  "temperature_keV": 33.421438725062835
+}

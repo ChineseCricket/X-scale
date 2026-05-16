@@ -1,0 +1,380 @@
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+
+Running chandra_repro
+version: 11 August 2025
+
+
+Processing input directory '/data/jyz/X_scale/chandra_data_evt/Abell_0068/raw/3250'
+
+No boresight correction update to asol file is needed.
+Resetting afterglow status bits in evt1.fits file...
+
+Running acis_build_badpix and acis_find_afterglow to create a new bad pixel file...
+
+Running acis_process_events to reprocess the evt1.fits file...
+Filtering the evt1.fits file by grade and status and time...
+Applying the good time intervals from the flt1.fits file...
+The new evt2.fits file is: /data/jyz/X_scale/chandra_data_evt/Abell_0068/raw/3250/repro/acisf03250_repro_evt2.fits
+
+Updating the event file header with chandra_repro HISTORY record
+Creating FOV file...
+Setting observation-specific bad pixel file in local ardlib.par.
+
+Cleaning up intermediate files
+
+WARNING: Observation-specific bad pixel file set for session use:
+         /data/jyz/X_scale/chandra_data_evt/Abell_0068/raw/3250/repro/acisf03250_repro_bpix1.fits
+         Run 'punlearn ardlib' when analysis of this dataset completed.
+
+The data have been reprocessed.
+Start your analysis with the new products in
+/data/jyz/X_scale/chandra_data_evt/Abell_0068/raw/3250/repro
+
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+Running merge_obs
+Version: 05 November 2021
+
+Verifying one observation.
+Using CSC ACIS broad science energy band.
+Calculating new tangent point.
+New tangent point: RA=0h 36m 59.220s Dec=9d 12' 2.05"
+
+Observation to be reprojected:
+
+  Obsid  Obs Date   Exp    DETNAM     SIM_Z    FP   Sepn   PA  
+                   (ks)                (mm)    (K)   (')  (deg)
+---------------------------------------------------------------
+1 3250  2002-09-07  10.0 ACIS-01236  -225.846 153.4  < 3"   +45
+
+Running tasks in parallel with 64 processors.
+Reprojecting 1 event file to a common tangent point.
+Copying reprojected events file to /data/jyz/X_scale/chandra_data_evt/Abell_0068/processed/merged_evt.fits
+
+Calculating the output grid
+
+The merged images will have 4140 by 2886 pixels, a pixel size of 0.492 arcsec,
+    and cover x=2357.5:6497.5:1, y=2887.5:5773.5:1.
+
+Creating the fluxed image.
+Creating 5 aspect histograms for obsid 3250
+Creating 5 instrument maps for obsid 3250
+Creating 5 exposure maps for obsid 3250
+Combining 5 exposure maps for obsid 3250
+Thresholding data for obsid 3250
+Exposure-correcting image for obsid 3250
+
+Combining 1 observations.
+
+The following files were created:
+
+The co-added clipped counts image is:
+     /data/jyz/X_scale/chandra_data_evt/Abell_0068/processed/broad_thresh.img
+
+The co-added clipped exposure map is:
+     /data/jyz/X_scale/chandra_data_evt/Abell_0068/processed/broad_thresh.expmap
+
+The combined FOV is:
+     /data/jyz/X_scale/chandra_data_evt/Abell_0068/processed/merged.fov
+
+The co-added exposure-corrected image is:
+     /data/jyz/X_scale/chandra_data_evt/Abell_0068/processed/broad_flux.img
+
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+# WARNING: Kernel cannot be larger than image, setting to size of image
+# WARNING: Remainder will be smoothed on scale of 360.489197
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+
+Running chandra_repro
+version: 11 August 2025
+
+
+Processing input directory '/data/jyz/X_scale/chandra_data_evt/Abell_0611/raw/3194'
+
+No boresight correction update to asol file is needed.
+Resetting afterglow status bits in evt1.fits file...
+
+Running the destreak tool on the evt1.fits file...
+
+Running acis_build_badpix and acis_find_afterglow to create a new bad pixel file...
+
+Running acis_process_events to reprocess the evt1.fits file...
+Output from acis_process_events:
+# acis_process_events (CIAO 4.18.0): The following error occurred 5 times:
+	WARNING: pulse height is less than split threshold when performing serial CTI adjustment.
+Filtering the evt1.fits file by grade and status and time...
+Applying the good time intervals from the flt1.fits file...
+The new evt2.fits file is: /data/jyz/X_scale/chandra_data_evt/Abell_0611/raw/3194/repro/acisf03194_repro_evt2.fits
+
+Updating the event file header with chandra_repro HISTORY record
+Creating FOV file...
+Setting observation-specific bad pixel file in local ardlib.par.
+
+Cleaning up intermediate files
+
+WARNING: Observation-specific bad pixel file set for session use:
+         /data/jyz/X_scale/chandra_data_evt/Abell_0611/raw/3194/repro/acisf03194_repro_bpix1.fits
+         Run 'punlearn ardlib' when analysis of this dataset completed.
+
+The data have been reprocessed.
+Start your analysis with the new products in
+/data/jyz/X_scale/chandra_data_evt/Abell_0611/raw/3194/repro
+
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+Running merge_obs
+Version: 05 November 2021
+
+Verifying one observation.
+Using CSC ACIS broad science energy band.
+Calculating new tangent point.
+New tangent point: RA=8h 0m 58.823s Dec=36d 4' 34.70"
+
+Observation to be reprojected:
+
+  Obsid  Obs Date   Exp    DETNAM     SIM_Z    FP   Sepn   PA  
+                   (ks)                (mm)    (K)   (')  (deg)
+---------------------------------------------------------------
+1 3194  2001-11-03  36.1 ACIS-35678  -190.143 153.4  < 3"    +0
+
+Running tasks in parallel with 64 processors.
+Reprojecting 1 event file to a common tangent point.
+Copying reprojected events file to /data/jyz/X_scale/chandra_data_evt/Abell_0611/processed/merged_evt.fits
+
+Calculating the output grid
+
+The merged images will have 2637 by 4280 pixels, a pixel size of 0.492 arcsec,
+    and cover x=2241.5:4878.5:1, y=2187.5:6467.5:1.
+
+Creating the fluxed image.
+Creating 5 aspect histograms for obsid 3194
+Creating 5 instrument maps for obsid 3194
+Creating 5 exposure maps for obsid 3194
+Combining 5 exposure maps for obsid 3194
+Thresholding data for obsid 3194
+Exposure-correcting image for obsid 3194
+
+Combining 1 observations.
+
+The following files were created:
+
+The co-added clipped counts image is:
+     /data/jyz/X_scale/chandra_data_evt/Abell_0611/processed/broad_thresh.img
+
+The co-added clipped exposure map is:
+     /data/jyz/X_scale/chandra_data_evt/Abell_0611/processed/broad_thresh.expmap
+
+The combined FOV is:
+     /data/jyz/X_scale/chandra_data_evt/Abell_0611/processed/merged.fov
+
+The co-added exposure-corrected image is:
+     /data/jyz/X_scale/chandra_data_evt/Abell_0611/processed/broad_flux.img
+
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+# WARNING: Kernel cannot be larger than image, setting to size of image
+# WARNING: Remainder will be smoothed on scale of 329.365387
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+
+Running chandra_repro
+version: 11 August 2025
+
+
+Processing input directory '/data/jyz/X_scale/chandra_data_evt/MACSJ0429.6-0253/raw/3271'
+
+No boresight correction update to asol file is needed.
+Resetting afterglow status bits in evt1.fits file...
+
+Running acis_build_badpix and acis_find_afterglow to create a new bad pixel file...
+
+Running acis_process_events to reprocess the evt1.fits file...
+Filtering the evt1.fits file by grade and status and time...
+Applying the good time intervals from the flt1.fits file...
+The new evt2.fits file is: /data/jyz/X_scale/chandra_data_evt/MACSJ0429.6-0253/raw/3271/repro/acisf03271_repro_evt2.fits
+
+Updating the event file header with chandra_repro HISTORY record
+Creating FOV file...
+Setting observation-specific bad pixel file in local ardlib.par.
+
+Cleaning up intermediate files
+
+WARNING: Observation-specific bad pixel file set for session use:
+         /data/jyz/X_scale/chandra_data_evt/MACSJ0429.6-0253/raw/3271/repro/acisf03271_repro_bpix1.fits
+         Run 'punlearn ardlib' when analysis of this dataset completed.
+
+The data have been reprocessed.
+Start your analysis with the new products in
+/data/jyz/X_scale/chandra_data_evt/MACSJ0429.6-0253/raw/3271/repro
+
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+Running merge_obs
+Version: 05 November 2021
+
+Verifying one observation.
+Using CSC ACIS broad science energy band.
+Calculating new tangent point.
+New tangent point: RA=4h 29m 37.709s Dec=-2d 55' 18.43"
+
+Observation to be reprojected:
+
+  Obsid  Obs Date   Exp    DETNAM     SIM_Z    FP   Sepn   PA  
+                   (ks)                (mm)    (K)   (')  (deg)
+---------------------------------------------------------------
+1 3271  2002-02-07  23.2 ACIS-01236  -227.734 153.4  < 3"  +180
+
+Running tasks in parallel with 64 processors.
+Reprojecting 1 event file to a common tangent point.
+Copying reprojected events file to /data/jyz/X_scale/chandra_data_evt/MACSJ0429.6-0253/processed/merged_evt.fits
+
+Calculating the output grid
+
+The merged images will have 3970 by 2608 pixels, a pixel size of 0.492 arcsec,
+    and cover x=1704.5:5674.5:1, y=2667.5:5275.5:1.
+
+Creating the fluxed image.
+Creating 5 aspect histograms for obsid 3271
+Creating 5 instrument maps for obsid 3271
+Creating 5 exposure maps for obsid 3271
+Combining 5 exposure maps for obsid 3271
+Thresholding data for obsid 3271
+Exposure-correcting image for obsid 3271
+
+Combining 1 observations.
+
+The following files were created:
+
+The co-added clipped counts image is:
+     /data/jyz/X_scale/chandra_data_evt/MACSJ0429.6-0253/processed/broad_thresh.img
+
+The co-added clipped exposure map is:
+     /data/jyz/X_scale/chandra_data_evt/MACSJ0429.6-0253/processed/broad_thresh.expmap
+
+The combined FOV is:
+     /data/jyz/X_scale/chandra_data_evt/MACSJ0429.6-0253/processed/merged.fov
+
+The co-added exposure-corrected image is:
+     /data/jyz/X_scale/chandra_data_evt/MACSJ0429.6-0253/processed/broad_flux.img
+
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+CIAO configuration is complete... 
+CIAO 4.18.0 Monday, December 08, 2025
+  bindir      : /data/jyz/Applications/ciao-4.18/ciao-4.18/bin
+  CALDB       : 4.12.3
+# WARNING: Kernel cannot be larger than image, setting to size of image
+# WARNING: Remainder will be smoothed on scale of 325.739838
+
+==================================================
+Processing cluster: Abell_0068
+==================================================
+=== Step 1: Reprocessing each ObsID ===
+=== Step 2: Merging observations ===
+=== Step 3: Detecting point sources ===
+=== Step 4: Removing point sources ===
+=== Step 5: Recomputing flux image ===
+=== Step 6: Smoothing ===
+=== DONE Abell_0068 ===
+Final product: /data/jyz/X_scale/chandra_data_evt/Abell_0068/processed/clean_fluxed/flux_csmooth.img
+
+==================================================
+Processing cluster: Abell_0611
+==================================================
+=== Step 1: Reprocessing each ObsID ===
+=== Step 2: Merging observations ===
+=== Step 3: Detecting point sources ===
+=== Step 4: Removing point sources ===
+=== Step 5: Recomputing flux image ===
+=== Step 6: Smoothing ===
+=== DONE Abell_0611 ===
+Final product: /data/jyz/X_scale/chandra_data_evt/Abell_0611/processed/clean_fluxed/flux_csmooth.img
+
+==================================================
+Processing cluster: MACSJ0429.6-0253
+==================================================
+=== Step 1: Reprocessing each ObsID ===
+=== Step 2: Merging observations ===
+=== Step 3: Detecting point sources ===
+=== Step 4: Removing point sources ===
+=== Step 5: Recomputing flux image ===
+=== Step 6: Smoothing ===
+=== DONE MACSJ0429.6-0253 ===
+Final product: /data/jyz/X_scale/chandra_data_evt/MACSJ0429.6-0253/processed/clean_fluxed/flux_csmooth.img

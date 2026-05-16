@@ -1,0 +1,40 @@
+{
+  "aperture_flux_erg_s_cm2": 5.878393843636934e-12,
+  "aperture_flux_note": "approx erg/s/cm2 from photon flux at 2.3 keV",
+  "aperture_luminosity_erg_s": 1.1642441494497489e+45,
+  "aperture_plot_image": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/processed/clean_fluxed/flux_csmooth.img",
+  "aperture_plot_png": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/postprocess_r500/Abell_0068_r500_xray_peak_psmask_aperture_overlay.png",
+  "background_region": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/postprocess_r500/Abell_0068_r500_xray_peak_psmask_bkg.reg",
+  "bkg_counts_region": 731,
+  "catalog_center_dec_deg": 9.15916667,
+  "catalog_center_ra_deg": 9.27583333,
+  "center_dec_deg": 9.160593072099697,
+  "center_mode": "xray_peak",
+  "center_offset_from_catalog_arcsec": 6.073991342290338,
+  "center_ra_deg": 9.274920530842282,
+  "cluster_dir": "/data/jyz/X_scale/chandra_data_evt/Abell_0068",
+  "core_excised": false,
+  "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/postprocess_r500/Abell_0068_r500_xray_peak_psmask_wstat_fit_plot.png",
+  "fit_results_json": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/postprocess_r500/Abell_0068_r500_xray_peak_psmask_wstat_fit_results.json",
+  "flux_image": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/processed/clean_fluxed/flux_clean.img",
+  "individual_event_files": [
+    "/data/jyz/X_scale/chandra_data_evt/Abell_0068/raw/3250/repro/acisf03250_repro_evt2.fits"
+  ],
+  "m500_msun": 682857142857142.9,
+  "name": "Abell_0068",
+  "net_counts_r500": 4091,
+  "point_source_mask_count": 3,
+  "point_source_mask_file": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/processed/src.fits",
+  "point_source_mask_sigma_min": 5.0,
+  "r500_arcsec": 310.0645589221398,
+  "r500_mpc": 1.2287220264064014,
+  "redshift": 0.2546,
+  "sherpa_background_mode": "wstat",
+  "sherpa_script": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/postprocess_r500/fit_Abell_0068_r500_xray_peak_psmask_wstat_sherpa.py",
+  "source_inner_arcsec": 0.0,
+  "source_inner_r500": 0.0,
+  "source_region": "/data/jyz/X_scale/chandra_data_evt/Abell_0068/postprocess_r500/Abell_0068_r500_xray_peak_psmask_src.reg",
+  "spectrum_pis": [
+    "/data/jyz/X_scale/chandra_data_evt/Abell_0068/postprocess_r500/Abell_0068_obs3250_r500_xray_peak_psmask.pi"
+  ]
+}

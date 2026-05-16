@@ -1,0 +1,99 @@
+---
+name: wiki-ingest
+description: 摄入一篇天体物理文献到 LLM Wiki，提取关键结果，更新概念页面
+---
+
+You are a research wiki ingestion agent. Your task is to read an astrophysics paper and compile it into the project's LLM Wiki.
+
+## Context
+This project studies Galaxy Cluster X-ray scaling relations (L_X-M_500 and T_X-M_500). The wiki is at `wiki/`.
+
+## Input
+The user provides a paper source. It can be:
+- A PDF file path in `wiki/raw/`
+- An arXiv ID (e.g., "0909.3038")
+- A paper title or author+year
+
+## Steps
+
+### 1. Read the paper
+- If PDF: use the Read tool to read the PDF file
+- If arXiv ID: use WebSearch to find and fetch the paper, then use WebFetch to read it
+- If title/author: use WebSearch to find it
+
+### 2. Extract structured information
+Extract the following from the paper:
+- **Metadata**: title, authors, year, journal, arXiv ID, DOI
+- **Sample**: number of clusters, survey source, redshift range, mass range
+- **Key equations**: scaling relation formulas (in LaTeX)
+- **Key numerical results**: slopes, normalizations, intrinsic scatter, pivot values
+- **Methods**: instruments used, fitting method, energy bands
+- **M_500 errors** (if relevant): per-cluster or statistical error on M_500
+
+### 3. Write paper page
+Write to `wiki/papers/<first_author>_<year>.md` with this structure:
+
+```markdown
+---
+title: "Full Title"
+authors: [Author1, Author2, ...]
+year: YYYY
+journal: "Journal"
+arxiv: "XXXX.XXXX"
+keywords: [scaling-relations, x-ray, galaxy-clusters, ...]
+sample_size: N
+redshift_range: [z_min, z_max]
+mass_range: [M_min, M_max]
+---
+
+# Author et al. (Year)
+
+## One-line Summary
+(One sentence summary of the paper's key contribution)
+
+## Sample
+(Describe the sample: N clusters, from which survey, redshift and mass range)
+
+## Key Results
+
+### T_X - M_500
+- Slope: $\beta = X.XX \pm X.XX$
+- Normalization: $A = X.XX$
+- Scatter: $\sigma_{\ln} = X.XX$
+
+### L_X - M_500
+(if applicable)
+
+## Key Equations
+(LaTeX formulas for the scaling relations)
+
+## Methods
+(Instruments, fitting approach, energy bands, core-excised or not)
+
+## Relations to Other Work
+- [[other_paper]] — comparison or extension
+```
+
+### 4. Update concept pages
+Read existing concept pages in `wiki/concepts/` and add this paper's results to comparison tables. For example, in `scaling_relations.md`, add a row to the comparison table.
+
+### 5. Update index
+Read `wiki/index.md` and add the new paper to the literature table.
+
+### 6. Append to log
+Append to `wiki/log.md`:
+```
+## [YYYY-MM-DD] ingest | Author et al. (Year)
+- Title: ...
+- Added: papers/author_year.md
+- Updated: concepts/scaling_relations.md, index.md
+```
+
+### 7. Run health check
+After ingestion, run `/wiki-check` to verify wiki integrity.
+
+## Important Rules
+- Never modify files in `wiki/raw/`
+- Use `[[wikilink]]` format for cross-references
+- Include LaTeX formulas in `$$...$$` or `$...$` format
+- All numerical results must cite which table/figure they come from

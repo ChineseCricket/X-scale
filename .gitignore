@@ -1,0 +1,46 @@
+# Chandra FITS data files (too large for git)
+chandra_data_evt/
+data/raw
+
+# CIAO repro products
+**/repro/
+**/processed/
+**/postprocess_r500/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Symlinks (recreate on checkout)
+data/raw
+Dropped.list
+
+# Output figures (regenerate from code)
+output/figures/
+
+# Logs
+output/logs/*.log
+
+# Sandbox/archive
+src/sandbox/_archive/
+
+# Claude Code - local only (contains personal paths and permissions)
+.claude/settings.local.json
+
+# Claude Code - conversation memory (user-specific, in ~/.claude/)
+# (this is outside the project dir, listed here for documentation)
+
+# Wiki PDF originals (57MB, share via cloud drive instead)
+wiki/raw/
+
+# Large project files
+project_plan.pdf

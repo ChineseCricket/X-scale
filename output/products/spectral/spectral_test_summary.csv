@@ -1,0 +1,9 @@
+cluster_key,z,R500_arcsec,mode,T_X_keV,rstat,Q,ACCEPT_T_X,notes
+Abell_0068,0.255,310,full_R500,33.42,1.146,0.018,7.99,single ObsID 10ks
+Abell_0068,0.255,310,core_excised,53.88,1.126,0.035,7.99,worse than full R500
+Abell_0209,0.206,451,full_R500,20.98,2.144,0.000,8.28,2 ObsIDs; poor fit
+Abell_0209,0.206,451,core_excised,39.97,2.120,0.000,8.28,worse than full R500
+Abell_0611,0.288,309,full_R500,63.85,2.568,0.000,6.69,single ObsID 36ks
+Abell_0611,0.288,309,core_excised,64.00,3.438,0.000,6.69,worse than full R500
+MACSJ0429,0.399,261,full_R500,7.56,0.952,0.760,6.76,GOOD FIT
+MACSJ0429,0.399,261,core_excised,12.90,0.893,0.948,6.76,reasonable

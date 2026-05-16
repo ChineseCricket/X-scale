@@ -1,0 +1,111 @@
+Abell_0068 Phase 3 Spectral Analysis — Test Run
+Date: 2026-05-14/15
+ObsID: 3250 (single observation)
+
+=== Initial Test Run ===
+
+Command:
+  python src/02_spectral/postproces_cluster.py --cluster Abell_0068 --run-specextract --run-sherpa
+
+Settings:
+  center mode: xray_peak (offset from catalog: 6.07 arcsec)
+  point source masking: 3 sources masked (sigma >= 5)
+  background: wstat, annulus 1.2-1.8 R500
+  spectral model: xsphabs * xsapec, abundance 0.3 solar
+  energy band: 0.7-7.0 keV (hardcoded in Sherpa template — BUG)
+
+Initial results:
+  T_X = 33.78 keV (+9.51/-5.80)
+  rstat = 1.156, Q = 0.014
+
+=== Background Region Investigation ===
+
+Tested bkg 1.5-2.5 R500 → T_X = 56.0 keV (hit hard max!), worse.
+Conclusion: local annulus is not the primary cause of high T_X.
+Chip coverage limits background options (max ~1.5 R500 from center).
+
+Literature review (Vikhlinin+2006, Donahue+2014):
+  - Both use blank-sky background (deep bg files, 10-12 keV normalization)
+  - Donahue+2014 adds residual soft bg component (0.5 keV thermal)
+  - Our local annulus + WSTAT is a known systematic limitation
+
+=== Spectral Analysis Pipeline Fixes ===
+
+Issues found and fixed in postproces_cluster.py:
+
+1. Energy band hardcoded at 0.7-7.0 in Sherpa template (line 948),
+   despite DEFAULT_ENERGY_MIN_KEV = 0.5.
+   Fix: parameterized energy_min/energy_max in write_sherpa_script().
+
+2. No spectral grouping applied.
+   Fix: group_counts(1) for WSTAT, group_counts(25) for chi2gehrels.
+
+3. No ignore_bad() call for quality flag filtering.
+   Fix: added ignore_bad() with try/except (some PHA files lack quality flags).
+
+4. kT initial value hardcoded at 7.0 keV.
+   Fix: compute from M500 self-similar relation: kT = 5*(M500/3e14)^{2/3}.
+
+5. No soft background component option.
+   Fix: added --fit-soft-bg flag (xsapec with kT=0.5 keV fixed).
+   Note: soft bg makes fit worse for this cluster (rstat=15.7), not recommended.
+
+6. No fit method option.
+   Fix: added --fit-method flag (default: levmar, alternatives: neldermead, moncar).
+
+=== Final Test Run (with all fixes, no --fit-soft-bg) ===
+
+Command:
+  python src/02_spectral/postproces_cluster.py --cluster Abell_0068 --run-specextract --run-sherpa
+
+Settings:
+  energy band: 0.5-7.0 keV (fixed)
+  kT initial: 8.65 keV (from M500 self-similar)
+  grouping: group_counts(1) for WSTAT
+  background: wstat, annulus 1.2-1.8 R500
+
+Final results:
+  T_X = 33.42 keV (+8.92/-5.62)
+  APEC norm = 7.605e-3
+  rstat = 1.146, Q = 0.018
+
+Comparison:
+  Original (0.7-7.0 keV): T_X=33.78, rstat=1.156, Q=0.014
+  Fixed    (0.5-7.0 keV): T_X=33.42, rstat=1.146, Q=0.018  ← slight improvement
+
+Conclusion: T_X ~33 keV is a data limitation (single ObsID, local annulus bg).
+Code fixes are correct. Blank-sky background is needed for reliable T_X.
+
+Output files:
+  Products: output/products/spectral/Abell_0068_r500_xray_peak_psmask_*
+  Figures:  output/figures/spectral/Abell_0068_r500_xray_peak_psmask_*
+  Raw data: chandra_data_evt/Abell_0068/postprocess_r500/
+
+=== Blank-Sky Background Test (2026-05-15) ===
+
+Steps:
+1. Downloaded CALDB ACIS blank-sky background files via download_obsid_caldb
+2. Ran CIAO blanksky tool on ObsID 3250 → scale factors ~0.006
+3. Extracted spectrum with specextract using blank-sky as background (same R500 source region)
+4. Tested multiple fitting approaches
+
+Results comparison:
+| Method                          | T_X (keV) | rstat | Notes            |
+|--------------------------------|-----------|-------|------------------|
+| Local annulus + WSTAT          | 33.4      | 1.146 | Best result      |
+| Blank-sky + WSTAT (scaled)     | 63.4      | 1.496 | Hard max hit     |
+| Blank-sky + chi2 (scaled)      | 64.0      | 1.891 | Hard max hit     |
+| Source only, no bkg (cstat)    | 64.0      | 1.523 | Hard max hit     |
+| Local src, no bkg (cstat)      | 64.0      | 1.549 | Hard max hit     |
+
+Key finding: Source spectrum ITSELF drives kT to hard max without background modeling.
+Only local annulus + WSTAT produces reasonable T_X, because:
+- Local annulus is from the SAME observation → particle background matches exactly
+- WSTAT properly models source+background Poisson statistics
+- Blank-sky has soft X-ray background mismatch from different sky position/epoch
+
+Conclusion:
+- For single-ObsID clusters, local annulus + WSTAT is actually MORE reliable than blank-sky
+- T_X = 33.4 keV is the best estimate for Abell_0068 with current data
+- Blank-sky implementation deferred — not beneficial for this use case
+- High T_X is a data limitation (single ObsID, limited statistics), not a pipeline bug
