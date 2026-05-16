@@ -57,6 +57,13 @@ chandra_repro → merge_obs → wavdetect → 点源剔除 → flux image
   → specextract (per ObsID) → Sherpa joint fit → T_X, L_X
 ```
 
+## Git 协作规范
+
+- **每次代码/配置修改后自动 commit + push**：修改 `src/`、`configs/`、`scripts/`、`.claude/skills/` 等文件后，必须 commit 并 push 到 origin/main，确保合作者能及时同步
+- commit message 简洁说明改了什么和为什么
+- `memory/`、`output/`、`wiki/` 等跟踪文件的更新也一并提交
+- 如果 push 失败（网络问题），提醒用户手动 push
+
 ## 工作流程
 
 **新 session 启动时：先读 `memory/pipeline_status.csv` 了解进度，再读 `memory/workflow_plan.md` 确定下一步。**
@@ -73,6 +80,7 @@ chandra_repro → merge_obs → wavdetect → 点源剔除 → flux image
 - T_X 异常高（>20 keV）通常是数据限制（单 ObsID、local annulus 背景），非代码 bug
 - blank-sky background 是文献标准做法（Vikhlinin+2006, Donahue+2014），当前未实现，是已知系统误差
 - Blank-sky 对单 ObsID 团效果不如 local annulus + WSTAT（soft X-ray background 不匹配导致 T_X 更高），local annulus + WSTAT 是当前最优方案
+- csmooth 对大图像（>18M 像素，边长>4000）内存爆炸：即使 sigmin=1 sigmax=3，18.4M 像素图像仍消耗 68+ GB 且无法完成。6 个大团（Abell_0383, RXJ1532.9+3021, Abell_0267, Abell_2261, RXJ1347.5-1145, Abell_0586）跳过 csmooth，不影响科学结果（仅可视化用）
 
 ## 输出目录约定（重要）
 
