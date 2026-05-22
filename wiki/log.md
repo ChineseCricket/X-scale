@@ -35,3 +35,10 @@
 - methods/scaling_fitting.md — BCES vs linmix vs Bayesian
 - data_sources/clash_survey.md — CLASH M500 来源
 - data_sources/locuss_survey.md — LoCuSS M500 来源
+
+## [2026-05-22] ingest | Fruscione et al. (2026)
+- Title: CIAO: Chandra's Data Analysis System for X-Ray Astronomy and Beyond
+- Added: papers/fruscione_2026.md
+- Claims: 5 extracted
+- Updated: index.md
+- Note: CIAO 4.18 软件综述，非标度关系文献，作为方法参考

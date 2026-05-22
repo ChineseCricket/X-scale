@@ -1,6 +1,6 @@
 # Galaxy Cluster X-ray Scaling Relations — Wiki Index
 
-## Paper Pages (22)
+## Paper Pages (23)
 
 ### Core Scaling Relations
 - [[arnaud_2005]] — M-T relation, 10 relaxed, slope 1.49/1.71
@@ -31,6 +31,7 @@
 - [[kelly_2007]] — linmix method
 - [[zhang_2024]] — eROSITA CGM (背景)
 - [[kyritsis_2024]] — eROSITA SFG (背景)
+- [[fruscione_2026]] — CIAO 4.18 综述
 
 ## Concept Pages
 

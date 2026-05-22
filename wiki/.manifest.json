@@ -131,7 +131,18 @@
       "compiled_at": "2026-05-14",
       "has_claims": true,
       "provenance": "source-derived"
+    },
+    "fruscione_2026": {
+      "status": "compiled",
+      "compiled_at": "2026-05-22",
+      "has_claims": true,
+      "provenance": "source-derived"
     }
   },
-  "raw_pdfs": {}
+  "raw_pdfs": {
+    "Fruscione 等 - 2026 - CIAO Chandra Data Analysis System for X-Ray Astronomy and Beyond.pdf": {
+      "status": "compiled",
+      "paper_page": "fruscione_2026"
+    }
+  }
 }
