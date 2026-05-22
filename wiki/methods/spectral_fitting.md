@@ -1,6 +1,7 @@
 ---
 name: spectral-fitting
 description: X-ray 光谱拟合方法：APEC + WSTAT + Sherpa
+provenance: llm-derived
 ---
 
 # Spectral Fitting Methods

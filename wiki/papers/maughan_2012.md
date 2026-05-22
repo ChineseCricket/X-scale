@@ -5,6 +5,20 @@ year: 2012
 journal: "MNRAS, 421, 1583"
 arxiv: "1108.1200"
 keywords: [scaling-relations, Lx-T, Chandra, self-similar, evolution, galaxy-clusters]
+provenance: source-derived
+claims:
+  - text: "Relaxed + core-excised LX-T slope consistent with self-similar (α≈2)"
+    locator: "sec.4"
+    type: empirical_result
+  - text: "Disturbed/non-cool-core LX-T slope significantly steeper than self-similar"
+    locator: "sec.4"
+    type: empirical_result
+  - text: "Self-similar behavior breaks down below ~3.5 keV"
+    locator: "sec.5"
+    type: physical_insight
+  - text: "Cool core fraction decreases at z>0.5"
+    locator: "sec.5"
+    type: empirical_result
 sample_size: 114
 redshift_range: [0.1, 1.3]
 mass_range: ["~5e13", "~1e15"]

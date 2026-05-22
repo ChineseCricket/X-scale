@@ -1,6 +1,7 @@
 ---
 name: self-similar-model
 description: Kaiser (1986) self-similar model 推导及标度关系预言
+provenance: llm-derived
 ---
 
 # Self-similar Model (Kaiser 1986)

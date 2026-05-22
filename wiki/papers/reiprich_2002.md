@@ -5,6 +5,14 @@ year: 2002
 journal: "ApJ, 567, 716"
 arxiv: null
 keywords: [HIFLUGCS, mass-function, galaxy-clusters, ROSAT]
+provenance: source-derived
+claims:
+  - text: "HIFLUGCS mass function constrains Ωm and σ8"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "X-ray mass measurements benchmark for bright clusters"
+    locator: "sec.3"
+    type: method_claim
 sample_size: 63
 redshift_range: [0.0, 0.2]
 mass_range: ["~1e14", "~1e15"]

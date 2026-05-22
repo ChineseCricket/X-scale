@@ -5,6 +5,20 @@ year: 2016
 journal: "MNRAS, 463, 3582"
 arxiv: "1606.03407"
 keywords: [scaling-relations, Lx-M, Tx-M, weak-lensing, Chandra, Weighing-the-Giants]
+provenance: source-derived
+claims:
+  - text: "Core-excised LX-M scatter ~10%, consistent with Mantz+10"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "LX and TX intrinsic scatter positively correlated, related to dynamical state"
+    locator: "sec.5.3"
+    type: physical_insight
+  - text: "LX scatter decreases with redshift (cool core evolution)"
+    locator: "sec.5.2"
+    type: empirical_result
+  - text: "Planck Y-M relation inconsistent with lensing inference"
+    locator: "sec.6"
+    type: empirical_result
 sample_size: 224
 redshift_range: [0.0, 0.5]
 mass_range: ["~2e14", "~2e15"]

@@ -1,0 +1,137 @@
+{
+  "papers": {
+    "arnaud_2005": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "arnaud_2007": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "bulbul_2022": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "chiu_2022": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "donahue_2014": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "kelly_2007": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "kyritsis_2024": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "mantz_2010": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "mantz_2016": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "maughan_2008": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "maughan_2012": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "okabe_2016": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "okabe_2025": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "pratt_2009": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "ramos_ceja_2025": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "reiprich_2002": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "sanders_2026": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "sun_2009": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "umetsu_2016": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "vikhlinin_2009": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "zhang_2024": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    },
+    "zheng_2024": {
+      "status": "compiled",
+      "compiled_at": "2026-05-14",
+      "has_claims": true,
+      "provenance": "source-derived"
+    }
+  },
+  "raw_pdfs": {}
+}

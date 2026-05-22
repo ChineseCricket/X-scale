@@ -5,6 +5,14 @@ year: 2014
 journal: "ApJ (submitted)"
 arxiv: null
 keywords: [CLASH, weak-lensing, X-ray-mass, M500, galaxy-clusters]
+provenance: source-derived
+claims:
+  - text: "CLASH lensing and X-ray mass measurements are consistent"
+    locator: "sec.4"
+    type: empirical_result
+  - text: "Validates M500 measurements used in this project from CLASH sample"
+    locator: "sec.5"
+    type: physical_insight
 sample_size: 16
 redshift_range: [0.19, 0.69]
 mass_range: null

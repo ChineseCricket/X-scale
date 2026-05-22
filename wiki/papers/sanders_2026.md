@@ -5,6 +5,17 @@ year: 2026
 journal: "A&A (submitted)"
 arxiv: "2601.00636"
 keywords: [eRASS1, morphology, concentration, galaxy-clusters]
+provenance: source-derived
+claims:
+  - text: "Concentration evolves positively with LX, negatively with z"
+    locator: "sec.4"
+    type: empirical_result
+  - text: "eRASS1 clusters show higher concentrations than SZ-selected"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "Concentration/ellipticity ~normal distribution; central density/cuspiness non-normal"
+    locator: "sec.3"
+    type: empirical_result
 sample_size: 12000
 redshift_range: null
 mass_range: null

@@ -5,6 +5,11 @@ year: 2024
 journal: "A&A, 690, A21"
 arxiv: "2402.12367"
 keywords: [eROSITA, star-forming-galaxies, scaling-relations]
+provenance: source-derived
+claims:
+  - text: "Background paper on eROSITA star-forming galaxies"
+    locator: "全文"
+    type: empirical_result
 sample_size: 18790
 redshift_range: null
 mass_range: null

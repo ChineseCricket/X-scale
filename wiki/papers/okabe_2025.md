@@ -5,6 +5,17 @@ year: 2025
 journal: "A&A (submitted)"
 arxiv: "2503.09952"
 keywords: [eRASS1, weak-lensing, HSC, M500, galaxy-clusters]
+provenance: source-derived
+claims:
+  - text: "WL mass measurements for 78 eRASS1+HSC clusters"
+    locator: "sec.4"
+    type: empirical_result
+  - text: "Mass-concentration relation from Bayesian framework"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "Miscentering analysis shows <5% mass bias"
+    locator: "sec.6"
+    type: empirical_result
 sample_size: 78
 redshift_range: null
 mass_range: null

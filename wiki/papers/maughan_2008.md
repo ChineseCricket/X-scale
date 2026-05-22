@@ -5,6 +5,17 @@ year: 2008
 journal: "ApJS, 174, 117"
 arxiv: "astro-ph/0703156"
 keywords: [scaling-relations, Chandra-archive, imaging, morphology, galaxy-clusters]
+provenance: source-derived
+claims:
+  - text: "Surface brightness outer slope 15% steeper than simple β-model"
+    locator: "sec.4"
+    type: empirical_result
+  - text: "Metallicity declines 50% from z=0.1 to z=1 (core-excised still evolves)"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "Outer slope correlates with temperature"
+    locator: "sec.4"
+    type: empirical_result
 sample_size: 115
 redshift_range: [0.1, 1.3]
 mass_range: ["~5e13", "~1e15"]

@@ -1,6 +1,7 @@
 ---
 name: scaling-fitting
 description: 标度关系拟合方法：linmix, BCES, Bayesian
+provenance: llm-derived
 ---
 
 # Scaling Relation Fitting Methods

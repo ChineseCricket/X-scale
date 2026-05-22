@@ -5,6 +5,17 @@ year: 2025
 journal: "A&A (submitted)"
 arxiv: "2511.14356"
 keywords: [scaling-relations, eRASS1, eROSITA, large-sample, galaxy-clusters]
+provenance: source-derived
+claims:
+  - text: "LX-T slope deviates significantly from self-similar for 3061 eRASS1 clusters"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "Redshift evolution consistent with self-similar"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "Good agreement with simulations including non-gravitational physics"
+    locator: "sec.6"
+    type: physical_insight
 sample_size: 3061
 redshift_range: [0.05, 1.07]
 mass_range: ["1.1e13", "1.6e15"]

@@ -1,82 +1,81 @@
 ---
 name: wiki-check
-description: 检查 LLM Wiki 的健康度，修复断链、更新索引、检测孤儿页面
+description: 检查 LLM Wiki 的健康度，结合确定性 lint 脚本和 LLM 语义检查
 ---
 
 You are a wiki health check agent. Your task is to audit the project's LLM Wiki and fix any issues found.
 
-## Wiki Location
-`wiki/`
+## Phase 1: Deterministic Checks (run first)
 
-## Checks to Perform
+Run the lint script first — zero LLM cost, catches structural issues:
 
-### 1. Broken Link Check
-- Scan all `.md` files in `wiki/papers/`, `wiki/concepts/`, `wiki/methods/`, `wiki/data_sources/` for `[[wikilink]]` patterns
-- For each wikilink, verify the target file exists (e.g., `[[pratt_2009]]` should match `papers/pratt_2009.md`)
-- Report any broken links
+```bash
+python scripts/wiki_lint.py
+```
 
-### 2. Index Completeness
-- Read `wiki/index.md`
-- List all files in `papers/`, `concepts/`, `methods/`, `data_sources/`
-- Verify every file is referenced in the index
-- If files are missing from index, add them
+If any FAIL issues are found, report them and fix what can be auto-fixed:
+- Missing `provenance` field → add `provenance: source-derived` for papers, `provenance: llm-derived` for others
+- Broken wikilinks → fix if the correct slug can be inferred
+- Missing index entries → add to `wiki/index.md`
+
+Re-run lint to confirm all FAILs resolved before proceeding to Phase 2.
+
+## Phase 2: Semantic Checks (LLM-assisted)
+
+### 1. Cross-reference Consistency
+- Read concept pages that contain comparison tables (e.g., `scaling_relations.md`)
+- Verify numerical values match the corresponding paper pages
+- Flag any discrepancies — do NOT auto-fix
+
+### 2. Keyword Coverage
+- Read all paper page frontmatter keywords
+- For each keyword, check if a corresponding concept page or method page exists
+- Report missing concept/method pages for important keywords
 
 ### 3. Log Completeness
 - Read `wiki/log.md`
-- List all PDF files in `raw/`
+- List all PDF files in `wiki/raw/`
 - Verify each PDF has a corresponding log entry
 - Report any gaps
 
-### 4. Orphan Page Detection
-- Scan all `.md` files for inbound `[[wikilink]]` references
-- Identify pages that have zero inbound links
-- Report orphans (they may need cross-references added)
+### 4. Manifest Consistency
+- Read `wiki/.manifest.json`
+- Compare with actual files in `wiki/papers/`
+- Report any manifest entries without corresponding files, or files without manifest entries
 
-### 5. Cross-reference Consistency
-- Read concept pages that contain comparison tables (e.g., `scaling_relations.md`)
-- Verify numerical values match the corresponding paper pages
-- Flag any discrepancies
-
-### 6. Keyword Coverage
-- Read all paper page frontmatter keywords
-- For each keyword, check if a corresponding concept page exists
-- Report missing concept pages
-
-### 7. Frontmatter Completeness
-- Check all paper pages have: title, authors, year, journal, keywords
-- Report any incomplete frontmatter
+### 5. Claims Quality
+- Sample 3-5 paper pages with claims
+- Verify claims are accurate, non-trivial, and correctly typed
+- Flag vague or useless claims (e.g., "this paper studies clusters")
 
 ## Output Format
-
-Report in this format:
 
 ```
 ## Wiki Health Check Report — YYYY-MM-DD
 
-### Summary
-- Total pages: N
-- Issues found: N
-- Issues auto-fixed: N
+### Phase 1: Lint (Deterministic)
+- [PASS/FAIL] frontmatter: N pages
+- [PASS/FAIL] provenance: N pages
+- [PASS/FAIL] wikilinks: N total
+- [PASS/FAIL] index: N papers
+- [WARN] claims: N without claims
+- [PASS/WARN] orphans: N orphans
 
-### Check 1: Broken Links
-- [PASS] All wikilinks resolve
-- OR
-- [FAIL] N broken links:
-  - [[link_name]] in papers/xxx.md → file not found
-
-### Check 2: Index Completeness
-- [PASS] Index covers all pages
-- OR
-- [FAIL] Missing from index: papers/xxx.md
-
-... (repeat for each check)
+### Phase 2: Semantic (LLM)
+- Cross-reference: PASS/N issues
+- Keyword coverage: PASS/N missing
+- Log completeness: PASS/N gaps
+- Manifest consistency: PASS/N mismatches
+- Claims quality: PASS/N issues
 
 ### Actions Taken
 (list any auto-fixes applied)
 ```
 
 ## Auto-fix Rules
-- If index.md is missing entries: add them
-- If log.md is missing entries for existing paper pages: add them
-- If broken links can be resolved by correcting the wikilink: fix them
+- Missing `provenance` → auto-add (source-derived for papers, llm-derived for others)
+- Missing index entries → auto-add to index.md
+- Broken wikilinks with obvious fix → auto-fix
+- Manifest out of sync → auto-update
 - Do NOT auto-fix cross-reference consistency issues (flag for review)
+- Do NOT auto-fix claims quality issues (flag for review)

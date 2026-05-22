@@ -1,6 +1,7 @@
 ---
 name: clash-survey
 description: CLASH 巡天及本项目使用的 M500 来源 (Umetsu+16)
+provenance: llm-derived
 ---
 
 # CLASH Survey

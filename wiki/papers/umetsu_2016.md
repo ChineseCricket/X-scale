@@ -5,6 +5,17 @@ year: 2016
 journal: "ApJ, 821, 116"
 arxiv: "1507.04238"
 keywords: [CLASH, weak-lensing, M500, strong-lensing, galaxy-clusters]
+provenance: source-derived
+claims:
+  - text: "CLASH M500c measurements from joint shear+magnification analysis"
+    locator: "Table 3"
+    type: empirical_result
+  - text: "M500c range ~4e14–2e15 Msun for 20 CLASH clusters"
+    locator: "sec.4"
+    type: empirical_result
+  - text: "Joint shear+magnification gives higher precision than shear alone"
+    locator: "sec.3"
+    type: method_claim
 sample_size: 20
 redshift_range: [0.19, 0.69]
 mass_range: ["~4e14", "~2e15"]

@@ -5,6 +5,23 @@ year: 2010
 journal: "MNRAS, 406, 1773"
 arxiv: "0909.3099"
 keywords: [scaling-relations, Lx-M, Tx-M, Chandra, core-excised, low-scatter]
+provenance: source-derived
+claims:
+  - text: "Core-excised LX-M slope B_LM=1.33±0.08"
+    locator: "Table 7-8"
+    type: empirical_result
+  - text: "Core-excised LX-M intrinsic scatter <10%, remarkably low"
+    locator: "Table 7-8, sec.4.2"
+    type: empirical_result
+  - text: "Non-gravitational heating (AGN feedback) mainly affects r<0.15r500"
+    locator: "sec.5"
+    type: physical_insight
+  - text: "TX-M scatter 10-15%, YX-M scatter ~10-15%"
+    locator: "sec.4"
+    type: empirical_result
+  - text: "Evolution consistent with self-similar"
+    locator: "sec.4.3"
+    type: empirical_result
 sample_size: 238
 redshift_range: [0.0, 0.5]
 mass_range: ["~3e14", "~2e15"]

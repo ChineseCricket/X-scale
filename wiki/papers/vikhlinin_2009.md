@@ -5,6 +5,20 @@ year: 2009
 journal: "ApJ, 692, 1060"
 arxiv: "0812.2720"
 keywords: [scaling-relations, cosmology, Chandra, CCCP, mass-function]
+provenance: source-derived
+claims:
+  - text: "Cosmological constraints: w0=-1.14±0.21, ΩM=0.255±0.043"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "LX-M slope ~1.61±0.14 (bolometric, CCCP Paper II)"
+    locator: "Paper II"
+    type: empirical_result
+  - text: "TX-M slope ~1.5–1.6"
+    locator: "Paper II"
+    type: empirical_result
+  - text: "LX-M slope uncertainty is dominant systematic for ΩM"
+    locator: "sec.6"
+    type: physical_insight
 sample_size: 86
 redshift_range: [0.0, 0.9]
 mass_range: ["~3e14", "~2e15"]

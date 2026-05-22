@@ -5,6 +5,14 @@ year: 2016
 journal: "MNRAS, 461, 3794"
 arxiv: "1507.04493"
 keywords: [LoCuSS, weak-lensing, M500, Subaru, galaxy-clusters]
+provenance: source-derived
+claims:
+  - text: "Individual M500 measurements for LoCuSS clusters via weak lensing"
+    locator: "Table 3"
+    type: empirical_result
+  - text: "M500 range ~3e14–1.5e15 h^-1 Msun"
+    locator: "sec.4"
+    type: empirical_result
 sample_size: 50
 redshift_range: [0.15, 0.3]
 mass_range: ["~3e14", "~1.5e15"]

@@ -5,6 +5,17 @@ year: 2007
 journal: "ApJ, 665, 1489"
 arxiv: "0711.2455"
 keywords: [methods, linmix, linear-regression, measurement-error, Bayesian]
+provenance: source-derived
+claims:
+  - text: "Bayesian method (linmix) for fitting linear relations with measurement errors"
+    locator: "sec.2"
+    type: method_claim
+  - text: "Simultaneously estimates slope, intercept, and intrinsic scatter"
+    locator: "sec.2"
+    type: method_claim
+  - text: "More flexible than BCES (Akritas & Bershady 1996)"
+    locator: "sec.3"
+    type: method_claim
 sample_size: null
 redshift_range: null
 mass_range: null

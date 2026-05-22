@@ -1,6 +1,7 @@
 ---
 name: locuss-survey
 description: LoCuSS 巡天及本项目使用的 M500 来源 (Okabe+16)
+provenance: llm-derived
 ---
 
 # LoCuSS Survey

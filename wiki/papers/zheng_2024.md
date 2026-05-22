@@ -5,6 +5,14 @@ year: 2024
 journal: "MNRAS (submitted)"
 arxiv: "2306.02594"
 keywords: [scaling-relations, Lx-M, eROSITA, DESI, galaxy-groups]
+provenance: source-derived
+claims:
+  - text: "LX-halo mass relation for DESI groups from eFEDS cross-matching"
+    locator: "sec.4"
+    type: empirical_result
+  - text: "Cross-matching DESI optical and eFEDS X-ray selection"
+    locator: "sec.2"
+    type: method_claim
 sample_size: null
 redshift_range: null
 mass_range: null

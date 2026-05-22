@@ -1,6 +1,7 @@
 ---
 name: scaling-relations
 description: Galaxy Cluster 标度关系理论综述 + 各文献结果对比
+provenance: llm-derived
 ---
 
 # Galaxy Cluster X-ray Scaling Relations

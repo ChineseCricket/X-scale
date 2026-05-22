@@ -5,6 +5,17 @@ year: 2022
 journal: "A&A, 661, A23"
 arxiv: "2110.09534"
 keywords: [scaling-relations, eFEDS, eROSITA, galaxy-clusters, X-ray-properties]
+provenance: source-derived
+claims:
+  - text: "LX-T slope deviates from self-similar (3/2)"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "Redshift evolution consistent with self-similar"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "Small statistical uncertainties from ~542 cluster eFEDS sample"
+    locator: "sec.3"
+    type: method_claim
 sample_size: 542
 redshift_range: [0.01, 1.3]
 mass_range: ["~1e13", "~1e15"]

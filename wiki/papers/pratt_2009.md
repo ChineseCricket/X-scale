@@ -5,6 +5,20 @@ year: 2009
 journal: "A&A, 498, 361"
 arxiv: "0809.3784"
 keywords: [scaling-relations, luminosity, REXCESS, XMM-Newton, galaxy-clusters]
+provenance: source-derived
+claims:
+  - text: "LX-TX slope α≈2.08 (BCES orthogonal, bolometric), steeper than self-similar"
+    locator: "Table 2"
+    type: empirical_result
+  - text: "Intrinsic scatter σ_ln≈0.40 (raw), reduced >2x with core-excised"
+    locator: "Table 2, sec.4.3"
+    type: empirical_result
+  - text: "Cool core and disturbed systems occupy different regions in residual space"
+    locator: "sec.4.3"
+    type: physical_insight
+  - text: "LX-YX slope steeper than self-similar (9/5)"
+    locator: "sec.4.2"
+    type: empirical_result
 sample_size: 31
 redshift_range: [0.02, 0.18]
 mass_range: ["1e14", "1e15"]

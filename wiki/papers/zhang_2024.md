@@ -5,6 +5,11 @@ year: 2024
 journal: "A&A, 690, A268"
 arxiv: "2401.17309"
 keywords: [eROSITA, CGM, scaling-relations, star-forming-galaxies]
+provenance: source-derived
+claims:
+  - text: "Background paper on eROSITA circumgalactic medium"
+    locator: "全文"
+    type: empirical_result
 sample_size: null
 redshift_range: null
 mass_range: null

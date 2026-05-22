@@ -5,6 +5,20 @@ year: 2005
 journal: "A&A, 441, 893"
 arxiv: "astro-ph/0502210"
 keywords: [scaling-relations, M-T, REXCESS-precursor, XMM-Newton, galaxy-clusters]
+provenance: source-derived
+claims:
+  - text: "Hot subsample M500-Tx slope α=1.49±0.15, consistent with self-similar 3/2"
+    locator: "sec.5, Table 4"
+    type: empirical_result
+  - text: "All-sample M500-Tx slope α=1.71±0.09, steeper than self-similar"
+    locator: "sec.5, Table 4"
+    type: empirical_result
+  - text: "Normalization ~30% below pure gravitational prediction, consistent with cooling+feedback models"
+    locator: "sec.6"
+    type: physical_insight
+  - text: "Slope invariant across all density contrasts (δ=2500,1000,500,200)"
+    locator: "sec.5"
+    type: empirical_result
 sample_size: 10
 redshift_range: [0.02, 0.15]
 mass_range: ["~2e14", "~1e15"]

@@ -5,6 +5,17 @@ year: 2007
 journal: "A&A, 474, L37"
 arxiv: "0709.1561"
 keywords: [scaling-relations, M500-YX, REXCESS, XMM-Newton, mass-proxy]
+provenance: source-derived
+claims:
+  - text: "M500-YX slope α=0.548±0.027, close to self-similar 3/5=0.6"
+    locator: "sec.4, Table 3"
+    type: empirical_result
+  - text: "Normalization ~20% below simulations with cooling+feedback"
+    locator: "sec.5"
+    type: empirical_result
+  - text: "YX has lower intrinsic scatter than TX and Mgas as mass proxy"
+    locator: "sec.4"
+    type: empirical_result
 sample_size: 10
 redshift_range: [0.02, 0.15]
 mass_range: ["~1e13", "~1e15"]
