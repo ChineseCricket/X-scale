@@ -1,0 +1,85 @@
+{
+  "abundance_solar": 0.3,
+  "apec_norm": 0.009306219686254589,
+  "background_method": "paper_hybrid: local ACIS-I source-free field where available; ACIS-S blank-sky; Sherpa WSTAT; no subtract()",
+  "bolometric_flux_unabsorbed_erg_s_cm2": 1.2672744975843028e-11,
+  "bolometric_luminosity_unabsorbed_erg_s": 1.2539050863977819e+45,
+  "confidence_intervals": {
+    "icm.kT": {
+      "best": 8.062880994668822,
+      "lower_delta_1sigma": -0.1852585513817644,
+      "upper_delta_1sigma": 0.23991791528801265
+    },
+    "icm.norm": {
+      "best": 0.009306219686254589,
+      "lower_delta_1sigma": -4.339369202558535e-05,
+      "upper_delta_1sigma": 4.346786953080342e-05
+    }
+  },
+  "dof": 1297,
+  "fit_band_keV": [
+    0.7,
+    7
+  ],
+  "fit_plot_png": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/fits/full_r500/Abell_383_full_r500_fit_plot.png",
+  "model": "xsphabs * xsapec",
+  "nH_1e22_cm2": 0.0412,
+  "n_spectra": 3,
+  "plot_caveat": "WSTAT fit: plot/residuals are qualitative only; background PHA is used internally by WSTAT.",
+  "q_value": 3.4297526947276937e-71,
+  "qa_flags": [
+    "high_reduced_statistic_inspect_model_background_or_calibration",
+    "low_q_value_fit_not_statistically_acceptable"
+  ],
+  "redshift": 0.187,
+  "residual_summaries": [
+    {
+      "dataset_id": 1,
+      "max_abs_residual": 0.19631585262063656,
+      "mean_residual": 0.015649491950949612,
+      "n_bins": 433,
+      "plot_caveat": "WSTAT fit: plot/residuals are qualitative only; background PHA is used internally by WSTAT.",
+      "rms_residual": 0.03621874886592573,
+      "spectrum": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/full_r500/Abell_383_obs2320_full_r500.pi"
+    },
+    {
+      "dataset_id": 2,
+      "max_abs_residual": 0.35262685867001475,
+      "mean_residual": 0.020777791241878295,
+      "n_bins": 433,
+      "plot_caveat": "WSTAT fit: plot/residuals are qualitative only; background PHA is used internally by WSTAT.",
+      "rms_residual": 0.049075903530856065,
+      "spectrum": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/full_r500/Abell_383_obs2321_full_r500.pi"
+    },
+    {
+      "dataset_id": 3,
+      "max_abs_residual": 0.3100490709673287,
+      "mean_residual": 0.007533416176543298,
+      "n_bins": 433,
+      "plot_caveat": "WSTAT fit: plot/residuals are qualitative only; background PHA is used internally by WSTAT.",
+      "rms_residual": 0.04050400563707449,
+      "spectrum": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/full_r500/Abell_383_obs524_full_r500.pi"
+    }
+  ],
+  "response_weighting": "no",
+  "rest_bolometric_band_keV": [
+    0.01,
+    100
+  ],
+  "rest_soft_band_keV": [
+    0.5,
+    2
+  ],
+  "rstat": 1.8698553987920108,
+  "soft_flux_absorbed_erg_s_cm2": 3.149565936579695e-12,
+  "soft_flux_unabsorbed_erg_s_cm2": 3.6296198088860482e-12,
+  "soft_luminosity_unabsorbed_erg_s": 3.5913282787019884e+44,
+  "spectra": [
+    "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/full_r500/Abell_383_obs2320_full_r500.pi",
+    "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/full_r500/Abell_383_obs2321_full_r500.pi",
+    "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/full_r500/Abell_383_obs524_full_r500.pi"
+  ],
+  "statname": "wstat",
+  "statval": 2425.202452233238,
+  "temperature_keV": 8.062880994668822
+}

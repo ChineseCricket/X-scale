@@ -1,0 +1,87 @@
+{
+  "abundance_solar": 0.3,
+  "apec_norm": 0.005149705470327129,
+  "background_method": "paper_hybrid: local ACIS-I source-free field where available; ACIS-S blank-sky; Sherpa WSTAT; no subtract()",
+  "bolometric_flux_unabsorbed_erg_s_cm2": 7.0808909463138734e-12,
+  "bolometric_luminosity_unabsorbed_erg_s": 7.006189417317086e+44,
+  "confidence_intervals": {
+    "icm.kT": {
+      "best": 64.0,
+      "lower_delta_1sigma": -1.6318303995437375,
+      "upper_delta_1sigma": null
+    },
+    "icm.norm": {
+      "best": 0.005149705470327129,
+      "lower_delta_1sigma": -0.00010065800351933239,
+      "upper_delta_1sigma": 1.7287219291258274e-05
+    }
+  },
+  "dof": 1293,
+  "fit_band_keV": [
+    0.7,
+    7
+  ],
+  "fit_plot_png": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/fits/core_excised_0p15_1r500/Abell_383_core_excised_0p15_1r500_fit_plot.png",
+  "model": "xsphabs * xsapec",
+  "nH_1e22_cm2": 0.0412,
+  "n_spectra": 3,
+  "plot_caveat": "WSTAT fit: plot/residuals are qualitative only; background PHA is used internally by WSTAT.",
+  "q_value": 2.0643434620194664e-56,
+  "qa_flags": [
+    "high_reduced_statistic_inspect_model_background_or_calibration",
+    "low_q_value_fit_not_statistically_acceptable",
+    "very_high_temperature_check_background_center_core_or_multitemperature_structure",
+    "temperature_pegged_at_xsapec_upper_bound"
+  ],
+  "redshift": 0.187,
+  "residual_summaries": [
+    {
+      "dataset_id": 1,
+      "max_abs_residual": 0.09535349116612968,
+      "mean_residual": 0.012156782333490466,
+      "n_bins": 432,
+      "plot_caveat": "WSTAT fit: plot/residuals are qualitative only; background PHA is used internally by WSTAT.",
+      "rms_residual": 0.022657012196828655,
+      "spectrum": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/core_excised_0p15_1r500/Abell_383_obs2320_core_excised_0p15_1r500.pi"
+    },
+    {
+      "dataset_id": 2,
+      "max_abs_residual": 0.14685658748254626,
+      "mean_residual": 0.019923472985548408,
+      "n_bins": 433,
+      "plot_caveat": "WSTAT fit: plot/residuals are qualitative only; background PHA is used internally by WSTAT.",
+      "rms_residual": 0.032925329970261055,
+      "spectrum": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/core_excised_0p15_1r500/Abell_383_obs2321_core_excised_0p15_1r500.pi"
+    },
+    {
+      "dataset_id": 3,
+      "max_abs_residual": 0.14642068189279364,
+      "mean_residual": 0.011766588624953717,
+      "n_bins": 430,
+      "plot_caveat": "WSTAT fit: plot/residuals are qualitative only; background PHA is used internally by WSTAT.",
+      "rms_residual": 0.029831217949777736,
+      "spectrum": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/core_excised_0p15_1r500/Abell_383_obs524_core_excised_0p15_1r500.pi"
+    }
+  ],
+  "response_weighting": "no",
+  "rest_bolometric_band_keV": [
+    0.01,
+    100
+  ],
+  "rest_soft_band_keV": [
+    0.5,
+    2
+  ],
+  "rstat": 1.7545348307390145,
+  "soft_flux_absorbed_erg_s_cm2": 1.101123103792834e-12,
+  "soft_flux_unabsorbed_erg_s_cm2": 1.260016544522521e-12,
+  "soft_luminosity_unabsorbed_erg_s": 1.2467237028235424e+44,
+  "spectra": [
+    "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/core_excised_0p15_1r500/Abell_383_obs2320_core_excised_0p15_1r500.pi",
+    "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/core_excised_0p15_1r500/Abell_383_obs2321_core_excised_0p15_1r500.pi",
+    "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_pipeline/spectra/core_excised_0p15_1r500/Abell_383_obs524_core_excised_0p15_1r500.pi"
+  ],
+  "statname": "wstat",
+  "statval": 2268.613536145546,
+  "temperature_keV": 64.0
+}
