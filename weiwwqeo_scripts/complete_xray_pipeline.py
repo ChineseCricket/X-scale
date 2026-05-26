@@ -803,7 +803,19 @@ def main() -> None:
         write_region(region_path, center_ra, center_dec, outer_r500 * r500_arcsec, inner_r500 * r500_arcsec if inner_r500 > 0 else None)
         plot_path = outdir / "figures" / f"{row.key}_{label}_aperture_overlay.png"
         plot_path.parent.mkdir(parents=True, exist_ok=True)
-        aperture_plot = write_aperture_overlay_plot(smoothed, plot_path, center_ra, center_dec, outer_r500 * r500_arcsec, 0.0, 0.0, inner_r500 / outer_r500 if outer_r500 > 0 else 0.0, masks, f"{row.key} {label} aperture")
+        aperture_plot = write_aperture_overlay_plot(
+            smoothed,
+            plot_path,
+            center_ra,
+            center_dec,
+            r500_arcsec,
+            0.0,
+            0.0,
+            inner_r500,
+            masks,
+            f"{row.key} {label} aperture",
+            source_outer_r500=outer_r500,
+        )
         spectra: list[Path] = []
         background_by_obsid: dict[str, Any] = {}
         if not args.no_run_specextract:

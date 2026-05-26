@@ -646,6 +646,7 @@ def write_aperture_overlay_plot(
     source_inner_r500: float,
     point_source_masks: list[PointSourceMask],
     title: str,
+    source_outer_r500: float = 1.0,
 ) -> Path | None:
     """Plot the spectral source/background apertures on the cluster image."""
     if image_path is None or not image_path.exists():
@@ -665,12 +666,13 @@ def write_aperture_overlay_plot(
         pix_arcsec = abs(float(hdu.header.get("CDELT2", hdu.header.get("CDELT1", 0.00013666666666667)))) * 3600.0
 
     r500_pix = r500_arcsec / pix_arcsec
+    source_outer_pix = source_outer_r500 * r500_pix
     show_background_annulus = bkg_inner_r500 > 0 and bkg_outer_r500 > bkg_inner_r500
     bkg_inner_pix = bkg_inner_r500 * r500_pix
     bkg_outer_pix = bkg_outer_r500 * r500_pix
     source_inner_pix = source_inner_r500 * r500_pix
 
-    pad = max(40.0, (bkg_outer_pix if show_background_annulus else r500_pix) * 1.08)
+    pad = max(40.0, (bkg_outer_pix if show_background_annulus else source_outer_pix) * 1.08)
     ny, nx = data.shape
     xmin = max(0, int(math.floor(x0 - pad)))
     xmax = min(nx, int(math.ceil(x0 + pad)))
@@ -702,7 +704,9 @@ def write_aperture_overlay_plot(
                 linewidths=0.45,
                 alpha=0.35,
             )
-    ax.add_patch(Circle((x0, y0), r500_pix, fill=False, ec="cyan", lw=2.0, label="source outer R500"))
+    ax.add_patch(
+        Circle((x0, y0), source_outer_pix, fill=False, ec="cyan", lw=2.0, label=f"source outer {source_outer_r500:.2f}R500")
+    )
     if source_inner_r500 > 0:
         ax.add_patch(
             Circle((x0, y0), source_inner_pix, fill=False, ec="white", lw=2.0, ls="-", label=f"masked core {source_inner_r500:.2f}R500")
