@@ -30,6 +30,13 @@ note: 将此文件内容直接粘贴到新 session 作为初始 prompt，然后�
 
 5. **生成最终汇总表 + 更新 pipeline_status.csv**
 
+6. **每次拟合后把产物复制到 `output/` 目录**（见 CLAUDE.md "光谱拟合输出约定"）：
+   - fit plot PNG → `output/figures/spectral/<cluster>_fit.png`
+   - 结果 JSON → `output/products/spectral/<cluster>_results.json`
+   - β-model profile 图 → `output/figures/spectral/<cluster>_beta_profile.png`
+   - 汇总 CSV → `output/products/spectral/spectral_twostep_summary.csv`
+   - 脚本中修改默认输出路径或拟合后自动复制，不要只留在 `postprocess_r500/` 里
+
 ## 关键文件
 
 - Wei 的脚本：`weiwwqeo_scripts/src/02_spectral/fit_spectral_joint.py`
