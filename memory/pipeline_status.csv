@@ -1,13 +1,13 @@
 cluster_key,repro,pipeline,spectral,notes
 Abell_0209,done,done,tested,Phase 3 test: full_R500 T_X=21.0 (ACCEPT=8.28), core-excised T_X=40.0; local annulus bg contaminated by ICM
 Abell_0068,done,done,tested,Phase 3 test v2: full_R500 T_X=33.4 (ACCEPT=7.99), core-excised T_X=53.9; single ObsID data quality issue
-Abell_0267,pending,pending,pending,
-Abell_0383,pending,pending,pending,
-Abell_0586,pending,pending,pending,
+Abell_0267,done,done,pending,csmooth skipped (image too large, 19.5M pix); pipeline otherwise complete
+Abell_0383,done,done,pending,csmooth skipped (image too large, 23.4M pix); pipeline otherwise complete
+Abell_0586,done,done,pending,csmooth skipped (image too large, 27.0M pix); pipeline otherwise complete
 Abell_0611,done,done,tested,Phase 3 test: full_R500 T_X=63.9 (ACCEPT=6.69), core-excised T_X=64.0; local annulus bg issue
 Abell_0697,done,done,pending,Batch 2 完成 (ObsID 532, 4217)
 Abell_0750,done,done,pending,Batch 2 完成 (ObsID 924, 7699)
-Abell_2261,pending,pending,pending,
+Abell_2261,done,done,pending,csmooth skipped (image too large, 22.4M pix); pipeline otherwise complete
 MACSJ0329.7-0211,done,done,pending,Batch 6 完成 (ObsID 3257, 3582, 6108, 7719)
 MACSJ0429.6-0253,done,done,tested,Phase 3 test: full_R500 T_X=7.56 (ACCEPT=6.76, +12%); GOOD FIT; core-excised T_X=12.9
 MACSJ0647.7+7015,done,done,pending,Batch 2 完成 (ObsID 3196, 3584)
@@ -17,8 +17,8 @@ MACSJ1206.2-0847,done,done,pending,Batch 7 完成 (ObsID 3277, 20544, 20929, 210
 MACSJ1720.3+3536,done,done,pending,Batch 6 完成 (ObsID 3280, 6107, 7225, 7718)
 MACSJ1931.8-2635,done,done,pending,Batch 3 完成 (ObsID 3282, 9382)
 MS2137-2353,done,done,pending,Batch 4 完成 (ObsID 928, 4974, 5250)
-RXJ1347.5-1145,pending,pending,pending,
-RXJ1532.9+3021,pending,pending,pending,
+RXJ1347.5-1145,done,done,pending,csmooth skipped (image too large, 27.4M pix); pipeline otherwise complete
+RXJ1532.9+3021,done,done,pending,csmooth skipped (image too large, 18.4M pix); pipeline otherwise complete
 RXJ2129.7+0005,done,done,pending,Batch 3 完成 (ObsID 552, 9370)
 RXJ2248.7-4431,done,done,pending,Batch 5 完成 (ObsID 4966, 18611, 18818)
 ZwCl_0857.9+2107,done,done,pending,Batch 3 完成 (ObsID 7897, 10463)
