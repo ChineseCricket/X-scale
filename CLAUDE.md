@@ -108,6 +108,16 @@ output/
 3. 更新 `memory/pipeline_status.csv`
 4. 更新 `README.md` 的「当前状态」表格，保持人工可追踪
 
+**光谱拟合输出约定：**
+
+光谱拟合的中间产物（per-cluster 光谱文件、RMF/ARF）放在 cluster 目录下（`postprocess_r500/`），
+但**汇总结果图和日志必须复制到 `output/` 相应子目录**：
+
+- 拟合图 (fit plot PNG) → `output/figures/spectral/<cluster>_fit.png`
+- 拟合结果 JSON → `output/products/spectral/<cluster>_results.json`
+- 汇总 CSV → `output/products/spectral/spectral_summary.csv`
+- 操作日志 → `output/logs/spectral/<cluster>.log`
+
 ### 关键步骤记录规范
 
 **每步必更（agent 自动执行，无需提醒）：**

@@ -1,0 +1,35 @@
+Batch: csmooth_skipped (6 clusters)
+Date: 2026-05-17
+Operator: Claude Agent
+
+## Clusters
+Abell_0383, RXJ1532.9+3021, Abell_0267, Abell_2261, RXJ1347.5-1145, Abell_0586
+
+## Background
+These 6 clusters completed all pipeline steps (repro -> merge -> wavdetect -> point source removal -> flux_clean)
+but csmooth (Step 6, adaptive smoothing) failed due to excessive memory usage.
+Image sizes range from 18.4M to 27.4M pixels (4000-6000 pixel side lengths).
+csmooth memory usage exceeded 100 GB per cluster, crashing the server twice during original processing.
+
+## csmooth Retry Attempt
+- Tested on RXJ1532.9+3021 (smallest, 18.4M pixels) with reduced parameters: sigmin=1 sigmax=3
+- After 68 minutes, memory usage reached 68 GB (52.9% of system RAM) with no output produced
+- Conclusion: csmooth is fundamentally incompatible with these image sizes regardless of parameter tuning
+
+## Decision
+csmooth is purely cosmetic (produces smoothed flux map for visualization).
+It does NOT affect scientific outputs (T_X, L_X derived from spectral fitting).
+All 6 clusters are marked as pipeline DONE with csmooth skipped.
+
+## Pipeline Results Summary
+cluster            | ObsIDs | repro | point sources | flux_clean | csmooth  | status
+Abell_0383         |   3    |  3/3  |     371       |   yes      | skipped  | done
+RXJ1532.9+3021     |   3    |  3/3  |    1017       |   yes      | skipped  | done
+Abell_0267         |   4    |  4/4  |     328       |   yes      | skipped  | done
+Abell_2261         |   4    |  4/4  |    1236       |   yes      | skipped  | done
+RXJ1347.5-1145     |   7    |  7/7  |      79       |   yes      | skipped  | done
+Abell_0586         |   9    |  9/9  |      90       |   yes      | skipped  | done
+
+## Files
+- Summary CSV: output/products/pipeline/batch_csmooth_skipped_summary.csv
+- Status updated: memory/pipeline_status.csv

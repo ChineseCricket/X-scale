@@ -1,0 +1,7 @@
+cluster,timestamp,n_obsids,repro_done,repro_total,has_merged_evt,has_merged_evt_size_mb,has_merged_clean_evt,has_merged_clean_evt_size_mb,has_src,has_src_size_mb,has_broad_flux,has_broad_flux_size_mb,has_flux_clean,has_flux_clean_size_mb,has_flux_csmooth,has_flux_csmooth_size_mb,n_point_sources,pipeline_status
+Abell_0383,2026-05-17T01:15:47,3,3,3,yes,3.8,yes,3.5,yes,0.1,yes,93.6,yes,93.6,no,,371,done
+RXJ1532.9+3021,2026-05-17T01:15:47,3,3,3,yes,9.1,yes,8.3,yes,0.2,yes,73.7,yes,73.7,no,,1017,done
+Abell_0267,2026-05-17T01:15:47,4,4,4,yes,2.1,yes,2.1,yes,0.1,yes,77.9,yes,77.9,no,,328,done
+Abell_2261,2026-05-17T01:15:47,4,4,4,yes,10.0,yes,9.8,yes,0.3,yes,89.6,yes,89.7,no,,1236,done
+RXJ1347.5-1145,2026-05-17T01:15:47,7,7,7,yes,18.4,yes,16.2,yes,0.0,yes,109.7,yes,109.7,no,,79,done
+Abell_0586,2026-05-17T01:15:47,9,9,9,yes,13.1,yes,12.7,yes,0.0,yes,107.8,yes,107.8,no,,90,done

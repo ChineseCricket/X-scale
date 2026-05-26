@@ -776,7 +776,8 @@ def obsid_from_evt_path(evt: Path) -> str:
     return digits or stem
 
 
-def run_specextract_one(cluster_dir: Path, evt: Path, src_region: str, bkg_region: str, outroot: Path) -> Path | None:
+def run_specextract_one(cluster_dir: Path, evt: Path, src_region: str, bkg_region: str, outroot: Path,
+                        correctpsf: bool = True, weight: bool = True) -> Path | None:
     if shutil.which("specextract") is None:
         print("[warn] CIAO specextract not found on PATH; skipping spectral extraction.")
         return None
@@ -785,9 +786,9 @@ def run_specextract_one(cluster_dir: Path, evt: Path, src_region: str, bkg_regio
         f"infile={evt}[sky={src_region}]",
         f"bkgfile={evt}[sky={bkg_region}]",
         f"outroot={outroot}",
-        f"correctpsf={DEFAULT_SPECEXTRACT_CORRECTPSF}",
-        f"weight={DEFAULT_SPECEXTRACT_WEIGHT}",
-        f"bkgresp={DEFAULT_SPECEXTRACT_BKGRESP}",
+        f"correctpsf={'yes' if correctpsf else 'no'}",
+        f"weight={'yes' if weight else 'no'}",
+        f"bkgresp={'yes' if DEFAULT_SPECEXTRACT_BKGRESP else 'no'}",
         "clobber=yes",
     ]
     try:
@@ -828,6 +829,8 @@ def run_specextract_individual(
     energy_min: float,
     energy_max: float,
     point_source_masks: list[PointSourceMask],
+    correctpsf: bool = True,
+    weight: bool = True,
 ) -> list[Path]:
     spectra: list[Path] = []
     if shutil.which("specextract") is None:
@@ -880,7 +883,7 @@ def run_specextract_individual(
         if not nsrc:
             print(f"[warn] ObsID {obsid} source region has zero quick-look counts; skipping specextract for this ObsID.")
             continue
-        pi = run_specextract_one(cluster_dir, evt, src_region, bkg_region, outroot)
+        pi = run_specextract_one(cluster_dir, evt, src_region, bkg_region, outroot, correctpsf, weight)
         if pi is not None:
             spectra.append(pi)
     return spectra
@@ -1152,6 +1155,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--run-sherpa", action=argparse.BooleanOptionalAction, default=DEFAULT_RUN_SHERPA, help="Run Sherpa fit script if available and spectrum exists")
     parser.add_argument("--fit-method", default="levmar", help="Sherpa optimization method: levmar, neldermead, or moncar")
     parser.add_argument("--fit-soft-bg", action="store_true", help="Add a 0.5 keV soft thermal background component to the fit model")
+    parser.add_argument("--specextract-weight", action=argparse.BooleanOptionalAction, default=DEFAULT_SPECEXTRACT_WEIGHT, help="Use weighted ARF/RMF in specextract (slow for large regions)")
+    parser.add_argument("--specextract-correctpsf", action=argparse.BooleanOptionalAction, default=DEFAULT_SPECEXTRACT_CORRECTPSF, help="Apply PSF correction in specextract")
     return parser.parse_args()
 
 
@@ -1316,6 +1321,8 @@ def main() -> None:
             args.energy_min,
             args.energy_max,
             point_source_masks,
+            correctpsf=args.specextract_correctpsf,
+            weight=args.specextract_weight,
         )
 
     if not spectrum_pis:
