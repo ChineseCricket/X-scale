@@ -1,0 +1,314 @@
+{
+  "abundance_policy": "fixed",
+  "annulus_area_arcsec2_approx": 827653.7727996691,
+  "aperture_plot": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/figures/Abell_383_phase3_source_aperture.png",
+  "beta_profile_json": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/results/Abell_383_beta_profile.json",
+  "beta_profile_plot": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/figures/Abell_383_beta_profile.png",
+  "blanksky_by_obsid": {
+    "2320": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/blanksky/obs2320_blanksky_evt.fits",
+    "2321": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/blanksky/obs2321_blanksky_evt.fits",
+    "524": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/blanksky/obs524_blanksky_evt.fits"
+  },
+  "blanksky_pha_high_energy_renormalized": true,
+  "blanksky_renorm_band_keV": [
+    9.5,
+    12.0
+  ],
+  "blanksky_renorm_diagnostics": [
+    {
+      "background_counts": 81609.0,
+      "band_keV": [
+        9.5,
+        12.0
+      ],
+      "new_background_areascale": 1.7839355163929265,
+      "obsid": "524",
+      "old_background_areascale": 80.264493981728,
+      "original_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs524_src_r500_bkg.pi",
+      "original_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs524_src_r500.pi",
+      "predicted_background_counts": 22.514646121327598,
+      "renormalized_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs524_src_r500_he9p5_12keV_bkg.pi",
+      "renormalized_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs524_src_r500_he9p5_12keV.pi",
+      "source_counts": 1013.0,
+      "source_over_predicted_background": 44.99293457872335,
+      "spectrum_kind": "source"
+    },
+    {
+      "background_counts": 65943.0,
+      "band_keV": [
+        9.5,
+        12.0
+      ],
+      "new_background_areascale": 1.6297133847274898,
+      "obsid": "524",
+      "old_background_areascale": 75.4479476687,
+      "original_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs524_ann_1.2_1.8r500_bkg.pi",
+      "original_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs524_ann_1.2_1.8r500.pi",
+      "predicted_background_counts": 19.354047894421555,
+      "renormalized_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs524_ann_1.2_1.8r500_he9p5_12keV_bkg.pi",
+      "renormalized_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs524_ann_1.2_1.8r500_he9p5_12keV.pi",
+      "source_counts": 896.0,
+      "source_over_predicted_background": 46.29522490012311,
+      "spectrum_kind": "annulus"
+    },
+    {
+      "background_counts": 78595.0,
+      "band_keV": [
+        9.5,
+        12.0
+      ],
+      "new_background_areascale": 1.7038119789467627,
+      "obsid": "2320",
+      "old_background_areascale": 40.290070781999,
+      "original_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs2320_src_r500_bkg.pi",
+      "original_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs2320_src_r500.pi",
+      "predicted_background_counts": 83.60462558141538,
+      "renormalized_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2320_src_r500_he9p5_12keV_bkg.pi",
+      "renormalized_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2320_src_r500_he9p5_12keV.pi",
+      "source_counts": 1977.0,
+      "source_over_predicted_background": 23.647016971265174,
+      "spectrum_kind": "source"
+    },
+    {
+      "background_counts": 71845.0,
+      "band_keV": [
+        9.5,
+        12.0
+      ],
+      "new_background_areascale": 1.570991720064691,
+      "obsid": "2320",
+      "old_background_areascale": 38.446477793218,
+      "original_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs2320_ann_1.2_1.8r500_bkg.pi",
+      "original_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs2320_ann_1.2_1.8r500.pi",
+      "predicted_background_counts": 80.08909913380826,
+      "renormalized_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2320_ann_1.2_1.8r500_he9p5_12keV_bkg.pi",
+      "renormalized_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2320_ann_1.2_1.8r500_he9p5_12keV.pi",
+      "source_counts": 1960.0,
+      "source_over_predicted_background": 24.4727437466283,
+      "spectrum_kind": "annulus"
+    },
+    {
+      "background_counts": 82682.0,
+      "band_keV": [
+        9.5,
+        12.0
+      ],
+      "new_background_areascale": 1.3533515287053393,
+      "obsid": "2321",
+      "old_background_areascale": 5.779311555693,
+      "original_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs2321_src_r500_bkg.pi",
+      "original_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs2321_src_r500.pi",
+      "predicted_background_counts": 3245.6205219423905,
+      "renormalized_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2321_src_r500_he9p5_12keV_bkg.pi",
+      "renormalized_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2321_src_r500_he9p5_12keV.pi",
+      "source_counts": 13860.0,
+      "source_over_predicted_background": 4.2703698433929285,
+      "spectrum_kind": "source"
+    },
+    {
+      "background_counts": 24752.0,
+      "band_keV": [
+        9.5,
+        12.0
+      ],
+      "new_background_areascale": 2.1054753222449287,
+      "obsid": "2321",
+      "old_background_areascale": 9.0648969570501,
+      "original_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs2321_ann_1.2_1.8r500_bkg.pi",
+      "original_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra/Abell_383_obs2321_ann_1.2_1.8r500.pi",
+      "predicted_background_counts": 619.4557655793317,
+      "renormalized_background_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2321_ann_1.2_1.8r500_he9p5_12keV_bkg.pi",
+      "renormalized_source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2321_ann_1.2_1.8r500_he9p5_12keV.pi",
+      "source_counts": 2667.0,
+      "source_over_predicted_background": 4.305392165501519,
+      "spectrum_kind": "annulus"
+    }
+  ],
+  "center_mode": "xray_peak",
+  "center_offset_from_catalog_arcsec": 0.8366398184387583,
+  "cluster": {
+    "dec": -3.52923,
+    "key": "Abell_383",
+    "m500_msun": 588000000000000.0,
+    "name": "Abell 383",
+    "nh_1e22": 0.0412,
+    "obsids": [
+      "524",
+      "2320",
+      "2321"
+    ],
+    "ra": 42.0141312,
+    "z": 0.187
+  },
+  "cluster_dir": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383",
+  "display_image": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/imaging/merged_0.5-2.0_flux_display_smooth.img",
+  "evt2_by_obsid": {
+    "2320": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/raw/2320/repro/acisf02320_repro_evt2.fits",
+    "2321": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/raw/2321/repro/acisf02321_repro_evt2.fits",
+    "524": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/raw/524/repro/acisf00524_repro_evt2.fits"
+  },
+  "fit_band_keV": [
+    0.7,
+    7.0
+  ],
+  "fit_center_dec_deg": -3.5294610122147185,
+  "fit_center_ra_deg": 42.01410579252968,
+  "fit_json": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/fits/phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV/Abell_383_phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV_fit_results.json",
+  "fit_plot": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/fits/phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV/Abell_383_phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV_fit_plot.png",
+  "fit_result": {
+    "abundance_policy": "fixed",
+    "abundance_solar": 0.3,
+    "aic_wstat": 1668.030448469551,
+    "annulus_fit": {
+      "aic_wstat": 1805.759274993884,
+      "bic_wstat": 1821.3154360406252,
+      "cxb_norm": 1.4120900203804054e-10,
+      "cxb_phoindex": 1.4,
+      "dof": 1279,
+      "halo_kT": 0.25,
+      "halo_norm": 1.0397676006131055e-09,
+      "icm_ann_kT": 38.03195680024305,
+      "icm_ann_norm": 0.00030149717905275013,
+      "icm_ann_norm_policy": "frozen_to_beta_R_EM_times_source_prefit_norm",
+      "lhb_kT": 0.1,
+      "lhb_norm": 5e-06,
+      "n_free_parameters": 3,
+      "q_value": 2.3282581301601885e-20,
+      "rstat": 1.4071612783376732,
+      "statname": "wstat",
+      "statval": 1799.759274993884,
+      "xrb_policy": "fixed_shape"
+    },
+    "annulus_spectra": [
+      "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs524_ann_1.2_1.8r500_he9p5_12keV.pi",
+      "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2320_ann_1.2_1.8r500_he9p5_12keV.pi",
+      "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2321_ann_1.2_1.8r500_he9p5_12keV.pi"
+    ],
+    "apec_norm": 0.00853571946138025,
+    "bic_wstat": 1678.4012225007118,
+    "bolometric_flux_unabsorbed_erg_s_cm2": 9.81994383874229e-12,
+    "bolometric_luminosity_unabsorbed_erg_s": 9.71634602527808e+44,
+    "confidence_intervals": {
+      "icm_src.kT": {
+        "best": 4.932630567626275,
+        "lower_delta_1sigma": -0.0956377971245006,
+        "upper_delta_1sigma": 0.09481775850866914
+      },
+      "icm_src.norm": {
+        "best": 0.00853571946138025,
+        "lower_delta_1sigma": -4.610584980612939e-05,
+        "upper_delta_1sigma": 4.610584980612939e-05
+      }
+    },
+    "dof": 1297,
+    "fit_band_keV": [
+      0.7,
+      7
+    ],
+    "fit_plot_png": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/fits/phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV/Abell_383_phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV_fit_plot.png",
+    "method": "phase3_BC_annulus_constrained_xrb",
+    "model_annulus": "lhb + phabs*(halo + cxb + icm_ann)",
+    "model_selection_note": "For WSTAT fits compare variants with lower AIC/BIC; q_value is reported but is not the main selection criterion.",
+    "model_source": "lhb + phabs*(halo + cxb + icm_src)",
+    "nH_1e22_cm2": 0.0412,
+    "n_free_parameters": 2,
+    "plot_caveat": "WSTAT with blank-sky PHA; plotted residuals are qualitative.",
+    "q_value": 1.6398808545687402e-11,
+    "qa_flags": [
+      "low_q_value"
+    ],
+    "r_em_annulus_to_source": 0.0353215285888,
+    "redshift": 0.187,
+    "residual_summaries": [
+      {
+        "dataset_id": 1,
+        "max_abs_residual": 0.2834904800336313,
+        "mean_residual": 0.02348816207296227,
+        "n_bins": 433,
+        "rms_residual": 0.04294275789394924,
+        "spectrum": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs524_src_r500_he9p5_12keV.pi"
+      },
+      {
+        "dataset_id": 2,
+        "max_abs_residual": 0.16979822655891297,
+        "mean_residual": 0.031852215816047566,
+        "n_bins": 433,
+        "rms_residual": 0.043566147275847136,
+        "spectrum": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2320_src_r500_he9p5_12keV.pi"
+      },
+      {
+        "dataset_id": 3,
+        "max_abs_residual": 0.33025381953769073,
+        "mean_residual": 0.04261094992198231,
+        "n_bins": 433,
+        "rms_residual": 0.056388607100186776,
+        "spectrum": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2321_src_r500_he9p5_12keV.pi"
+      }
+    ],
+    "rstat": 1.282984154564033,
+    "soft_flux_unabsorbed_erg_s_cm2": 3.519196888488594e-12,
+    "soft_luminosity_unabsorbed_erg_s": 3.482070290945429e+44,
+    "source_prefit": {
+      "apec_norm": 0.008535790708628444,
+      "dof": 1297,
+      "q_value": 1.6411527965832925e-11,
+      "rstat": 1.2829788596986533,
+      "statval": 1664.0235810291533,
+      "temperature_keV": 4.932530721733317
+    },
+    "source_spectra": [
+      "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs524_src_r500_he9p5_12keV.pi",
+      "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2320_src_r500_he9p5_12keV.pi",
+      "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2321_src_r500_he9p5_12keV.pi"
+    ],
+    "statname": "wstat",
+    "statval": 1664.030448469551,
+    "temperature_keV": 4.932630567626275,
+    "xrb_area_scale_source_over_annulus": 0.55299713031,
+    "xrb_policy": "fixed_shape"
+  },
+  "fit_tag": "phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV",
+  "imaging": {
+    "products": []
+  },
+  "method": "phase3_BC_surface_brightness_constrained_source_plus_background",
+  "output_dir": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc",
+  "point_source_mask_count": 33,
+  "r500_arcsec": 382.75492197506037,
+  "r500_mpc": 1.197665998565514,
+  "r_em_annulus_to_source": 0.03532152858875159,
+  "sherpa_script": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/fits/phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV/fit_Abell_383_phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV_sherpa.py",
+  "source_area_arcsec2_approx": 457690.16124815994,
+  "source_catalog": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/imaging/src.fits",
+  "spectrum_sets": [
+    {
+      "annulus_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs524_ann_1.2_1.8r500_he9p5_12keV.pi",
+      "annulus_region": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/regions/per_obs/Abell_383_obs524_ann_1.2_1.8r500.reg",
+      "blanksky_file": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/blanksky/obs524_blanksky_evt.fits",
+      "evt_file": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/raw/524/repro/acisf00524_repro_evt2.fits",
+      "obsid": "524",
+      "source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs524_src_r500_he9p5_12keV.pi",
+      "source_region": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/regions/per_obs/Abell_383_obs524_src_r500.reg"
+    },
+    {
+      "annulus_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2320_ann_1.2_1.8r500_he9p5_12keV.pi",
+      "annulus_region": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/regions/per_obs/Abell_383_obs2320_ann_1.2_1.8r500.reg",
+      "blanksky_file": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/blanksky/obs2320_blanksky_evt.fits",
+      "evt_file": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/raw/2320/repro/acisf02320_repro_evt2.fits",
+      "obsid": "2320",
+      "source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2320_src_r500_he9p5_12keV.pi",
+      "source_region": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/regions/per_obs/Abell_383_obs2320_src_r500.reg"
+    },
+    {
+      "annulus_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2321_ann_1.2_1.8r500_he9p5_12keV.pi",
+      "annulus_region": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/regions/per_obs/Abell_383_obs2321_ann_1.2_1.8r500.reg",
+      "blanksky_file": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/blanksky/obs2321_blanksky_evt.fits",
+      "evt_file": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/raw/2321/repro/acisf02321_repro_evt2.fits",
+      "obsid": "2321",
+      "source_pi": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/spectra_high_energy_renorm/Abell_383_obs2321_src_r500_he9p5_12keV.pi",
+      "source_region": "/Users/weiwwqeo/Documents/Observationer/materials/Advanced_obs_astro/final_project/chandra_data/Abell_383/processed_joint_bxc/regions/per_obs/Abell_383_obs2321_src_r500.reg"
+    }
+  ],
+  "xrb_area_scale_source_over_annulus": 0.5529971303096354,
+  "xrb_policy": "fixed_shape"
+}
