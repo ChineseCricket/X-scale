@@ -17,7 +17,9 @@ sys.path.insert(0, str(Path(__file__).parent))
 from postproces_cluster import (
     CLUSTER_TABLE_PATH,
     load_cluster_configs_from_table,
+    resolve_cluster_config,
 )
+from fit_spectral_xrb import _alt_cluster_keys
 
 SUMMARY_CSV = Path("output/products/spectral/spectral_xrb_summary.csv")
 ACCEPT_CSV = Path("configs/accept_reference.csv")
@@ -109,10 +111,11 @@ def main():
 
     results = []
     for i, key in enumerate(pipeline_clusters, 1):
-        if key not in configs:
+        try:
+            _, cfg = resolve_cluster_config(key, configs)
+        except SystemExit:
             print(f"[warn] {key}: missing from config table")
             continue
-        cfg = configs[key]
         z = cfg.redshift or 0
         print(f"[{i}/{len(pipeline_clusters)}] {key} (z={z:.3f})")
 
@@ -120,8 +123,12 @@ def main():
         r = run_cluster(key)
         dt = time.time() - t0
 
-        # Add ACCEPT reference
-        acc = accept.get(key, {})
+        # Add ACCEPT reference (try all naming conventions)
+        acc = {}
+        for k in _alt_cluster_keys(key):
+            if k in accept:
+                acc = accept[k]
+                break
         try:
             r["accept_Tx"] = float(acc.get("accept_tx_kev", "nan"))
         except (ValueError, TypeError):

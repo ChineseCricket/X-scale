@@ -1,24 +1,25 @@
 cluster_key,repro,pipeline,spectral,notes
-Abell_0209,done,done,tested,Phase 3 test: full_R500 T_X=21.0 (ACCEPT=8.28), core-excised T_X=40.0; local annulus bg contaminated by ICM
-Abell_0068,done,done,tested,Phase 3 test v2: full_R500 T_X=33.4 (ACCEPT=7.99), core-excised T_X=53.9; single ObsID data quality issue
-Abell_0267,done,done,pending,csmooth skipped (image too large, 19.5M pix); pipeline otherwise complete
-Abell_0383,done,done,pending,csmooth skipped (image too large, 23.4M pix); pipeline otherwise complete
-Abell_0586,done,done,pending,csmooth skipped (image too large, 27.0M pix); pipeline otherwise complete
-Abell_0611,done,done,tested,Phase 3 test: full_R500 T_X=63.9 (ACCEPT=6.69), core-excised T_X=64.0; local annulus bg issue
-Abell_0697,done,done,pending,Batch 2 完成 (ObsID 532, 4217)
-Abell_0750,done,done,pending,Batch 2 完成 (ObsID 924, 7699)
-Abell_2261,done,done,pending,csmooth skipped (image too large, 22.4M pix); pipeline otherwise complete
-MACSJ0329.7-0211,done,done,pending,Batch 6 完成 (ObsID 3257, 3582, 6108, 7719)
-MACSJ0429.6-0253,done,done,tested,Phase 3 test: full_R500 T_X=7.56 (ACCEPT=6.76, +12%); GOOD FIT; core-excised T_X=12.9
-MACSJ0647.7+7015,done,done,pending,Batch 2 完成 (ObsID 3196, 3584)
-MACSJ0744.9+3927,done,done,pending,Batch 4 完成 (ObsID 3197, 3585, 6111)
-MACSJ1115.9+0129,done,done,pending,Batch 2 完成 (ObsID 3275, 9375)
-MACSJ1206.2-0847,done,done,pending,Batch 7 完成 (ObsID 3277, 20544, 20929, 21078, 21079, 21081)
-MACSJ1720.3+3536,done,done,pending,Batch 6 完成 (ObsID 3280, 6107, 7225, 7718)
-MACSJ1931.8-2635,done,done,pending,Batch 3 完成 (ObsID 3282, 9382)
-MS2137-2353,done,done,pending,Batch 4 完成 (ObsID 928, 4974, 5250)
-RXJ1347.5-1145,done,done,pending,csmooth skipped (image too large, 27.4M pix); pipeline otherwise complete
-RXJ1532.9+3021,done,done,pending,csmooth skipped (image too large, 18.4M pix); pipeline otherwise complete
-RXJ2129.7+0005,done,done,pending,Batch 3 完成 (ObsID 552, 9370)
-RXJ2248.7-4431,done,done,pending,Batch 5 完成 (ObsID 4966, 18611, 18818)
-ZwCl_0857.9+2107,done,done,pending,Batch 3 完成 (ObsID 7897, 10463)
+Abell_0209,done,done,done,T_X=8.05 (ACCEPT=8.28, 0.97x) rstat=0.93; blank-sky XRB fixed_shape
+Abell_0068,done,done,done,T_X=12.02 (ACCEPT=7.99, 1.50x) rstat=1.12; blank-sky XRB; single ObsID limit
+Abell_0267,done,done,done,T_X=8.90 (ACCEPT=6.79, 1.31x) rstat=0.95; blank-sky XRB
+Abell_0383,done,done,failed,CALDB blanksky failed (old ACIS-I); needs CALDB update
+Abell_0586,done,done,failed,CALDB blanksky failed (ACIS-I VFAINT); needs CALDB update
+Abell_0586,done,done,failed,CALDB blanksky failed (ACIS-I VFAINT); needs CALDB update
+Abell_0611,done,done,failed,CALDB blanksky failed (ACIS-S); needs CALDB update
+Abell_0697,done,done,done,T_X=14.26 (ACCEPT=9.06, 1.57x) rstat=0.90; blank-sky XRB; partial ObsID (1/2)
+Abell_0750,done,done,failed,CALDB blanksky failed (ACIS-I); needs CALDB update
+Abell_2261,done,done,done,T_X=8.35 (ACCEPT=7.58, 1.10x) rstat=1.08; blank-sky XRB; partial ObsID (1/4)
+MACSJ0329.7-0211,done,done,done,T_X=7.19 (ACCEPT=6.85, 1.05x); blank-sky XRB; partial ObsID (3/4)
+MACSJ0429.6-0253,done,done,done,T_X=6.43 (ACCEPT=6.76, 0.95x) rstat=0.97; blank-sky XRB
+MACSJ0647.7+7015,done,done,done,T_X=16.94 (ACCEPT=9.07, 1.87x); blank-sky XRB; partial ObsID (1/2)
+MACSJ0744.9+3927,done,done,done,T_X=10.15 (ACCEPT=11.29, 0.90x); blank-sky XRB
+MACSJ1115.9+0129,done,done,done,T_X=8.92 (ACCEPT=9.26, 0.96x); blank-sky XRB
+MACSJ1206.2-0847,done,done,done,T_X=12.89 (ACCEPT=7.88, 1.64x); blank-sky XRB; partial ObsID (1/6)
+MACSJ1720.3+3536,done,done,done,T_X=7.32 (ACCEPT=5.65, 1.30x); blank-sky XRB; partial ObsID (1/4)
+MACSJ1931.8-2635,done,done,done,T_X=7.39 (ACCEPT=7.50, 0.99x); blank-sky XRB
+MS2137-2353,done,done,failed,CALDB blanksky failed; needs CALDB update
+RXJ1347.5-1145,done,done,done,T_X=16.39 (ACCEPT=10.88, 1.51x); blank-sky XRB; partial ObsID (1/7)
+RXJ1532.9+3021,done,done,done,T_X=5.86 (ACCEPT=5.44, 1.08x); blank-sky XRB
+RXJ2129.7+0005,done,done,failed,CALDB blanksky failed; needs CALDB update
+RXJ2248.7-4431,done,done,done,T_X=12.15 (ACCEPT=11.10, 1.09x); blank-sky XRB
+ZwCl_0857.9+2107,done,done,failed,CALDB blanksky failed; needs CALDB update

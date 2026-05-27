@@ -57,11 +57,11 @@ def main():
     results = []
 
     for i, key in enumerate(pipeline_clusters, 1):
-        if key not in configs:
+        try:
+            _, config = resolve_cluster_config(key, configs)
+        except SystemExit:
             print(f"[warn] {key}: missing from config table")
             continue
-        cfg = configs[key]
-        _, config = resolve_cluster_config(key, configs)
 
         redshift = config.redshift
         m500_raw = config.m500

@@ -136,7 +136,8 @@ def load_existing_blanksky(
         candidates = [outdir / f"obs{obsid}_blanksky_evt.fits"]
         # Legacy location: postprocess_r500/<cluster>_obs<obsid>_blanksky.fits
         if cluster_dir and cluster_key:
-            candidates.append(cluster_dir / "postprocess_r500" / f"{cluster_key}_obs{obsid}_blanksky.fits")
+            for alt_key in _alt_cluster_keys(cluster_key):
+                candidates.append(cluster_dir / "postprocess_r500" / f"{alt_key}_obs{obsid}_blanksky.fits")
         for p in candidates:
             if p.exists():
                 out[obsid] = p.resolve()
@@ -202,6 +203,40 @@ def run_specextract_blanksky(
     return pi.resolve() if pi.exists() else None
 
 
+def _alt_cluster_keys(key: str) -> list[str]:
+    """Return alternate cluster key forms (dots/dashes <-> underscores)."""
+    keys = [key]
+    if "." in key or "-" in key or "+" in key:
+        # MACSJ0329.7-0211 → MACSJ0329_7_0211
+        import re
+        keys.append(re.sub(r'[.\-+]', '_', key))
+    if "_" in key:
+        # MACSJ0329_7_0211 → try MACSJ0329.7-0211
+        import re
+        # Common patterns: XXX_N_MMMM → XXX.N-MMMM or XXX.N+MMMM
+        m = re.match(r'^(.+?)[_](\d)[_-](\d{4})$', key)
+        if m:
+            keys.append(f"{m.group(1)}.{m.group(2)}-{m.group(3)}")
+            keys.append(f"{m.group(1)}.{m.group(2)}+{m.group(3)}")
+        # RXJ2129_7_0005 pattern
+        m2 = re.match(r'^(RXJ\d+)[_](\d)[_](\d{4})$', key)
+        if m2:
+            keys.append(f"{m2.group(1)}.{m2.group(2)}+{m2.group(3)}")
+            keys.append(f"{m2.group(1)}.{m2.group(2)}-{m2.group(3)}")
+    return keys
+
+
+def _find_spectrum(spectra_dir: Path, cluster_key: str, obsid: str, suffix: str) -> Path | None:
+    """Find a spectrum file trying all naming conventions."""
+    for key in _alt_cluster_keys(cluster_key):
+        p = spectra_dir / f"{key}_obs{obsid}_{suffix}"
+        if p.exists():
+            return p
+    # Last resort: glob for any matching obsid + suffix
+    matches = sorted(spectra_dir.glob(f"*_obs{obsid}_{suffix}"))
+    return matches[0] if matches else None
+
+
 def extract_joint_spectra(
     cluster_dir: Path,
     outdir: Path,
@@ -235,8 +270,8 @@ def extract_joint_spectra(
             evt, center_ra, center_dec, r500_arcsec,
             ann_inner_r500, ann_outer_r500, masks,
         )
-        src_pi = spectra_dir / f"{cluster_key}_obs{obsid}_src_r500.pi"
-        ann_pi = spectra_dir / f"{cluster_key}_obs{obsid}_ann_{ann_inner_r500:.1f}_{ann_outer_r500:.1f}r500.pi"
+        src_pattern = f"{cluster_key}_obs{obsid}_src_r500.pi"
+        ann_pattern = f"{cluster_key}_obs{obsid}_ann_{ann_inner_r500:.1f}_{ann_outer_r500:.1f}r500.pi"
         if run_specextract:
             src = run_specextract_blanksky(
                 cluster_dir, evt, blank, src_reg,
@@ -247,16 +282,25 @@ def extract_joint_spectra(
                 spectra_dir / f"{cluster_key}_obs{obsid}_ann_{ann_inner_r500:.1f}_{ann_outer_r500:.1f}r500",
             )
         else:
-            # Look for existing spectra in new location, then legacy locations
-            src = src_pi.resolve() if src_pi.exists() else None
-            ann = ann_pi.resolve() if ann_pi.exists() else None
+            # Look for existing spectra with all naming conventions
+            src_p = _find_spectrum(spectra_dir, cluster_key, obsid, "src_r500.pi")
+            ann_p = _find_spectrum(spectra_dir, cluster_key, obsid,
+                                   f"ann_{ann_inner_r500:.1f}_{ann_outer_r500:.1f}r500.pi")
+            src = src_p.resolve() if src_p else None
+            ann = ann_p.resolve() if ann_p else None
             # Legacy: postprocess_r500/<cluster>_obs<obsid>_blanksky_src.pi / _ann.pi
             if src is None:
-                legacy_src = cluster_dir / "postprocess_r500" / f"{cluster_key}_obs{obsid}_blanksky_src.pi"
-                src = legacy_src.resolve() if legacy_src.exists() else None
+                for alt_key in _alt_cluster_keys(cluster_key):
+                    legacy = cluster_dir / "postprocess_r500" / f"{alt_key}_obs{obsid}_blanksky_src.pi"
+                    if legacy.exists():
+                        src = legacy.resolve()
+                        break
             if ann is None:
-                legacy_ann = cluster_dir / "postprocess_r500" / f"{cluster_key}_obs{obsid}_blanksky_ann.pi"
-                ann = legacy_ann.resolve() if legacy_ann.exists() else None
+                for alt_key in _alt_cluster_keys(cluster_key):
+                    legacy = cluster_dir / "postprocess_r500" / f"{alt_key}_obs{obsid}_blanksky_ann.pi"
+                    if legacy.exists():
+                        ann = legacy.resolve()
+                        break
         products.append(SpectrumSet(
             obsid=obsid,
             source_pi=str(src) if src else None,
@@ -711,10 +755,12 @@ def run_sherpa(script: Path, fit_dir: Path) -> None:
 # --- Beta model loading ---
 def load_beta_model(cluster_dir: Path, cluster_key: str) -> dict | None:
     """Load beta model R_EM from existing JSON."""
-    candidates = [
-        cluster_dir / "postprocess_r500_blanksky" / f"{cluster_key}_beta_model.json",
-        cluster_dir / "postprocess_r500" / f"{cluster_key}_beta_model.json",
-    ]
+    candidates = []
+    for key in _alt_cluster_keys(cluster_key):
+        candidates.extend([
+            cluster_dir / "postprocess_r500_blanksky" / f"{key}_beta_model.json",
+            cluster_dir / "postprocess_r500" / f"{key}_beta_model.json",
+        ])
     for p in candidates:
         if p.exists():
             with open(p) as f:
@@ -750,6 +796,19 @@ def find_source_catalog(cluster_dir: Path) -> Path | None:
     return srcs[0] if srcs else None
 
 
+def _find_cluster_dir(key: str, config: ClusterConfig) -> Path | None:
+    """Find cluster directory using both naming conventions."""
+    d = default_cluster_dir(key, config)
+    if d is not None:
+        return d
+    alt = _alt_cluster_key(key)
+    if alt != key:
+        d = default_cluster_dir(alt, config)
+        if d is not None:
+            return d
+    return None
+
+
 # --- Main ---
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__)
@@ -776,7 +835,7 @@ def main():
     # Load cluster config
     configs = load_cluster_configs_from_table(args.cluster_table)
     config_key, config = resolve_cluster_config(args.cluster, configs)
-    cluster_dir = default_cluster_dir(config_key, config)
+    cluster_dir = _find_cluster_dir(config_key, config)
     if cluster_dir is None:
         raise SystemExit(f"No data directory for {config_key}")
     cluster_dir = cluster_dir.resolve()

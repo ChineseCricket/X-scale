@@ -1,0 +1,90 @@
+{
+  "abundance_policy": "fixed",
+  "abundance_solar": 0.3,
+  "aic_wstat": 460.86331620976034,
+  "annulus_fit": {
+    "aic_wstat": 461.84372425223773,
+    "bic_wstat": 474.10404843297465,
+    "cxb_norm": 1.4733142350208972e-06,
+    "cxb_phoindex": 1.4,
+    "dof": 430,
+    "halo_kT": 0.25,
+    "halo_norm": 1.5600543973208674e-05,
+    "icm_ann_kT": 63.96921453428713,
+    "icm_ann_norm": 0.00030686015394369595,
+    "icm_ann_norm_policy": "frozen_to_beta_R_EM_times_source_prefit_norm",
+    "lhb_kT": 0.1,
+    "lhb_norm": 5e-06,
+    "n_free_parameters": 3,
+    "q_value": 0.1875860961257915,
+    "rstat": 1.0601016843075297,
+    "statname": "wstat",
+    "statval": 455.84372425223773,
+    "xrb_policy": "fixed_shape"
+  },
+  "annulus_spectra": [
+    "/data/jyz/X_scale/chandra_data_evt/MACSJ1206.2-0847/processed_joint_bxc/spectra_high_energy_renorm/MACSJ1206.2-0847_obs3277_ann_1.2_1.8r500_he9p5_12keV.pi"
+  ],
+  "apec_norm": 0.0070297250721684254,
+  "bic_wstat": 469.03686566358493,
+  "bolometric_flux_unabsorbed_erg_s_cm2": 7.527063788171432e-12,
+  "bolometric_luminosity_unabsorbed_erg_s": 5.325892859573611e+45,
+  "confidence_intervals": {
+    "icm_src.kT": {
+      "best": 12.893488197776433,
+      "lower_delta_1sigma": -0.5309332889898961,
+      "upper_delta_1sigma": 1.6817768833935762
+    },
+    "icm_src.norm": {
+      "best": 0.0070297250721684254,
+      "lower_delta_1sigma": -4.9619753537740764e-05,
+      "upper_delta_1sigma": 0.00021474000853005226
+    }
+  },
+  "dof": 431,
+  "fit_band_keV": [
+    0.7,
+    7
+  ],
+  "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/MACSJ1206.2-0847/processed_joint_bxc/fits/phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV/MACSJ1206_2_0847_phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV_fit_plot.png",
+  "method": "phase3_BC_annulus_constrained_xrb",
+  "model_annulus": "lhb + phabs*(halo + cxb + icm_ann)",
+  "model_selection_note": "For WSTAT fits compare variants with lower AIC/BIC; q_value is reported but is not the main selection criterion.",
+  "model_source": "lhb + phabs*(halo + cxb + icm_src)",
+  "nH_1e22_cm2": 0.0165,
+  "n_free_parameters": 2,
+  "plot_caveat": "WSTAT with blank-sky PHA; plotted residuals are qualitative.",
+  "q_value": 0.18768009213432088,
+  "qa_flags": [],
+  "r_em_annulus_to_source": 0.0435174193114,
+  "redshift": 0.44,
+  "residual_summaries": [
+    {
+      "dataset_id": 1,
+      "max_abs_residual": 0.09493373877868519,
+      "mean_residual": 0.017068504808316037,
+      "n_bins": 433,
+      "rms_residual": 0.02429807397540372,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/MACSJ1206.2-0847/processed_joint_bxc/spectra_high_energy_renorm/MACSJ1206.2-0847_obs3277_src_r500_he9p5_12keV.pi"
+    }
+  ],
+  "rstat": 1.0600076942221817,
+  "soft_flux_unabsorbed_erg_s_cm2": 1.726674832355936e-12,
+  "soft_luminosity_unabsorbed_erg_s": 1.2217360473151999e+45,
+  "source_prefit": {
+    "apec_norm": 0.007051432759458826,
+    "dof": 431,
+    "q_value": 0.21151763753194977,
+    "rstat": 1.0539772589663223,
+    "statval": 454.26419861448494,
+    "temperature_keV": 12.893323376931999
+  },
+  "source_spectra": [
+    "/data/jyz/X_scale/chandra_data_evt/MACSJ1206.2-0847/processed_joint_bxc/spectra_high_energy_renorm/MACSJ1206.2-0847_obs3277_src_r500_he9p5_12keV.pi"
+  ],
+  "statname": "wstat",
+  "statval": 456.86331620976034,
+  "temperature_keV": 12.893488197776433,
+  "xrb_area_scale_source_over_annulus": 0.552715815695,
+  "xrb_policy": "fixed_shape"
+}
