@@ -2,7 +2,7 @@
 note: 将此文件内容直接粘贴到新 session 作为初始 prompt，然后删除本文件。
 ---
 
-继续 Phase 3 → Phase 4：标度关系拟合。先读 memory/pipeline_status.csv 了解当前进度。
+继续 Phase 3 → Phase 4。先读 memory/pipeline_status.csv 和 memory/workflow_plan.md 了解当前进度。
 
 ## 当前状态
 
@@ -61,11 +61,11 @@ CALDB 4.12.4 缺少部分 ACIS 配置的空白天空背景文件。错误：
 `output/products/spectral/spectral_twostep_summary.csv`
 
 需要的拟合：
-1. **Lx-M500**: `log(Lx_bol) = α + β × log(M500/3e14) + γ × log(1+z)`（Evolution 形式）
-2. **Tx-M500**: `log(Tx) = α + β × log(M500/3e14) + γ × log(1+z)`
+1. **Lx-M500**: `log(Lx_bol) = α + β × log(M500/3e14) + γ × log(E(z))`
+2. **Tx-M500**: `log(Tx) = α + β × log(M500/3e14) + γ × log(E(z))`
 3. 注意 M500 来自弱引力透镜（独立于 X-ray），这是自洽的
 4. 使用 `linmix` (Kelly 2007) 做 Bayesian 线性回归，考虑测量误差
-5. 与文献对比：[[pratt_2009]], [[mantz_2010]], [[maughan_2012]]
+5. 与文献对比：wiki/papers/pratt_2009.md, wiki/papers/mantz_2010.md, wiki/papers/maughan_2012.md
 
 ### 任务 4：Core-excised 拟合
 
@@ -93,7 +93,7 @@ CALDB 4.12.4 缺少部分 ACIS 配置的空白天空背景文件。错误：
 
 ### Wiki 文献
 - `wiki/papers/pratt_2009.md` — REXCESS 标度关系
-- `wiki/papers/mantz_2010.md` — Mantz 方法
+- `wiki/papers/mantz_2016.md` — WtG V WL-calibrated scaling
 - `wiki/concepts/scaling_relations.md` — 标度关系汇总
 
 ## 技术要点
@@ -102,4 +102,4 @@ CALDB 4.12.4 缺少部分 ACIS 配置的空白天空背景文件。错误：
 - linmix 未安装：`pip install linmix`（在 CIAO conda env 内）
 - 标度关系标准形式：`Y = Y₀ × (M500/3×10¹⁴ M☉)^β × E(z)^γ × (1+z)^ζ`
 - M500 已 h⁻¹ 修正为 h=0.70 物理单位
-- Lx 需确认是吸收修正后的还是观测波段（当前 Lx_bol 是吸收修正后的 bolometric）
+- Lx_bol 是吸收修正后的 bolometric luminosity
