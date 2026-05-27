@@ -2,11 +2,11 @@ cluster_key,repro,pipeline,spectral,notes
 Abell_0209,done,done,done,T_X=8.05 (ACCEPT=8.28, 0.97x) rstat=0.93; blank-sky XRB fixed_shape
 Abell_0068,done,done,done,T_X=12.02 (ACCEPT=7.99, 1.50x) rstat=1.12; blank-sky XRB; single ObsID limit
 Abell_0267,done,done,done,T_X=8.90 (ACCEPT=6.79, 1.31x) rstat=0.95; blank-sky XRB
-Abell_0383,done,done,failed,CALDB blanksky failed (old ACIS-I); needs CALDB update
-Abell_0586,done,done,failed,CALDB blanksky failed (ACIS-I VFAINT); needs CALDB update
-Abell_0611,done,done,failed,CALDB blanksky failed (ACIS-S); needs CALDB update
+Abell_0383,done,done,done,T_X=4.72 (ACCEPT=3.93, 1.20x) rstat=1.19; blank-sky XRB; 3/3 ObsIDs; CALDB fixed
+Abell_0586,done,done,done,T_X=8.10 (ACCEPT=8.70, 0.93x) rstat=1.04; blank-sky XRB; 2/9 ObsIDs; CALDB fixed
+Abell_0611,done,done,done,T_X=12.87 (ACCEPT=6.69, 1.92x) rstat=1.04; blank-sky XRB; ACIS-S single ObsID; CALDB fixed
 Abell_0697,done,done,done,T_X=14.26 (ACCEPT=9.06, 1.57x) rstat=0.90; blank-sky XRB; partial ObsID (1/2)
-Abell_0750,done,done,failed,CALDB blanksky failed (ACIS-I); needs CALDB update
+Abell_0750,done,done,done,T_X=6.52 rstat=3.02; blank-sky XRB; 2/2 ObsIDs; poor fit (early data); CALDB fixed
 Abell_2261,done,done,done,T_X=8.35 (ACCEPT=7.58, 1.10x) rstat=1.08; blank-sky XRB; partial ObsID (1/4)
 MACSJ0329.7-0211,done,done,done,T_X=7.19 (ACCEPT=6.85, 1.05x); blank-sky XRB; partial ObsID (3/4)
 MACSJ0429.6-0253,done,done,done,T_X=6.43 (ACCEPT=6.76, 0.95x) rstat=0.97; blank-sky XRB
@@ -16,9 +16,9 @@ MACSJ1115.9+0129,done,done,done,T_X=8.92 (ACCEPT=9.26, 0.96x); blank-sky XRB
 MACSJ1206.2-0847,done,done,done,T_X=12.89 (ACCEPT=7.88, 1.64x); blank-sky XRB; partial ObsID (1/6)
 MACSJ1720.3+3536,done,done,done,T_X=7.32 (ACCEPT=5.65, 1.30x); blank-sky XRB; partial ObsID (1/4)
 MACSJ1931.8-2635,done,done,done,T_X=7.39 (ACCEPT=7.50, 0.99x); blank-sky XRB
-MS2137-2353,done,done,failed,CALDB blanksky failed; needs CALDB update
+MS2137-2353,done,done,done,T_X=63.24 rstat=14.0; blank-sky XRB; FIT FAILED (very early 1999 data); CALDB fixed
 RXJ1347.5-1145,done,done,done,T_X=16.39 (ACCEPT=10.88, 1.51x); blank-sky XRB; partial ObsID (1/7)
 RXJ1532.9+3021,done,done,done,T_X=5.86 (ACCEPT=5.44, 1.08x); blank-sky XRB
-RXJ2129.7+0005,done,done,failed,CALDB blanksky failed; needs CALDB update
+RXJ2129.7+0005,done,done,done,T_X=6.84 (ACCEPT=6.10, 1.12x) rstat=1.15; blank-sky XRB; 2/2 ObsIDs; CALDB fixed
 RXJ2248.7-4431,done,done,done,T_X=12.15 (ACCEPT=11.10, 1.09x); blank-sky XRB
-ZwCl_0857.9+2107,done,done,failed,CALDB blanksky failed; needs CALDB update
+ZwCl_0857.9+2107,done,done,done,T_X=4.68 (ACCEPT=12.10, 0.39x) rstat=1.13; blank-sky XRB; 2/2 ObsIDs; CALDB fixed; Tx suspiciously low vs ACCEPT
