@@ -4,7 +4,6 @@ Abell_0068,done,done,done,T_X=12.02 (ACCEPT=7.99, 1.50x) rstat=1.12; blank-sky X
 Abell_0267,done,done,done,T_X=8.90 (ACCEPT=6.79, 1.31x) rstat=0.95; blank-sky XRB
 Abell_0383,done,done,failed,CALDB blanksky failed (old ACIS-I); needs CALDB update
 Abell_0586,done,done,failed,CALDB blanksky failed (ACIS-I VFAINT); needs CALDB update
-Abell_0586,done,done,failed,CALDB blanksky failed (ACIS-I VFAINT); needs CALDB update
 Abell_0611,done,done,failed,CALDB blanksky failed (ACIS-S); needs CALDB update
 Abell_0697,done,done,done,T_X=14.26 (ACCEPT=9.06, 1.57x) rstat=0.90; blank-sky XRB; partial ObsID (1/2)
 Abell_0750,done,done,failed,CALDB blanksky failed (ACIS-I); needs CALDB update
