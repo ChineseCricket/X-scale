@@ -471,10 +471,26 @@ if not source_spectra or not annulus_spectra:
 fit_band = ({fit_band[0]:.8g}, {fit_band[1]:.8g})
 soft_obs = ({0.5:.8g} / (1 + {z:.8g}), {2.0:.8g} / (1 + {z:.8g}))
 bolo_obs = ({0.01:.8g} / (1 + {z:.8g}), builtins.min({100.0:.8g} / (1 + {z:.8g}), 15.0))
-plot_caveat = "Background-aware display: net source data are shown against folded source model; raw source/background are reference overlays."
+plot_caveat = "Three-panel background-aware display: raw source and blank-sky/background are shown separately; net source data are compared with folded total and component source-region models."
 xrb_policy = {xrb_policy!r}
 abundance_policy = {abundance_policy!r}
 flux_samples = {flux_samples:d}
+
+def spectrum_label(path):
+    stem = path.rsplit("/", 1)[-1].replace(".pi", "")
+    parts = stem.split("_")
+    for part in parts:
+        if part.startswith("obs"):
+            return part.replace("obs", "ObsID ")
+    return stem
+
+def snapshot_plot(plot):
+    yerr = getattr(plot, "yerr", None)
+    return {{
+        "x": np.asarray(plot.x, dtype=float).copy(),
+        "y": np.asarray(plot.y, dtype=float).copy(),
+        "yerr": None if yerr is None else np.asarray(yerr, dtype=float).copy(),
+    }}
 
 # Step 2pre: rough source-only ICM fit to estimate the source APEC norm.
 clean()
@@ -732,57 +748,105 @@ raw_plots = {{}}
 bkg_plots = {{}}
 net_plots = {{}}
 model_plots = {{}}
+component_plots = {{}}
+component_models = {{
+    "ICM": gal_src * icm_src,
+    "LHB": lhb_src,
+    "Halo": gal_src * halo_src,
+    "CXB": gal_src * cxb_src,
+}}
 for i, pha in enumerate(source_spectra, start=1):
-    raw_plots[i] = get_data_plot(i)
+    raw_plots[i] = snapshot_plot(get_data_plot(i))
     try:
-        bkg_plots[i] = get_bkg_plot(i)
+        bkg_plots[i] = snapshot_plot(get_bkg_plot(i))
     except Exception:
         bkg_plots[i] = None
     subtract(i)
-    net_plots[i] = get_data_plot(i)
-    model_plots[i] = get_model_plot(i)
+    net_plots[i] = snapshot_plot(get_data_plot(i))
+    model_plots[i] = snapshot_plot(get_model_plot(i))
+    component_plots[i] = {{}}
+    for name, component_model in component_models.items():
+        try:
+            set_source(i, component_model)
+            component_plots[i][name] = snapshot_plot(get_model_plot(i))
+        except Exception:
+            component_plots[i][name] = None
+    set_source(i, lhb_src + gal_src * (halo_src + cxb_src + icm_src))
 
-fig, (ax, rax) = plt.subplots(2, 1, figsize=(8.4, 6.4), sharex=True, gridspec_kw={{"height_ratios": [3, 1], "hspace": 0.05}})
+fig, (raw_ax, fit_ax, rax) = plt.subplots(3, 1, figsize=(9.2, 8.4), sharex=True, gridspec_kw={{"height_ratios": [1.35, 3, 1], "hspace": 0.06}})
 colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
+component_styles = {{
+    "ICM": {{"ls": "--", "lw": 1.25, "alpha": 0.78}},
+    "LHB": {{"ls": ":", "lw": 1.15, "alpha": 0.78}},
+    "Halo": {{"ls": "-.", "lw": 1.15, "alpha": 0.78}},
+    "CXB": {{"ls": (0, (3, 1, 1, 1)), "lw": 1.15, "alpha": 0.78}},
+}}
 residual_summaries = []
-positive_values = []
+raw_positive_values = []
+fit_positive_values = []
+
 for i, pha in enumerate(source_spectra, start=1):
     color = colors[(i - 1) % len(colors)]
-    label = pha.rsplit("/", 1)[-1].replace(".pi", "")
+    label = spectrum_label(pha)
     raw = raw_plots[i]
     bkg = bkg_plots[i]
+    raw_y = raw["y"]
+    raw_x = raw["x"]
+    raw_yerr = raw["yerr"]
+    raw_mask = np.isfinite(raw_x) & np.isfinite(raw_y) & (raw_y > 0)
+    if raw_yerr is not None:
+        raw_plot_yerr = raw_yerr[raw_mask]
+    else:
+        raw_plot_yerr = None
+    raw_ax.errorbar(raw_x[raw_mask], raw_y[raw_mask], yerr=raw_plot_yerr, fmt="o", ms=2.2, lw=0.65, alpha=0.72, color=color, label=f"{{label}} raw src")
+    raw_positive_values.extend(raw_y[raw_mask].tolist())
+    if bkg is not None:
+        bkg_y = bkg["y"]
+        bkg_x = bkg["x"]
+        bkg_mask = np.isfinite(bkg_x) & np.isfinite(bkg_y) & (bkg_y > 0)
+        raw_ax.plot(bkg_x[bkg_mask], bkg_y[bkg_mask], color=color, lw=1.15, alpha=0.85, ls="--", label=f"{{label}} blank-sky")
+        raw_positive_values.extend(bkg_y[bkg_mask].tolist())
+
+for i, pha in enumerate(source_spectra, start=1):
+    color = colors[(i - 1) % len(colors)]
+    label = spectrum_label(pha)
     net = net_plots[i]
     model = model_plots[i]
-    raw_y = np.asarray(raw.y, dtype=float)
-    raw_mask = np.isfinite(raw_y) & (raw_y > 0)
-    ax.plot(np.asarray(raw.x)[raw_mask], raw_y[raw_mask], color=color, lw=0.8, alpha=0.18)
-    if bkg is not None:
-        bkg_y = np.asarray(bkg.y, dtype=float)
-        bkg_mask = np.isfinite(bkg_y) & (bkg_y > 0)
-        ax.plot(np.asarray(bkg.x)[bkg_mask], bkg_y[bkg_mask], color=color, lw=0.8, alpha=0.18, ls=":")
-    net_x = np.asarray(net.x, dtype=float)
-    net_y = np.asarray(net.y, dtype=float)
-    net_yerr = getattr(net, "yerr", None)
+    net_x = net["x"]
+    net_y = net["y"]
+    net_yerr = net["yerr"]
     net_mask = np.isfinite(net_x) & np.isfinite(net_y) & (net_y > 0)
     if net_yerr is not None:
-        net_yerr = np.asarray(net_yerr, dtype=float)
         plot_yerr = net_yerr[net_mask]
     else:
         plot_yerr = None
-    model_y = np.asarray(model.y, dtype=float)
-    model_mask = np.isfinite(model_y) & (model_y > 0)
+    fit_ax.errorbar(net_x[net_mask], net_y[net_mask], yerr=plot_yerr, fmt="o", ms=3, lw=0.8, alpha=0.75, color=color, label=f"{{label}} net data")
+    fit_positive_values.extend(net_y[net_mask].tolist())
+    model_y = model["y"]
+    model_x = model["x"]
+    model_mask = np.isfinite(model_x) & np.isfinite(model_y) & (model_y > 0)
+    fit_ax.plot(model_x[model_mask], model_y[model_mask], color=color, lw=1.8, label=f"{{label}} total model")
+    fit_positive_values.extend(model_y[model_mask].tolist())
+    for component_name, component_plot in component_plots[i].items():
+        if component_plot is None:
+            continue
+        comp_y = component_plot["y"]
+        comp_x = component_plot["x"]
+        comp_mask = np.isfinite(comp_x) & np.isfinite(comp_y) & (comp_y > 0)
+        comp_label = f"{{component_name}} component" if i == 1 else "_nolegend_"
+        fit_ax.plot(comp_x[comp_mask], comp_y[comp_mask], color=color, label=comp_label, **component_styles[component_name])
     n = min(net_y.size, model_y.size)
     residual = net_y[:n] - model_y[:n]
     if net_yerr is not None:
-        denom = np.asarray(net_yerr[:n], dtype=float)
+        denom = net_yerr[:n]
         good = np.isfinite(residual) & np.isfinite(denom) & (denom > 0)
         resid_plot = np.full_like(residual, np.nan, dtype=float)
         resid_plot[good] = residual[good] / denom[good]
-        rax.set_ylabel(r"$(net-model)/\\sigma$")
+        rax.set_ylabel(r"$(net-total)/\\sigma$")
     else:
         good = np.isfinite(residual)
         resid_plot = residual
-        rax.set_ylabel("Net-model")
+        rax.set_ylabel("Net-total")
     resid = resid_plot[good]
     residual_summaries.append({{
         "dataset_id": i,
@@ -792,22 +856,24 @@ for i, pha in enumerate(source_spectra, start=1):
         "rms_residual": float(np.sqrt(np.mean(resid * resid))) if resid.size else None,
         "max_abs_residual": float(np.max(np.abs(resid))) if resid.size else None,
     }})
-    ax.errorbar(net_x[net_mask], net_y[net_mask], yerr=plot_yerr, fmt="o", ms=3, lw=0.8, alpha=0.75, color=color, label=f"{{label}} net data")
-    ax.plot(np.asarray(model.x)[model_mask], model_y[model_mask], color=color, lw=1.5, label=f"{{label}} model")
-    positive_values.extend(net_y[net_mask].tolist())
-    positive_values.extend(model_y[model_mask].tolist())
     rax.axhline(0, color="0.25", ls="--", lw=0.8)
     rax.errorbar(net_x[:n], resid_plot, yerr=None, fmt="o", ms=2.5, lw=0.7, alpha=0.7, color=color)
-ax.set_yscale("log")
-if positive_values:
-    ax.set_ylim(max(min(positive_values) * 0.5, 1.0e-6), max(positive_values) * 1.6)
-ax.set_ylabel("Counts s$^{{-1}}$ keV$^{{-1}}$")
+
+raw_ax.set_yscale("log")
+fit_ax.set_yscale("log")
+if raw_positive_values:
+    raw_ax.set_ylim(max(min(raw_positive_values) * 0.55, 1.0e-6), max(raw_positive_values) * 1.5)
+if fit_positive_values:
+    fit_ax.set_ylim(max(min(fit_positive_values) * 0.55, 1.0e-6), max(fit_positive_values) * 1.6)
+raw_ax.set_ylabel("Raw counts s$^{{-1}}$ keV$^{{-1}}$")
+fit_ax.set_ylabel("Net counts s$^{{-1}}$ keV$^{{-1}}$")
 rax.set_xlabel("Energy (keV)")
-ax.set_title("Background-aware source fit")
-ax.text(0.02, 0.03, plot_caveat, transform=ax.transAxes, fontsize=8, bbox={{"facecolor": "white", "edgecolor": "0.7", "alpha": 0.85}})
-ax.legend(fontsize=6, ncol=2)
-ax.grid(alpha=0.2)
-rax.grid(alpha=0.2)
+raw_ax.set_title("Background-aware source fit diagnostics")
+fit_ax.text(0.02, 0.03, "Middle panel: net source data vs folded total model; dashed curves are folded source-region components.", transform=fit_ax.transAxes, fontsize=7.5, bbox={{"facecolor": "white", "edgecolor": "0.7", "alpha": 0.85}})
+raw_ax.legend(fontsize=5.8, ncol=2)
+fit_ax.legend(fontsize=5.6, ncol=3)
+for axis in (raw_ax, fit_ax, rax):
+    axis.grid(alpha=0.2)
 fig.savefig("{out_plot}", dpi=180, bbox_inches="tight")
 plt.close(fig)
 

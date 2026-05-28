@@ -65,7 +65,7 @@
   "model_source": "lhb + phabs*(halo + cxb + icm_src)",
   "nH_1e22_cm2": 0.0165,
   "n_free_parameters": 2,
-  "plot_caveat": "Background-aware display: net source data are shown against folded source model; raw source/background are reference overlays.",
+  "plot_caveat": "Three-panel background-aware display: raw source and blank-sky/background are shown separately; net source data are compared with folded total and component source-region models.",
   "q_value": 2.556510576286795e-94,
   "qa_flags": [
     "high_reduced_statistic",
@@ -77,50 +77,50 @@
   "residual_summaries": [
     {
       "dataset_id": 1,
-      "max_abs_residual": 5.545594786538504,
-      "mean_residual": -0.3578048942617799,
+      "max_abs_residual": 5.173152071255511,
+      "mean_residual": 0.5188432831403486,
       "n_bins": 433,
-      "rms_residual": 1.143897737391289,
+      "rms_residual": 1.2803838057827879,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs13516_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 2,
-      "max_abs_residual": 5.545594786538504,
-      "mean_residual": -0.3578048942617799,
+      "max_abs_residual": 4.2155252761365585,
+      "mean_residual": 0.04932974733355549,
       "n_bins": 433,
-      "rms_residual": 1.143897737391289,
+      "rms_residual": 1.1493804616539878,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs13999_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 3,
-      "max_abs_residual": 5.545594786538504,
-      "mean_residual": -0.3578048942617799,
+      "max_abs_residual": 5.816792207479016,
+      "mean_residual": -0.6419640885025637,
       "n_bins": 433,
-      "rms_residual": 1.143897737391289,
+      "rms_residual": 1.302237898185182,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs14407_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 4,
-      "max_abs_residual": 5.545594786538504,
-      "mean_residual": -0.3578048942617799,
+      "max_abs_residual": 5.085057773289512,
+      "mean_residual": 0.841862948779374,
       "n_bins": 433,
-      "rms_residual": 1.143897737391289,
+      "rms_residual": 1.6913321679227633,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs2222_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 5,
-      "max_abs_residual": 5.545594786538504,
-      "mean_residual": -0.3578048942617799,
+      "max_abs_residual": 4.080513378009912,
+      "mean_residual": -0.5343438692831575,
       "n_bins": 433,
-      "rms_residual": 1.143897737391289,
+      "rms_residual": 1.2637812027664561,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs3592_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 6,
-      "max_abs_residual": 5.545594786538504,
-      "mean_residual": -0.3578048942617799,
+      "max_abs_residual": 4.126794646339368,
+      "mean_residual": -0.34095794983277744,
       "n_bins": 433,
-      "rms_residual": 1.143897737391289,
+      "rms_residual": 1.12388251024012,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs506_src_r500_he9p5_12keV.pi"
     },
     {

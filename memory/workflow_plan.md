@@ -93,11 +93,12 @@ CALDB 失败团已补齐并拟合完成；最新逐团状态以 `memory/pipeline
 已修正 `output/figures/spectral/*_fit.png` 的显示口径。旧图直接把 Sherpa/WSTAT 的 raw source PHA data plot 与 folded source model 画在一起；blank-sky particle/background 贡献仍在 raw source counts 中，因此很多好拟合会视觉上表现为 model 系统性低于 data。
 
 当前图由 `src/02_spectral/fit_spectral_xrb.py` 和 `src/02_spectral/regenerate_spectral_fit_plots.py` 生成：
-- 主面板：background-subtracted/net source data vs folded source model。
-- 淡色参考：raw source data 与 scaled blank-sky/background。
-- 残差面板：`(net-model)/sigma` 或 net-model。
+- 顶部面板：raw source data 与 scaled blank-sky/background，显示旧图 offset 来源。
+- 中部面板：background-subtracted/net source data vs folded total source-region model，并用 dashed/dotted 线显示 ICM、LHB、Galactic halo、CXB 的 response-folded 贡献。
+- 残差面板：`(net-total)/sigma` 或 net-total。
 
 这次只改 QA 可视化和 JSON 中的 `plot_caveat`/`fit_plot_png`/`residual_summaries`，不改变 WSTAT 拟合、谱参数、Lx/Tx 或 scaling products。验证例：Abell_0209、MACSJ1206.2-0847 的 net-data/model 不再有系统 offset；Abell_0697 仍保留明显差残差，说明真实 bad fit 没被掩盖。
+实现注意：Sherpa plot objects 会在后续 `set_source()` 后被复用/更新，因此 component diagnostic 必须立即 snapshot `x/y/yerr` arrays；否则 total model curve 可能被后续 component curve 覆盖。
 
 ---
 

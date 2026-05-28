@@ -72,7 +72,7 @@
   "model_source": "lhb + phabs*(halo + cxb + icm_src)",
   "nH_1e22_cm2": 0.0165,
   "n_free_parameters": 2,
-  "plot_caveat": "Background-aware display: net source data are shown against folded source model; raw source/background are reference overlays.",
+  "plot_caveat": "Three-panel background-aware display: raw source and blank-sky/background are shown separately; net source data are compared with folded total and component source-region models.",
   "q_value": 3.4689391368145035e-06,
   "qa_flags": [
     "low_q_value"
@@ -82,18 +82,18 @@
   "residual_summaries": [
     {
       "dataset_id": 1,
-      "max_abs_residual": 4.273643737944235,
-      "mean_residual": -0.07715327390558183,
+      "max_abs_residual": 5.545254546850784,
+      "mean_residual": 0.16670546482453952,
       "n_bins": 433,
-      "rms_residual": 1.1528479026643044,
+      "rms_residual": 1.1034453467852396,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/Abell_0383/processed_joint_bxc/spectra_high_energy_renorm/Abell_0383_obs2320_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 2,
-      "max_abs_residual": 4.273643737944235,
-      "mean_residual": -0.07715327390558183,
+      "max_abs_residual": 4.322046350453782,
+      "mean_residual": -0.4184327592706291,
       "n_bins": 433,
-      "rms_residual": 1.1528479026643044,
+      "rms_residual": 1.1835538005192439,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/Abell_0383/processed_joint_bxc/spectra_high_energy_renorm/Abell_0383_obs2321_src_r500_he9p5_12keV.pi"
     },
     {

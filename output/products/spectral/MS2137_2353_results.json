@@ -60,7 +60,7 @@
   "model_source": "lhb + phabs*(halo + cxb + icm_src)",
   "nH_1e22_cm2": 0.0165,
   "n_free_parameters": 2,
-  "plot_caveat": "Background-aware display: net source data are shown against folded source model; raw source/background are reference overlays.",
+  "plot_caveat": "Three-panel background-aware display: raw source and blank-sky/background are shown separately; net source data are compared with folded total and component source-region models.",
   "q_value": 0.0,
   "qa_flags": [
     "high_reduced_statistic",
@@ -73,10 +73,10 @@
   "residual_summaries": [
     {
       "dataset_id": 1,
-      "max_abs_residual": 8.459230864734835,
-      "mean_residual": -3.0709555529237598,
+      "max_abs_residual": 7.991536819298537,
+      "mean_residual": 3.3370049504828203,
       "n_bins": 433,
-      "rms_residual": 3.673069161855035,
+      "rms_residual": 3.916117038086961,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/MS2137-2353/processed_joint_bxc/spectra_high_energy_renorm/MS2137_2353_obs4974_src_r500_he9p5_12keV.pi"
     },
     {
