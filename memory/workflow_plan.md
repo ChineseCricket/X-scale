@@ -133,7 +133,7 @@ Raw try 的 `exclude_bad` 样本排除了 Abell_0750、MS2137-2353、ZwCl_0857.9
 - 已修正 3 个 LoCuSS config 质量列错误：Abell_0697 和 ZwCl_0857.9+2107 之前误用了 M180m，Abell_0750 之前误用了 M1000；三者都在 exclude_bad 样本外。
 - 当前 JSON 中 Lx 误差多数来自 `confidence_interval_parameter_fallback`；未来 rerun 的 `fit_spectral_xrb.py` 会保存 Sherpa `sample_energy_flux` 原生区间。Abell_0068、MACSJ0647.7+7015 以及若干 bad 团暂无可用 Lx CI，scaling 报告中明确 fallback。
 
-### 4b. linmix 拟合 ✅ (2026-05-29 full-R500 uncertainty upgrade)
+### 4b. linmix 拟合 ✅ (2026-05-29 full-R500 uncertainty + sensitivity upgrade)
 
 `linmix` 已安装到 CIAO Python：`/data/jyz/Applications/ciao-4.18/ciao-4.18/binexe/python3.12`。
 
@@ -141,14 +141,17 @@ Raw try 的 `exclude_bad` 样本排除了 Abell_0750、MS2137-2353、ZwCl_0857.9
 输出位置：`output/products/scaling/` 和 `output/figures/scaling/`。
 
 主结果（exclude_bad, N=18）：
-- Lx-M500: beta=1.07 -0.47/+0.48, intrinsic scatter=0.172 dex
-- Tx-M500: beta=0.51 -0.25/+0.28, intrinsic scatter=0.116 dex
+- Lx-M500: beta=1.09 -0.45/+0.47, intrinsic scatter=0.165 dex
+- Tx-M500: beta=0.51 -0.25/+0.24, intrinsic scatter=0.116 dex
+- Lx-Tx: beta=0.77 -0.43/+0.46, intrinsic scatter=0.227 dex (fixed self-similar bolometric evolution gamma=1)
 
-已输出 all / exclude_bad / good_only / comparison 结果；论文主结论暂用 exclude_bad，good_only 作为严格质量敏感性样本 (N=11)。
+已输出 all / exclude_bad / good_only / comparison 结果，并加入 Lx-Tx 图和表。论文主结论暂用 exclude_bad，good_only 作为严格质量敏感性样本 (N=11)。
 good_only 结果：
-- Lx-M500: beta=0.51 -0.65/+0.66, intrinsic scatter=0.225 dex
-- Tx-M500: beta=0.45 -0.18/+0.23, intrinsic scatter=0.061 dex
-Lx-Tx 与 core-excised 作为后续扩展。
+- Lx-M500: beta=0.51 -0.61/+0.71, intrinsic scatter=0.227 dex
+- Tx-M500: beta=0.43 -0.21/+0.23, intrinsic scatter=0.071 dex
+- Lx-Tx: beta=1.17 -0.93/+0.90, intrinsic scatter=0.231 dex
+
+新增 leave-one-out sensitivity 输出：`output/products/scaling/scaling_linmix_fixed_evolution_sensitivity_summary.csv` / `.json` / `.md`。默认逐个移除 Abell_0068、Abell_0611、MACSJ0647.7+7015、MACSJ1206.2-0847，并对 Lx-M500、Tx-M500、Lx-Tx 都重拟合。结果显示这些单点移除对 M500 关系 beta 的影响均小于当前统计误差；Lx-Tx 对 Abell_0611 和 MACSJ1206.2-0847 更敏感但仍误差很大。
 
 与文献对比：
 - Pratt et al. (2009) REXCESS: T_X-M500 β=0.33±0.07
@@ -159,8 +162,8 @@ Lx-Tx 与 core-excised 作为后续扩展。
 
 - 计算 scatter in log Y at fixed M500
 - 与 self-similar 预言对比
-- 检查 high/suspect 团对拟合的影响（尤其 Abell_0068、Abell_0611、MACSJ0647、MACSJ1206）
-- 下一步增加 Lx-Tx、bootstrap/leave-one-out、以及 core-excised 版本
+- high/suspect leave-one-out 已完成（尤其 Abell_0068、Abell_0611、MACSJ0647、MACSJ1206）
+- 下一步：替换 missing/fallback Lx uncertainties、bootstrap 稳健性测试、以及 core-excised 版本
 
 ---
 
