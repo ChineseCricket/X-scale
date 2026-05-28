@@ -44,3 +44,6 @@ wiki/raw/
 
 # Large project files
 project_plan.pdf
+
+# vscode settings
+.vscode/

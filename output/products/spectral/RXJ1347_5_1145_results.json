@@ -1,47 +1,42 @@
 {
   "abundance_policy": "fixed",
   "abundance_solar": 0.3,
-  "aic_wstat": 543.8143772390436,
+  "aic_wstat": 4926.800644785821,
   "annulus_fit": {
-    "aic_wstat": 446.6094956304669,
-    "bic_wstat": 458.8698198112038,
-    "cxb_norm": 6.455841715869189e-08,
+    "aic_wstat": 9576.826403640349,
+    "bic_wstat": 9594.924458268251,
+    "cxb_norm": 2.4553600707033398e-06,
     "cxb_phoindex": 1.4,
-    "dof": 430,
+    "dof": 2991,
     "halo_kT": 0.25,
-    "halo_norm": 4.289052628196609e-05,
-    "icm_ann_kT": 3.6907342371926806,
-    "icm_ann_norm": 0.00014844029104914744,
+    "halo_norm": 2.457845507515434e-05,
+    "icm_ann_kT": 6.402742824987863,
+    "icm_ann_norm": 0.00015545201513277626,
     "icm_ann_norm_policy": "frozen_to_beta_R_EM_times_source_prefit_norm",
     "lhb_kT": 0.1,
     "lhb_norm": 5e-06,
     "n_free_parameters": 3,
-    "q_value": 0.35140248968547344,
-    "rstat": 1.0246732456522485,
+    "q_value": 0.0,
+    "rstat": 3.199875093159595,
     "statname": "wstat",
-    "statval": 440.6094956304669,
+    "statval": 9570.826403640349,
     "xrb_policy": "fixed_shape"
   },
   "annulus_spectra": [
-    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347.5-1145_obs3592_ann_1.2_1.8r500_he9p5_12keV.pi"
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs13516_ann_1.2_1.8r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs13999_ann_1.2_1.8r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs14407_ann_1.2_1.8r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs2222_ann_1.2_1.8r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs3592_ann_1.2_1.8r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs506_ann_1.2_1.8r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs507_ann_1.2_1.8r500_he9p5_12keV.pi"
   ],
-  "apec_norm": 0.015382257132512126,
-  "bic_wstat": 551.9879266928682,
-  "bolometric_flux_unabsorbed_erg_s_cm2": 1.6571996960701043e-11,
-  "bolometric_luminosity_unabsorbed_erg_s": 1.243551310774768e+46,
-  "confidence_intervals": {
-    "icm_src.kT": {
-      "best": 16.391367905381507,
-      "lower_delta_1sigma": -0.5651575883250111,
-      "upper_delta_1sigma": 0.5857578942927937
-    },
-    "icm_src.norm": {
-      "best": 0.015382257132512126,
-      "lower_delta_1sigma": -7.228721236618094e-05,
-      "upper_delta_1sigma": 7.285640301473405e-05
-    }
-  },
-  "dof": 431,
+  "apec_norm": 0.016109943497978153,
+  "bic_wstat": 4938.866014537756,
+  "bolometric_flux_unabsorbed_erg_s_cm2": 1.7601962685588118e-11,
+  "bolometric_luminosity_unabsorbed_erg_s": 1.3208392339064063e+46,
+  "confidence_intervals": {},
+  "dof": 3029,
   "fit_band_keV": [
     0.7,
     7
@@ -54,39 +49,95 @@
   "nH_1e22_cm2": 0.0165,
   "n_free_parameters": 2,
   "plot_caveat": "WSTAT with blank-sky PHA; plotted residuals are qualitative.",
-  "q_value": 0.00027437771034491946,
+  "q_value": 2.556510576286795e-94,
   "qa_flags": [
-    "low_q_value"
+    "high_reduced_statistic",
+    "low_q_value",
+    "annulus_xrb_fit_rstat_gt_2"
   ],
   "r_em_annulus_to_source": 0.00963968862116,
   "redshift": 0.451,
   "residual_summaries": [
     {
       "dataset_id": 1,
-      "max_abs_residual": 0.10528910351885978,
-      "mean_residual": 0.025404131213624347,
+      "max_abs_residual": 0.2176470618652785,
+      "mean_residual": 0.04197515166067974,
       "n_bins": 433,
-      "rms_residual": 0.03206039490631951,
-      "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347.5-1145_obs3592_src_r500_he9p5_12keV.pi"
+      "rms_residual": 0.05206266261469223,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs13516_src_r500_he9p5_12keV.pi"
+    },
+    {
+      "dataset_id": 2,
+      "max_abs_residual": 0.12312526481620123,
+      "mean_residual": 0.03457352971249078,
+      "n_bins": 433,
+      "rms_residual": 0.04119228345362878,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs13999_src_r500_he9p5_12keV.pi"
+    },
+    {
+      "dataset_id": 3,
+      "max_abs_residual": 0.09244090853640807,
+      "mean_residual": 0.0201230464679633,
+      "n_bins": 433,
+      "rms_residual": 0.026342211697347486,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs14407_src_r500_he9p5_12keV.pi"
+    },
+    {
+      "dataset_id": 4,
+      "max_abs_residual": 0.16129147630109913,
+      "mean_residual": 0.04661724620012702,
+      "n_bins": 433,
+      "rms_residual": 0.051477180628005575,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs2222_src_r500_he9p5_12keV.pi"
+    },
+    {
+      "dataset_id": 5,
+      "max_abs_residual": 0.08387047215382248,
+      "mean_residual": 0.018412661218830888,
+      "n_bins": 433,
+      "rms_residual": 0.025830737360287157,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs3592_src_r500_he9p5_12keV.pi"
+    },
+    {
+      "dataset_id": 6,
+      "max_abs_residual": 0.2250076434364433,
+      "mean_residual": 0.038017518247981046,
+      "n_bins": 433,
+      "rms_residual": 0.06353000350249995,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs506_src_r500_he9p5_12keV.pi"
+    },
+    {
+      "dataset_id": 7,
+      "max_abs_residual": 0.2720143469273897,
+      "mean_residual": 0.0392922408860252,
+      "n_bins": 433,
+      "rms_residual": 0.06408041923343544,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs507_src_r500_he9p5_12keV.pi"
     }
   ],
-  "rstat": 1.2524695527588017,
-  "soft_flux_unabsorbed_erg_s_cm2": 3.5212564182071636e-12,
-  "soft_luminosity_unabsorbed_erg_s": 2.6423267182703757e+45,
+  "rstat": 1.6252230586945595,
+  "soft_flux_unabsorbed_erg_s_cm2": 3.602112149981774e-12,
+  "soft_luminosity_unabsorbed_erg_s": 2.7030003060524704e+45,
   "source_prefit": {
-    "apec_norm": 0.015398867868942097,
-    "dof": 431,
-    "q_value": 0.0010025252739021084,
-    "rstat": 1.223734350306646,
-    "statval": 527.4295049821644,
-    "temperature_keV": 16.068562749466874
+    "apec_norm": 0.01612624863553956,
+    "dof": 3029,
+    "q_value": 2.660570381514155e-91,
+    "rstat": 1.6132606247494476,
+    "statval": 4886.566432366077,
+    "temperature_keV": 18.243599986143785
   },
   "source_spectra": [
-    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347.5-1145_obs3592_src_r500_he9p5_12keV.pi"
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs13516_src_r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs13999_src_r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs14407_src_r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs2222_src_r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs3592_src_r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs506_src_r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1347.5-1145/processed_joint_bxc/spectra_high_energy_renorm/RXJ1347_5_1145_obs507_src_r500_he9p5_12keV.pi"
   ],
   "statname": "wstat",
-  "statval": 539.8143772390436,
-  "temperature_keV": 16.391367905381507,
+  "statval": 4922.800644785821,
+  "temperature_keV": 18.44185737511735,
   "xrb_area_scale_source_over_annulus": 0.553646358068,
   "xrb_policy": "fixed_shape"
 }
