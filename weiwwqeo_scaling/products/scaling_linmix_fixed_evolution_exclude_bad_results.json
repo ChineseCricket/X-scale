@@ -1,0 +1,194 @@
+[
+  {
+    "sample": "exclude_bad",
+    "sample_label": "excluding bad/failed fits",
+    "relation": "Lx-M500",
+    "n_clusters": 20,
+    "clusters": [
+      "Abell_0209",
+      "Abell_0068",
+      "Abell_0267",
+      "Abell_0383",
+      "Abell_0586",
+      "Abell_0611",
+      "Abell_0697",
+      "Abell_2261",
+      "MACSJ0329.7-0211",
+      "MACSJ0429.6-0253",
+      "MACSJ0647.7+7015",
+      "MACSJ0744.9+3927",
+      "MACSJ1115.9+0129",
+      "MACSJ1206.2-0847",
+      "MACSJ1720.3+3536",
+      "MACSJ1931.8-2635",
+      "RXJ1347.5-1145",
+      "RXJ1532.9+3021",
+      "RXJ2129.7+0005",
+      "RXJ2248.7-4431"
+    ],
+    "quality_counts": {
+      "good": 11,
+      "acceptable": 3,
+      "high": 6
+    },
+    "x_definition": "log10(M500c / 3e14 Msun)",
+    "e_definition": "log10(E(z)); Omega_M=0.300, Omega_L=0.700",
+    "y_definition": "log10(E(z)^-2 Lx_bol / 1e44 erg s^-1)",
+    "model": "log10(Y / E(z)^gamma_fixed) = alpha + beta*log10(M500c / 3e14 Msun)",
+    "model_label": "$E(z)^{-2}L_X=A(M_{500c}/3\\times10^{14}M_\\odot)^\\beta$",
+    "alpha": {
+      "median": 0.8268311647276403,
+      "err_lo": 0.1619127765637296,
+      "err_hi": 0.15701910792194973,
+      "p16": 0.6649183881639107,
+      "p84": 0.98385027264959
+    },
+    "beta": {
+      "median": 0.9605803681830185,
+      "err_lo": 0.2929904628705804,
+      "err_hi": 0.33928925602514837,
+      "p16": 0.6675899053124381,
+      "p84": 1.2998696242081669
+    },
+    "gamma": {
+      "median": 2.0,
+      "err_lo": 0.0,
+      "err_hi": 0.0,
+      "p16": 2.0,
+      "p84": 2.0
+    },
+    "intrinsic_scatter_dex": {
+      "median": 0.19014658341509535,
+      "err_lo": 0.03686260507332653,
+      "err_hi": 0.044876612926117665,
+      "p16": 0.15328397834176882,
+      "p84": 0.23502319634121302
+    },
+    "observed_rms_dex": 0.18859223008971146,
+    "n_chain": 1200,
+    "self_similar": {
+      "beta": 1.3333333333333333,
+      "gamma": 2.0
+    },
+    "literature": [
+      {
+        "paper": "Mantz et al. 2010",
+        "quantity": "core-excised Lx-M500 slope",
+        "value": 1.33,
+        "err": 0.08,
+        "note": "wiki/papers/mantz_2010.md; ROSAT 0.1-2.4 keV, core-excised."
+      },
+      {
+        "paper": "Pratt et al. 2009",
+        "quantity": "Lx-M500 context",
+        "value": null,
+        "err": null,
+        "note": "wiki/papers/pratt_2009.md; REXCESS bolometric Lx slopes are steeper than self-similar, mass is Yx-derived."
+      }
+    ],
+    "assumptions": [
+      "M500 errors are not present in the summary table; assumed 20% fractional 1-sigma.",
+      "Lx errors are not present in the summary table; assumed 10% fractional 1-sigma.",
+      "Excludes rows classified as bad: rstat >= 3, ACCEPT ratio < 0.5, ACCEPT ratio > 5, or missing Tx errors.",
+      "Evolution exponent gamma is fixed to 2 for literature-style comparison.",
+      "All logarithms are base 10.",
+      "Rows with status != done or missing positive Y/M500 were excluded."
+    ]
+  },
+  {
+    "sample": "exclude_bad",
+    "sample_label": "excluding bad/failed fits",
+    "relation": "Tx-M500",
+    "n_clusters": 20,
+    "clusters": [
+      "Abell_0209",
+      "Abell_0068",
+      "Abell_0267",
+      "Abell_0383",
+      "Abell_0586",
+      "Abell_0611",
+      "Abell_0697",
+      "Abell_2261",
+      "MACSJ0329.7-0211",
+      "MACSJ0429.6-0253",
+      "MACSJ0647.7+7015",
+      "MACSJ0744.9+3927",
+      "MACSJ1115.9+0129",
+      "MACSJ1206.2-0847",
+      "MACSJ1720.3+3536",
+      "MACSJ1931.8-2635",
+      "RXJ1347.5-1145",
+      "RXJ1532.9+3021",
+      "RXJ2129.7+0005",
+      "RXJ2248.7-4431"
+    ],
+    "quality_counts": {
+      "good": 11,
+      "acceptable": 3,
+      "high": 6
+    },
+    "x_definition": "log10(M500c / 3e14 Msun)",
+    "e_definition": "log10(E(z)); Omega_M=0.300, Omega_L=0.700",
+    "y_definition": "log10(E(z)^(-2/3) Tx / keV)",
+    "model": "log10(Y / E(z)^gamma_fixed) = alpha + beta*log10(M500c / 3e14 Msun)",
+    "model_label": "$E(z)^{-2/3}T_X=A(M_{500c}/3\\times10^{14}M_\\odot)^\\beta$",
+    "alpha": {
+      "median": 0.620364656723367,
+      "err_lo": 0.09169966287091391,
+      "err_hi": 0.08660395287603473,
+      "p16": 0.5286649938524531,
+      "p84": 0.7069686095994018
+    },
+    "beta": {
+      "median": 0.5916307686306144,
+      "err_lo": 0.16357521140050696,
+      "err_hi": 0.17974411256577238,
+      "p16": 0.4280555572301074,
+      "p84": 0.7713748811963868
+    },
+    "gamma": {
+      "median": 0.6666666666666666,
+      "err_lo": 0.0,
+      "err_hi": 0.0,
+      "p16": 0.6666666666666666,
+      "p84": 0.6666666666666666
+    },
+    "intrinsic_scatter_dex": {
+      "median": 0.1053146293360744,
+      "err_lo": 0.023130569858163336,
+      "err_hi": 0.028260607298768267,
+      "p16": 0.08218405947791106,
+      "p84": 0.13357523663484266
+    },
+    "observed_rms_dex": 0.11148457516777913,
+    "n_chain": 1200,
+    "self_similar": {
+      "beta": 0.6666666666666666,
+      "gamma": 0.6666666666666666
+    },
+    "literature": [
+      {
+        "paper": "Mantz et al. 2010",
+        "quantity": "Tx-M500 context",
+        "value": null,
+        "err": null,
+        "note": "wiki/papers/mantz_2010.md; slope consistent with or slightly steeper than self-similar, 10-15% scatter."
+      },
+      {
+        "paper": "Maughan et al. 2012",
+        "quantity": "Lx-T context",
+        "value": null,
+        "err": null,
+        "note": "wiki/papers/maughan_2012.md; core-excised relaxed Lx-T is close to self-similar, disturbed systems are steeper."
+      }
+    ],
+    "assumptions": [
+      "M500 errors are not present in the summary table; assumed 20% fractional 1-sigma.",
+      "Tx errors from Tx_err_lo/Tx_err_hi, symmetrized in log10.",
+      "Excludes rows classified as bad: rstat >= 3, ACCEPT ratio < 0.5, ACCEPT ratio > 5, or missing Tx errors.",
+      "Evolution exponent gamma is fixed to 0.666667 for literature-style comparison.",
+      "All logarithms are base 10.",
+      "Rows with status != done or missing positive Y/M500 were excluded."
+    ]
+  }
+]
