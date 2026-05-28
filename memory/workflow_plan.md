@@ -90,9 +90,9 @@ CALDB 失败团已补齐并拟合完成；最新逐团状态以 `memory/pipeline
 
 ---
 
-## Phase 4: 标度关系拟合（已有 raw try，下一步是正式化）
+## Phase 4: 标度关系拟合（full-R500 初版已正式化）
 
-### 4a. 数据准备（需重做 canonical table）
+### 4a. 数据准备 ✅ (2026-05-28 完成)
 
 原始尝试目录：`weiwwqeo_scaling/`。已提交的 raw try 使用：
 - 输入：`output/products/spectral/spectral_twostep_summary.csv`
@@ -105,9 +105,12 @@ Raw try 的 `exclude_bad` 样本排除了 Abell_0750、MS2137-2353、ZwCl_0857.9
 - Lx-M500: beta=0.96 +/- ~0.32，intrinsic scatter~0.19 dex
 - Tx-M500: beta=0.59 +/- ~0.17，intrinsic scatter~0.11 dex
 
-但该 raw try 基于旧 summary，未反映最新 Abell_0697、RXJ1347 全 ObsID 失败和 MACSJ1206/Abell_0068/MACSJ0647 rerun。因此它只能作为代码/方法草稿，不作为最终科学结果。
+该 raw try 基于旧 summary，未反映最新 Abell_0697、RXJ1347 全 ObsID 失败和 MACSJ1206/Abell_0068/MACSJ0647 rerun。因此它只能作为代码/方法草稿，不作为最终科学结果。
 
-正式 Phase 4 输入表必须包含：
+正式 Phase 4 输入表已生成：`output/products/spectral/spectral_summary.csv`。
+主样本 18/23，排除 Abell_0697、Abell_0750、MS2137-2353、RXJ1347.5-1145、ZwCl_0857.9+2107。
+
+正式 Phase 4 输入表包含：
 - M500 (Msun, h70), R500 (arcsec, Mpc)
 - T_X (keV) + 误差, L_X (bol + soft, 10^44 erg/s)
 - 流量 (10^-12 erg/s/cm^2)
@@ -115,16 +118,19 @@ Raw try 的 `exclude_bad` 样本排除了 Abell_0750、MS2137-2353、ZwCl_0857.9
 - ACCEPT 参考值
 - quality/exclude flag（主样本排除 bad；保留 high/suspect 标记）
 
-### 4b. linmix 拟合（正式化待执行）
+### 4b. linmix 拟合 ✅ (2026-05-28 full-R500 初版)
 
-安装：`pip install linmix`（CIAO conda env 内）。注意：raw README 中的 `/opt/miniconda3/bin/conda` 路径在当前机器不可用，正式运行前需确认实际 CIAO Python 环境。
+`linmix` 已安装到 CIAO Python：`/data/jyz/Applications/ciao-4.18/ciao-4.18/binexe/python3.12`。
 
-正式化步骤：
-1. 将 `weiwwqeo_scaling/src/fit_scaling_relations.py` 的可复用逻辑迁入正式 `src/` 位置（建议 `src/03_scaling/fit_scaling_relations.py`），输出改到 `output/products/scaling/` 和 `output/figures/scaling/`。
-2. 默认输入改为最新 canonical spectral table，而不是旧 `spectral_twostep_summary.csv`。
-3. 默认主样本排除 `quality=bad`：Abell_0697、Abell_0750、MS2137-2353、RXJ1347.5-1145、ZwCl_0857.9+2107。
-4. 输出 all / exclude_bad / sensitivity 三套结果；论文主结论使用 exclude_bad。
-5. 先做 full-R500 的 Lx-M500 和 Tx-M500；Lx-Tx 与 core-excised 作为后续扩展。
+正式脚本：`src/03_scaling/fit_scaling_relations.py`。
+输出位置：`output/products/scaling/` 和 `output/figures/scaling/`。
+
+主结果（exclude_bad, N=18）：
+- Lx-M500: beta=0.76 -0.43/+0.39, intrinsic scatter=0.194 dex
+- Tx-M500: beta=0.52 -0.25/+0.27, intrinsic scatter=0.112 dex
+
+已输出 all / exclude_bad / comparison 三套结果；论文主结论暂用 exclude_bad。
+Lx-Tx 与 core-excised 作为后续扩展。
 
 与文献对比：
 - Pratt et al. (2009) REXCESS: T_X-M500 β=0.33±0.07
@@ -136,6 +142,7 @@ Raw try 的 `exclude_bad` 样本排除了 Abell_0750、MS2137-2353、ZwCl_0857.9
 - 计算 scatter in log Y at fixed M500
 - 与 self-similar 预言对比
 - 检查 high/suspect 团对拟合的影响（尤其 Abell_0068、Abell_0611、MACSJ0647、MACSJ1206）
+- 下一步增加 Lx-Tx、bootstrap/leave-one-out、以及 core-excised 版本
 
 ---
 

@@ -1,0 +1,37 @@
+Phase 4 formalization log (2026-05-28)
+
+Inputs:
+- memory/pipeline_status.csv
+- configs/cluster_table.csv
+- configs/accept_reference.csv
+- output/products/spectral/*_results.json
+- legacy fallback: output/products/spectral/spectral_twostep_summary.csv
+
+Commands:
+- python3 src/03_scaling/build_spectral_summary.py
+- source /data/jyz/Applications/ciao-4.18/ciao-4.18/bin/ciao.sh
+- python src/03_scaling/fit_scaling_relations.py --summary output/products/spectral/spectral_summary.csv --outdir output/products/scaling --figdir output/figures/scaling
+
+Environment:
+- CIAO Python: /data/jyz/Applications/ciao-4.18/ciao-4.18/binexe/python3.12
+- linmix installed from https://github.com/jmeyers314/linmix.git at commit 933dbb1359dcb5404cf881bfdd5cf433b0195152
+
+Canonical table validation:
+- Rows: 23
+- Main sample: 18 included, 5 excluded
+- Excluded: Abell_0697, Abell_0750, MS2137-2353, RXJ1347.5-1145, ZwCl_0857.9+2107
+
+Formal scaling outputs:
+- output/products/scaling/scaling_linmix_fixed_evolution_all_summary.csv
+- output/products/scaling/scaling_linmix_fixed_evolution_exclude_bad_summary.csv
+- output/products/scaling/scaling_linmix_fixed_evolution_comparison_summary.csv
+- output/products/scaling/scaling_quality_classification.csv
+- output/figures/scaling/*.png and *.pdf
+
+Main exclude_bad results:
+- Lx-M500: beta=0.761 -0.433/+0.392, intrinsic scatter=0.194 dex, N=18
+- Tx-M500: beta=0.522 -0.253/+0.270, intrinsic scatter=0.112 dex, N=18
+
+Raw comparison:
+- weiwwqeo_scaling raw exclude_bad used N=20 and only excluded Abell_0750, MS2137-2353, ZwCl_0857.9+2107.
+- Formal run uses N=18 and additionally excludes Abell_0697 and RXJ1347.5-1145 due to latest full-ObsID bad status.

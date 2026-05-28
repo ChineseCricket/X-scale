@@ -18,6 +18,7 @@ X_scale/
 │   ├── 00_download/      #   数据下载
 │   ├── 01_reduction/     #   CIAO 数据处理
 │   ├── 02_spectral/      #   光谱分析 + 配套文档
+│   ├── 03_scaling/       #   标度关系拟合
 │   ├── 04_visualization/ #   可视化
 │   └── sandbox/          #   实验性代码
 ├── configs/              # 配置文件
@@ -40,9 +41,9 @@ X_scale/
 | 数据下载 | 完成（30 团 + stat1/bias 补下载） |
 | 文献准备 & Wiki | 完成 |
 | CIAO Pipeline | **完成** — 23/23 团完成（6 团 csmooth 跳过，仅影响可视化） |
-| 光谱分析 | Abell_0068 测试通过（T_X=33.4 keV），脚本修复完成，待批量处理 |
-| 标度关系拟合 | 未开始 |
-| 最终可视化 | 未开始 |
+| 光谱分析 | **完成 full-R500** — 23/23 有结果；主 scaling 样本 18 团，5 团标记 bad/excluded |
+| 标度关系拟合 | **Phase 4 full-R500 初版完成** — canonical table + linmix Lx-M500/Tx-M500 |
+| 最终可视化 | 初版 scaling 图已生成，最终报告图待整理 |
 
 详细进度见 `memory/pipeline_status.csv`。
 
@@ -58,4 +59,11 @@ python src/01_reduction/run_ciao_pipeline.py
 ```bash
 source /data/jyz/Applications/ciao-4.18/ciao-4.18/bin/ciao.sh
 python src/02_spectral/postproces_cluster.py --cluster <cluster_key> --run-specextract --run-sherpa
+```
+
+### 运行 Phase 4 scaling
+```bash
+source /data/jyz/Applications/ciao-4.18/ciao-4.18/bin/ciao.sh
+python src/03_scaling/build_spectral_summary.py
+python src/03_scaling/fit_scaling_relations.py
 ```

@@ -35,6 +35,7 @@
 - `src/00_download/` — 数据下载
 - `src/01_reduction/run_ciao_pipeline.py` — CIAO pipeline（repro→merge→wavdetect→flux）
 - `src/02_spectral/postproces_cluster.py` — 光谱分析（R500→specextract→Sherpa），配套文档在同目录下
+- `src/03_scaling/` — canonical spectral table + scaling relation 拟合
 - `src/04_visualization/` — 可视化
 
 ## 配置文件
@@ -47,8 +48,7 @@
 
 - CIAO 4.18: `source /data/jyz/Applications/ciao-4.18/ciao-4.18/bin/ciao.sh`
 - 必须先 source ciao.sh 才能用 CIAO Python / sherpa
-- 依赖: sherpa, astropy 7.2, numpy 2.3, scipy 1.17, matplotlib 3.10
-- 待装: linmix
+- 依赖: sherpa, astropy 7.2, numpy 2.3, scipy 1.17, matplotlib 3.10, linmix
 
 ## Pipeline 依赖链
 
@@ -81,6 +81,7 @@ chandra_repro → merge_obs → wavdetect → 点源剔除 → flux image
 - blank-sky background 是文献标准做法（Vikhlinin+2006, Donahue+2014），当前未实现，是已知系统误差
 - Blank-sky 对单 ObsID 团效果不如 local annulus + WSTAT（soft X-ray background 不匹配导致 T_X 更高），local annulus + WSTAT 是当前最优方案
 - csmooth 对大图像（>18M 像素，边长>4000）内存爆炸：即使 sigmin=1 sigmax=3，18.4M 像素图像仍消耗 68+ GB 且无法完成。6 个大团（Abell_0383, RXJ1532.9+3021, Abell_0267, Abell_2261, RXJ1347.5-1145, Abell_0586）跳过 csmooth，不影响科学结果（仅可视化用）
+- scaling 图运行时不要用 `/private/tmp` 作为 `MPLCONFIGDIR`；当前机器该路径只读，正式脚本改用 `/tmp/matplotlib-codex`
 
 ## 输出目录约定（重要）
 
