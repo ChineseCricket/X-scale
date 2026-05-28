@@ -48,7 +48,7 @@
     0.7,
     7
   ],
-  "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/Abell_0383/processed_joint_bxc/fits/phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV/Abell_0383_phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV_fit_plot.png",
+  "fit_plot_png": "output/figures/spectral/Abell_0383_fit.png",
   "flux_uncertainty": {
     "bolometric": {
       "flag": "native_flux_sampling_missing",
@@ -72,7 +72,7 @@
   "model_source": "lhb + phabs*(halo + cxb + icm_src)",
   "nH_1e22_cm2": 0.0165,
   "n_free_parameters": 2,
-  "plot_caveat": "WSTAT with blank-sky PHA; plotted residuals are qualitative.",
+  "plot_caveat": "Background-aware display: net source data are shown against folded source model; raw source/background are reference overlays.",
   "q_value": 3.4689391368145035e-06,
   "qa_flags": [
     "low_q_value"
@@ -82,26 +82,26 @@
   "residual_summaries": [
     {
       "dataset_id": 1,
-      "max_abs_residual": 0.2022462881501762,
-      "mean_residual": 0.04073027519318273,
+      "max_abs_residual": 4.273643737944235,
+      "mean_residual": -0.07715327390558183,
       "n_bins": 433,
-      "rms_residual": 0.0510652389129604,
+      "rms_residual": 1.1528479026643044,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/Abell_0383/processed_joint_bxc/spectra_high_energy_renorm/Abell_0383_obs2320_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 2,
-      "max_abs_residual": 0.24571877357853422,
-      "mean_residual": 0.043785813231326284,
+      "max_abs_residual": 4.273643737944235,
+      "mean_residual": -0.07715327390558183,
       "n_bins": 433,
-      "rms_residual": 0.05463478188748556,
+      "rms_residual": 1.1528479026643044,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/Abell_0383/processed_joint_bxc/spectra_high_energy_renorm/Abell_0383_obs2321_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 3,
-      "max_abs_residual": 0.3147526023714379,
-      "mean_residual": 0.035785558857516025,
+      "max_abs_residual": 4.273643737944235,
+      "mean_residual": -0.07715327390558183,
       "n_bins": 433,
-      "rms_residual": 0.05221546802981062,
+      "rms_residual": 1.1528479026643044,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/Abell_0383/processed_joint_bxc/spectra_high_energy_renorm/Abell_0383_obs524_src_r500_he9p5_12keV.pi"
     }
   ],

@@ -19,6 +19,7 @@ Read `CLAUDE.md`, `memory/pipeline_status.csv`, and `memory/workflow_plan.md` fi
   - `src/03_scaling/fit_scaling_relations.py`
   - `src/03_scaling/backfill_lx_uncertainties.py`
   - `src/02_spectral/fit_spectral_xrb.py` now writes native Sherpa `sample_energy_flux` intervals on future reruns.
+- Spectral fit QA figures in `output/figures/spectral/*_fit.png` are now background-aware displays: primary panel is net source data vs folded source model, with faint raw-source/background reference overlays. The WSTAT fitting itself is unchanged.
 
 ## Key outputs
 
@@ -47,6 +48,7 @@ good_only results:
 - Current Lx uncertainties mostly use `confidence_interval_parameter_fallback` from saved `icm_src.kT` and `icm_src.norm` confidence intervals.
 - Missing Lx uncertainties remain explicitly flagged for Abell_0068, MACSJ0647.7+7015, and several excluded bad clusters.
 - R500 uncertainties are stored as aperture provenance propagated from M500; they are not independent linmix errors.
+- Older spectral fit plots were qualitative WSTAT displays and could make good fits look systematically low because raw source data were compared to a source model without showing the blank-sky/background contribution in the same visual space.
 - Core-excised scaling remains future work.
 
 ## Next priority

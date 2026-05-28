@@ -48,7 +48,7 @@
     0.7,
     7
   ],
-  "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc/fits/phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV/MACSJ0744_9_3927_phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV_fit_plot.png",
+  "fit_plot_png": "output/figures/spectral/MACSJ0744_9_3927_fit.png",
   "flux_uncertainty": {
     "bolometric": {
       "flag": "native_flux_sampling_missing",
@@ -72,7 +72,7 @@
   "model_source": "lhb + phabs*(halo + cxb + icm_src)",
   "nH_1e22_cm2": 0.0165,
   "n_free_parameters": 2,
-  "plot_caveat": "WSTAT with blank-sky PHA; plotted residuals are qualitative.",
+  "plot_caveat": "Background-aware display: net source data are shown against folded source model; raw source/background are reference overlays.",
   "q_value": 0.06589632102548854,
   "qa_flags": [],
   "r_em_annulus_to_source": 0.00590171123171,
@@ -80,26 +80,26 @@
   "residual_summaries": [
     {
       "dataset_id": 1,
-      "max_abs_residual": 0.07679462782491699,
-      "mean_residual": 0.009658902997091075,
-      "n_bins": 430,
-      "rms_residual": 0.014575345326486001,
+      "max_abs_residual": 4.901144246817066,
+      "mean_residual": -0.08611570552961671,
+      "n_bins": 433,
+      "rms_residual": 1.064476592856568,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc/spectra_high_energy_renorm/MACSJ0744.9+3927_obs3197_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 2,
-      "max_abs_residual": 0.05791144989216279,
-      "mean_residual": 0.008716501507985577,
-      "n_bins": 422,
-      "rms_residual": 0.015052676305505153,
+      "max_abs_residual": 4.901144246817066,
+      "mean_residual": -0.08611570552961671,
+      "n_bins": 433,
+      "rms_residual": 1.064476592856568,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc/spectra_high_energy_renorm/MACSJ0744.9+3927_obs3585_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 3,
-      "max_abs_residual": 0.05262516610791196,
-      "mean_residual": 0.012575923437680612,
+      "max_abs_residual": 4.901144246817066,
+      "mean_residual": -0.08611570552961671,
       "n_bins": 433,
-      "rms_residual": 0.0149386015507193,
+      "rms_residual": 1.064476592856568,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc/spectra_high_energy_renorm/MACSJ0744.9+3927_obs6111_src_r500_he9p5_12keV.pi"
     }
   ],

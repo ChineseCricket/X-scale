@@ -88,6 +88,17 @@ CALDB 失败团已补齐并拟合完成；最新逐团状态以 `memory/pipeline
 2. **保留 rescue/sensitivity 路径**：Abell_0697 4217-only、RXJ1347 single-ObsID、MS2137 flexible/free-abundance 只作为 sensitivity，不阻塞主 scaling。
 3. **Core-excised 拟合**（0.15-1 R500）：当前主结果仍是 full R500；core-excised 是最终论文式对比的下一轮科学改进。
 
+### 3d. 光谱拟合图 QA 更新 ✅ (2026-05-29)
+
+已修正 `output/figures/spectral/*_fit.png` 的显示口径。旧图直接把 Sherpa/WSTAT 的 raw source PHA data plot 与 folded source model 画在一起；blank-sky particle/background 贡献仍在 raw source counts 中，因此很多好拟合会视觉上表现为 model 系统性低于 data。
+
+当前图由 `src/02_spectral/fit_spectral_xrb.py` 和 `src/02_spectral/regenerate_spectral_fit_plots.py` 生成：
+- 主面板：background-subtracted/net source data vs folded source model。
+- 淡色参考：raw source data 与 scaled blank-sky/background。
+- 残差面板：`(net-model)/sigma` 或 net-model。
+
+这次只改 QA 可视化和 JSON 中的 `plot_caveat`/`fit_plot_png`/`residual_summaries`，不改变 WSTAT 拟合、谱参数、Lx/Tx 或 scaling products。验证例：Abell_0209、MACSJ1206.2-0847 的 net-data/model 不再有系统 offset；Abell_0697 仍保留明显差残差，说明真实 bad fit 没被掩盖。
+
 ---
 
 ## Phase 4: 标度关系拟合（full-R500 初版已正式化）

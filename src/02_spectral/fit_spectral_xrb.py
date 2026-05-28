@@ -471,7 +471,7 @@ if not source_spectra or not annulus_spectra:
 fit_band = ({fit_band[0]:.8g}, {fit_band[1]:.8g})
 soft_obs = ({0.5:.8g} / (1 + {z:.8g}), {2.0:.8g} / (1 + {z:.8g}))
 bolo_obs = ({0.01:.8g} / (1 + {z:.8g}), builtins.min({100.0:.8g} / (1 + {z:.8g}), 15.0))
-plot_caveat = "WSTAT with blank-sky PHA; plotted residuals are qualitative."
+plot_caveat = "Background-aware display: net source data are shown against folded source model; raw source/background are reference overlays."
 xrb_policy = {xrb_policy!r}
 abundance_policy = {abundance_policy!r}
 flux_samples = {flux_samples:d}
@@ -728,17 +728,62 @@ if ann_values["rstat"] is not None and ann_values["rstat"] > 2.0:
 if xrb_policy == "flexible":
     qa_flags.append("xrb_shapes_freed_compare_aic_bic_before_adopting")
 
-fig, (ax, rax) = plt.subplots(2, 1, figsize=(8, 6.2), sharex=True, gridspec_kw={{"height_ratios": [3, 1], "hspace": 0.05}})
+raw_plots = {{}}
+bkg_plots = {{}}
+net_plots = {{}}
+model_plots = {{}}
+for i, pha in enumerate(source_spectra, start=1):
+    raw_plots[i] = get_data_plot(i)
+    try:
+        bkg_plots[i] = get_bkg_plot(i)
+    except Exception:
+        bkg_plots[i] = None
+    subtract(i)
+    net_plots[i] = get_data_plot(i)
+    model_plots[i] = get_model_plot(i)
+
+fig, (ax, rax) = plt.subplots(2, 1, figsize=(8.4, 6.4), sharex=True, gridspec_kw={{"height_ratios": [3, 1], "hspace": 0.05}})
 colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
 residual_summaries = []
+positive_values = []
 for i, pha in enumerate(source_spectra, start=1):
     color = colors[(i - 1) % len(colors)]
     label = pha.rsplit("/", 1)[-1].replace(".pi", "")
-    dp = get_data_plot(i)
-    mp = get_model_plot(i)
-    rp = get_resid_plot(i)
-    resid = np.asarray(rp.y, dtype=float)
-    resid = resid[np.isfinite(resid)]
+    raw = raw_plots[i]
+    bkg = bkg_plots[i]
+    net = net_plots[i]
+    model = model_plots[i]
+    raw_y = np.asarray(raw.y, dtype=float)
+    raw_mask = np.isfinite(raw_y) & (raw_y > 0)
+    ax.plot(np.asarray(raw.x)[raw_mask], raw_y[raw_mask], color=color, lw=0.8, alpha=0.18)
+    if bkg is not None:
+        bkg_y = np.asarray(bkg.y, dtype=float)
+        bkg_mask = np.isfinite(bkg_y) & (bkg_y > 0)
+        ax.plot(np.asarray(bkg.x)[bkg_mask], bkg_y[bkg_mask], color=color, lw=0.8, alpha=0.18, ls=":")
+    net_x = np.asarray(net.x, dtype=float)
+    net_y = np.asarray(net.y, dtype=float)
+    net_yerr = getattr(net, "yerr", None)
+    net_mask = np.isfinite(net_x) & np.isfinite(net_y) & (net_y > 0)
+    if net_yerr is not None:
+        net_yerr = np.asarray(net_yerr, dtype=float)
+        plot_yerr = net_yerr[net_mask]
+    else:
+        plot_yerr = None
+    model_y = np.asarray(model.y, dtype=float)
+    model_mask = np.isfinite(model_y) & (model_y > 0)
+    n = min(net_y.size, model_y.size)
+    residual = net_y[:n] - model_y[:n]
+    if net_yerr is not None:
+        denom = np.asarray(net_yerr[:n], dtype=float)
+        good = np.isfinite(residual) & np.isfinite(denom) & (denom > 0)
+        resid_plot = np.full_like(residual, np.nan, dtype=float)
+        resid_plot[good] = residual[good] / denom[good]
+        rax.set_ylabel(r"$(net-model)/\\sigma$")
+    else:
+        good = np.isfinite(residual)
+        resid_plot = residual
+        rax.set_ylabel("Net-model")
+    resid = resid_plot[good]
     residual_summaries.append({{
         "dataset_id": i,
         "spectrum": pha,
@@ -747,15 +792,18 @@ for i, pha in enumerate(source_spectra, start=1):
         "rms_residual": float(np.sqrt(np.mean(resid * resid))) if resid.size else None,
         "max_abs_residual": float(np.max(np.abs(resid))) if resid.size else None,
     }})
-    ax.errorbar(dp.x, dp.y, yerr=getattr(dp, "yerr", None), fmt="o", ms=3, lw=0.8, alpha=0.75, color=color, label=f"{{label}} data")
-    ax.plot(mp.x, mp.y, color=color, lw=1.5, label=f"{{label}} model")
+    ax.errorbar(net_x[net_mask], net_y[net_mask], yerr=plot_yerr, fmt="o", ms=3, lw=0.8, alpha=0.75, color=color, label=f"{{label}} net data")
+    ax.plot(np.asarray(model.x)[model_mask], model_y[model_mask], color=color, lw=1.5, label=f"{{label}} model")
+    positive_values.extend(net_y[net_mask].tolist())
+    positive_values.extend(model_y[model_mask].tolist())
     rax.axhline(0, color="0.25", ls="--", lw=0.8)
-    rax.errorbar(rp.x, rp.y, yerr=getattr(rp, "yerr", None), fmt="o", ms=3, lw=0.8, alpha=0.75, color=color)
+    rax.errorbar(net_x[:n], resid_plot, yerr=None, fmt="o", ms=2.5, lw=0.7, alpha=0.7, color=color)
 ax.set_yscale("log")
+if positive_values:
+    ax.set_ylim(max(min(positive_values) * 0.5, 1.0e-6), max(positive_values) * 1.6)
 ax.set_ylabel("Counts s$^{{-1}}$ keV$^{{-1}}$")
 rax.set_xlabel("Energy (keV)")
-rax.set_ylabel("Residual")
-ax.set_title("Source fit with annulus-constrained XRB")
+ax.set_title("Background-aware source fit")
 ax.text(0.02, 0.03, plot_caveat, transform=ax.transAxes, fontsize=8, bbox={{"facecolor": "white", "edgecolor": "0.7", "alpha": 0.85}})
 ax.legend(fontsize=6, ncol=2)
 ax.grid(alpha=0.2)

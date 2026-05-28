@@ -36,7 +36,7 @@
     0.7,
     7
   ],
-  "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/Abell_0750/processed_joint_bxc/fits/phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV/Abell_0750_phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV_fit_plot.png",
+  "fit_plot_png": "output/figures/spectral/Abell_0750_fit.png",
   "flux_uncertainty": {
     "bolometric": {
       "flag": "lx_uncertainty_unavailable",
@@ -60,7 +60,7 @@
   "model_source": "lhb + phabs*(halo + cxb + icm_src)",
   "nH_1e22_cm2": 0.0165,
   "n_free_parameters": 2,
-  "plot_caveat": "WSTAT with blank-sky PHA; plotted residuals are qualitative.",
+  "plot_caveat": "Background-aware display: net source data are shown against folded source model; raw source/background are reference overlays.",
   "q_value": 1.2662033056012873e-173,
   "qa_flags": [
     "high_reduced_statistic",
@@ -71,18 +71,18 @@
   "residual_summaries": [
     {
       "dataset_id": 1,
-      "max_abs_residual": 0.5486687629402326,
-      "mean_residual": -0.06459738182792396,
-      "n_bins": 430,
-      "rms_residual": 0.15080855547295283,
+      "max_abs_residual": 5.001268608235007,
+      "mean_residual": 0.5071471762829932,
+      "n_bins": 433,
+      "rms_residual": 1.3836968372502498,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/Abell_0750/processed_joint_bxc/spectra_high_energy_renorm/Abell_0750_obs7699_src_r500_he9p5_12keV.pi"
     },
     {
       "dataset_id": 2,
-      "max_abs_residual": 0.246318797124624,
-      "mean_residual": 0.04742353839874638,
+      "max_abs_residual": 5.001268608235007,
+      "mean_residual": 0.5071471762829932,
       "n_bins": 433,
-      "rms_residual": 0.06105473019269424,
+      "rms_residual": 1.3836968372502498,
       "spectrum": "/data/jyz/X_scale/chandra_data_evt/Abell_0750/processed_joint_bxc/spectra_high_energy_renorm/Abell_0750_obs924_src_r500_he9p5_12keV.pi"
     }
   ],
