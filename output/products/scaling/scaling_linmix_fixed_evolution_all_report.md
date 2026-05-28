@@ -15,8 +15,8 @@ M500c is the weak-lensing mass, independent of the X-ray observables. The redshi
 
 | Sample | Relation | N | quality counts | alpha | beta | fixed gamma | intrinsic scatter (dex) | observed RMS (dex) | self-similar beta/gamma |
 |---|---|---:|---|---:|---:|---:|---:|---:|---:|
-| all | Lx-M500 | 23 | good:11, acceptable:4, high:3, bad:5 | 0.828 -0.152/+0.147 | 0.984 -0.308/+0.316 | 2.000 -0.000/+0.000 | 0.198 -0.037/+0.042 | 0.200 | 1.333/2.000 |
-| all | Tx-M500 | 23 | good:11, acceptable:4, high:3, bad:5 | 0.556 -0.186/+0.171 | 0.852 -0.353/+0.396 | 0.667 -0.000/+0.000 | 0.255 -0.040/+0.049 | 0.239 | 0.667/0.667 |
+| all | Lx-M500 | 23 | good:11, acceptable:4, high:3, bad:5 | 0.727 -0.162/+0.154 | 1.213 -0.323/+0.336 | 2.000 -0.000/+0.000 | 0.170 -0.033/+0.044 | 0.218 | 1.333/2.000 |
+| all | Tx-M500 | 23 | good:11, acceptable:4, high:3, bad:5 | 0.672 -0.214/+0.219 | 0.625 -0.470/+0.476 | 0.667 -0.000/+0.000 | 0.288 -0.046/+0.055 | 0.261 | 0.667/0.667 |
 
 ## Figures
 
@@ -26,6 +26,14 @@ M500c is the weak-lensing mass, independent of the X-ray observables. The redshi
 - `output/figures/scaling/tx_m500_linmix_all.pdf`
 - `output/figures/scaling/m500_tx_literature_style_all.png`
 - `output/figures/scaling/m500_tx_literature_style_all.pdf`
+
+## Uncertainty Provenance
+
+- M500 errors come from `M500_err_lo/M500_err_hi` in the canonical spectral table.
+- R500 errors are propagated from M500 and documented as aperture provenance; they are not included as independent linmix errors.
+- Lx errors come from `Lx_bol_err_lo/Lx_bol_err_hi`; missing values fall back only where reported below.
+- all Lx-M500: M500 fallback=none; Y fallback=Abell_0068, Abell_0697, Abell_0750, MACSJ0647.7+7015, MS2137-2353, RXJ1347.5-1145.
+- all Tx-M500: M500 fallback=none; Y fallback=Abell_0750, MS2137-2353.
 
 ## Literature Context
 
@@ -39,11 +47,14 @@ M500c is the weak-lensing mass, independent of the X-ray observables. The redshi
 
 ## Assumptions
 
-- M500 errors are not present in the summary table; assumed 20% fractional 1-sigma.
-- Lx errors are not present in the summary table; assumed 10% fractional 1-sigma.
+- M500 errors use per-cluster literature columns M500_err_lo/M500_err_hi.
+- Lx errors from Lx_bol_err_lo/Lx_bol_err_hi; fallbacks are reported cluster-by-cluster.
+- R500 uncertainties are propagated from M500 for aperture provenance only and are not added as independent linmix errors.
 - All rows with status=done and positive M500/Y.
+- Lx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0068, Abell_0697, Abell_0750, MACSJ0647.7+7015, MS2137-2353, RXJ1347.5-1145.
 - Evolution exponent gamma is fixed to 2 for literature-style comparison.
 - All logarithms are base 10.
 - Rows with status != done or missing positive Y/M500 were excluded.
-- Tx errors from Tx_err_lo/Tx_err_hi when present; otherwise assumed 10% fractional 1-sigma.
+- Tx errors from Tx_err_lo/Tx_err_hi; fallbacks are reported cluster-by-cluster.
+- Tx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0750, MS2137-2353.
 - Evolution exponent gamma is fixed to 0.666667 for literature-style comparison.

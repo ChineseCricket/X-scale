@@ -34,6 +34,8 @@ except ImportError as exc:  # pragma: no cover - user-facing dependency check
 RELATIONS = {
     "Lx-M500": {
         "y_col": "Lx_bol_1e44_erg_s",
+        "y_err_lo_col": "Lx_bol_err_lo",
+        "y_err_hi_col": "Lx_bol_err_hi",
         "y_label": "log10(E(z)^-2 Lx_bol / 1e44 erg s^-1)",
         "default_frac_err": 0.10,
         "fixed_gamma": 2.0,
@@ -59,6 +61,8 @@ RELATIONS = {
     },
     "Tx-M500": {
         "y_col": "Tx_keV",
+        "y_err_lo_col": "Tx_err_lo",
+        "y_err_hi_col": "Tx_err_hi",
         "y_label": "log10(E(z)^(-2/3) Tx / keV)",
         "default_frac_err": None,
         "fixed_gamma": 2.0 / 3.0,
@@ -103,6 +107,11 @@ SAMPLES = {
         "description": "Excludes rows with exclude_from_main_scaling=True in the canonical spectral table.",
         "exclude_bad": True,
     },
+    "good_only": {
+        "label": "quality=good only",
+        "description": "Includes only rows with quality=good in the canonical spectral table.",
+        "quality": "good",
+    },
 }
 
 
@@ -133,13 +142,13 @@ def parse_args() -> argparse.Namespace:
         "--mass-frac-err",
         type=float,
         default=0.20,
-        help="Assumed fractional 1-sigma WL M500 uncertainty when no table column is present.",
+        help="Fallback fractional 1-sigma WL M500 uncertainty when no table column is present.",
     )
     parser.add_argument(
         "--lx-frac-err",
         type=float,
         default=0.10,
-        help="Assumed fractional 1-sigma Lx uncertainty when no table column is present.",
+        help="Fallback fractional 1-sigma Lx uncertainty when no table column is present.",
     )
     parser.add_argument("--k", type=int, default=2, help="Number of Gaussian mixture components in linmix.")
     parser.add_argument("--chains", type=int, default=2, help="Number of linmix chains.")
@@ -234,6 +243,13 @@ def should_exclude(row: dict[str, str]) -> bool:
     return row.get("exclude_from_main_scaling", "").lower() == "true" or classify_quality(row) == "bad"
 
 
+def sym_log_error(value: float, err_lo: float | None, err_hi: float | None, fallback_frac: float) -> tuple[float, bool]:
+    if value > 0 and err_lo is not None and err_hi is not None and err_lo > 0 and err_hi > 0:
+        frac = 0.5 * (err_lo + err_hi) / value
+        return frac / math.log(10.0), False
+    return fallback_frac / math.log(10.0), True
+
+
 def build_arrays(
     rows: list[dict[str, str]],
     relation: str,
@@ -245,7 +261,10 @@ def build_arrays(
     spec = RELATIONS[relation]
     used: list[dict[str, str]] = []
     for row in rows:
-        if SAMPLES[sample_key]["exclude_bad"] and should_exclude(row):
+        sample_spec = SAMPLES[sample_key]
+        if sample_spec.get("exclude_bad") and should_exclude(row):
+            continue
+        if sample_spec.get("quality") and classify_quality(row) != sample_spec["quality"]:
             continue
         if (
             as_float(row, "M500_1e14_msun")
@@ -262,25 +281,50 @@ def build_arrays(
     x = np.log10(mass / 3.0)
     e_term = np.log10(ez(redshift, omega_m))
     y = np.log10(y_linear)
-    xsig = np.full_like(x, mass_frac_err / math.log(10.0))
 
-    if relation == "Tx-M500":
-        ysig_linear = []
-        for row in used:
-            tx = as_float(row, "Tx_keV")
-            lo = as_float(row, "Tx_err_lo")
-            hi = as_float(row, "Tx_err_hi")
-            if tx and lo and hi:
-                ysig_linear.append(0.5 * (lo + hi) / tx / math.log(10.0))
-            else:
-                ysig_linear.append(0.10 / math.log(10.0))
-        ysig = np.array(ysig_linear, dtype=float)
-        y_error_note = "Tx errors from Tx_err_lo/Tx_err_hi when present; otherwise assumed 10% fractional 1-sigma."
-    else:
-        ysig = np.full_like(y, lx_frac_err / math.log(10.0))
-        y_error_note = (
-            f"Lx errors are not present in the summary table; assumed {lx_frac_err:.0%} fractional 1-sigma."
+    xsig_values: list[float] = []
+    ysig_values: list[float] = []
+    mass_fallbacks: list[str] = []
+    y_fallbacks: list[str] = []
+    for row in used:
+        cluster = row.get("cluster_key", "")
+        m = as_float(row, "M500_1e14_msun")
+        mlo = as_float(row, "M500_err_lo")
+        mhi = as_float(row, "M500_err_hi")
+        xs, mass_fallback = sym_log_error(m or 0.0, mlo, mhi, mass_frac_err)
+        xsig_values.append(xs)
+        if mass_fallback:
+            mass_fallbacks.append(cluster)
+
+        yval = as_float(row, spec["y_col"])
+        ylo = as_float(row, spec["y_err_lo_col"])
+        yhi = as_float(row, spec["y_err_hi_col"])
+        fallback_frac = 0.10 if relation == "Tx-M500" else lx_frac_err
+        ys, y_fallback = sym_log_error(yval or 0.0, ylo, yhi, fallback_frac)
+        ysig_values.append(ys)
+        if y_fallback:
+            y_fallbacks.append(cluster)
+
+    xsig = np.array(xsig_values, dtype=float)
+    ysig = np.array(ysig_values, dtype=float)
+    y_source = (
+        "Tx errors from Tx_err_lo/Tx_err_hi"
+        if relation == "Tx-M500"
+        else "Lx errors from Lx_bol_err_lo/Lx_bol_err_hi"
+    )
+    notes = [
+        "M500 errors use per-cluster literature columns M500_err_lo/M500_err_hi.",
+        f"{y_source}; fallbacks are reported cluster-by-cluster.",
+        "R500 uncertainties are propagated from M500 for aperture provenance only and are not added as independent linmix errors.",
+        SAMPLES[sample_key]["description"],
+    ]
+    if mass_fallbacks:
+        notes.append(
+            f"M500 fallback {mass_frac_err:.0%} fractional 1-sigma used for: {', '.join(mass_fallbacks)}."
         )
+    if y_fallbacks:
+        frac = 0.10 if relation == "Tx-M500" else lx_frac_err
+        notes.append(f"{relation} Y fallback {frac:.0%} fractional 1-sigma used for: {', '.join(y_fallbacks)}.")
 
     return {
         "clusters": [row["cluster_key"] for row in used],
@@ -295,11 +339,9 @@ def build_arrays(
         "mass": mass,
         "redshift": redshift,
         "y_linear": y_linear,
-        "notes": [
-            f"M500 errors are not present in the summary table; assumed {mass_frac_err:.0%} fractional 1-sigma.",
-            y_error_note,
-            SAMPLES[sample_key]["description"],
-        ],
+        "notes": notes,
+        "mass_error_fallback_clusters": mass_fallbacks,
+        "y_error_fallback_clusters": y_fallbacks,
     }
 
 
@@ -370,6 +412,8 @@ def fit_relation(name: str, arrays: dict[str, Any], args: argparse.Namespace) ->
         "n_clusters": len(arrays["clusters"]),
         "clusters": arrays["clusters"],
         "quality_counts": quality_counts(arrays["quality"]),
+        "mass_error_fallback_clusters": arrays.get("mass_error_fallback_clusters", []),
+        "y_error_fallback_clusters": arrays.get("y_error_fallback_clusters", []),
         "x_definition": "log10(M500c / 3e14 Msun)",
         "e_definition": f"log10(E(z)); Omega_M={args.omega_m:.3f}, Omega_L={1.0 - args.omega_m:.3f}",
         "y_definition": spec["y_label"],
@@ -402,6 +446,8 @@ def write_csv(path: Path, results: list[dict[str, Any]]) -> None:
         "relation",
         "n_clusters",
         "quality_counts",
+        "mass_error_fallback_clusters",
+        "y_error_fallback_clusters",
         "alpha",
         "alpha_err_lo",
         "alpha_err_hi",
@@ -430,6 +476,8 @@ def write_csv(path: Path, results: list[dict[str, Any]]) -> None:
                     "relation": result["relation"],
                     "n_clusters": result["n_clusters"],
                     "quality_counts": json.dumps(result["quality_counts"], sort_keys=True),
+                    "mass_error_fallback_clusters": ";".join(result.get("mass_error_fallback_clusters", [])),
+                    "y_error_fallback_clusters": ";".join(result.get("y_error_fallback_clusters", [])),
                     "alpha": result["alpha"]["median"],
                     "alpha_err_lo": result["alpha"]["err_lo"],
                     "alpha_err_hi": result["alpha"]["err_hi"],
@@ -500,6 +548,20 @@ def write_markdown(
         lines.extend(["", "## Figures", ""])
         for figure_path in figure_paths:
             lines.append(f"- `{figure_path}`")
+
+    lines.extend(["", "## Uncertainty Provenance", ""])
+    lines.append("- M500 errors come from `M500_err_lo/M500_err_hi` in the canonical spectral table.")
+    lines.append("- R500 errors are propagated from M500 and documented as aperture provenance; they are not included as independent linmix errors.")
+    lines.append("- Lx errors come from `Lx_bol_err_lo/Lx_bol_err_hi`; missing values fall back only where reported below.")
+    for result in results:
+        mass_fb = result.get("mass_error_fallback_clusters", [])
+        y_fb = result.get("y_error_fallback_clusters", [])
+        if mass_fb or y_fb:
+            lines.append(
+                f"- {result['sample']} {result['relation']}: "
+                f"M500 fallback={', '.join(mass_fb) if mass_fb else 'none'}; "
+                f"Y fallback={', '.join(y_fb) if y_fb else 'none'}."
+            )
 
     lines.extend(["", "## Literature Context", ""])
     for result in results:

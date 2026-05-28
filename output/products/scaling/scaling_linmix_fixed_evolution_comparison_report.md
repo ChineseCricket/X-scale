@@ -15,10 +15,12 @@ M500c is the weak-lensing mass, independent of the X-ray observables. The redshi
 
 | Sample | Relation | N | quality counts | alpha | beta | fixed gamma | intrinsic scatter (dex) | observed RMS (dex) | self-similar beta/gamma |
 |---|---|---:|---|---:|---:|---:|---:|---:|---:|
-| all | Lx-M500 | 23 | good:11, acceptable:4, high:3, bad:5 | 0.828 -0.152/+0.147 | 0.984 -0.308/+0.316 | 2.000 -0.000/+0.000 | 0.198 -0.037/+0.042 | 0.200 | 1.333/2.000 |
-| all | Tx-M500 | 23 | good:11, acceptable:4, high:3, bad:5 | 0.556 -0.186/+0.171 | 0.852 -0.353/+0.396 | 0.667 -0.000/+0.000 | 0.255 -0.040/+0.049 | 0.239 | 0.667/0.667 |
-| exclude_bad | Lx-M500 | 18 | good:11, acceptable:4, high:3 | 0.913 -0.186/+0.199 | 0.761 -0.433/+0.392 | 2.000 -0.000/+0.000 | 0.194 -0.038/+0.048 | 0.180 | 1.333/2.000 |
-| exclude_bad | Tx-M500 | 18 | good:11, acceptable:4, high:3 | 0.649 -0.125/+0.120 | 0.522 -0.253/+0.270 | 0.667 -0.000/+0.000 | 0.112 -0.023/+0.029 | 0.113 | 0.667/0.667 |
+| all | Lx-M500 | 23 | good:11, acceptable:4, high:3, bad:5 | 0.727 -0.162/+0.154 | 1.213 -0.323/+0.336 | 2.000 -0.000/+0.000 | 0.170 -0.033/+0.044 | 0.218 | 1.333/2.000 |
+| all | Tx-M500 | 23 | good:11, acceptable:4, high:3, bad:5 | 0.672 -0.214/+0.219 | 0.625 -0.470/+0.476 | 0.667 -0.000/+0.000 | 0.288 -0.046/+0.055 | 0.261 | 0.667/0.667 |
+| exclude_bad | Lx-M500 | 18 | good:11, acceptable:4, high:3 | 0.755 -0.237/+0.225 | 1.069 -0.468/+0.484 | 2.000 -0.000/+0.000 | 0.172 -0.043/+0.048 | 0.197 | 1.333/2.000 |
+| exclude_bad | Tx-M500 | 18 | good:11, acceptable:4, high:3 | 0.653 -0.126/+0.124 | 0.509 -0.254/+0.280 | 0.667 -0.000/+0.000 | 0.116 -0.026/+0.029 | 0.113 | 0.667/0.667 |
+| good_only | Lx-M500 | 11 | good:11 | 1.055 -0.348/+0.315 | 0.511 -0.654/+0.662 | 2.000 -0.000/+0.000 | 0.225 -0.054/+0.082 | 0.187 | 1.333/2.000 |
+| good_only | Tx-M500 | 11 | good:11 | 0.638 -0.114/+0.093 | 0.449 -0.180/+0.228 | 0.667 -0.000/+0.000 | 0.061 -0.030/+0.035 | 0.061 | 0.667/0.667 |
 
 ## Figures
 
@@ -34,6 +36,21 @@ M500c is the weak-lensing mass, independent of the X-ray observables. The redshi
 - `output/figures/scaling/tx_m500_linmix_exclude_bad.pdf`
 - `output/figures/scaling/m500_tx_literature_style_exclude_bad.png`
 - `output/figures/scaling/m500_tx_literature_style_exclude_bad.pdf`
+- `output/figures/scaling/lx_m500_linmix_good_only.png`
+- `output/figures/scaling/lx_m500_linmix_good_only.pdf`
+- `output/figures/scaling/tx_m500_linmix_good_only.png`
+- `output/figures/scaling/tx_m500_linmix_good_only.pdf`
+- `output/figures/scaling/m500_tx_literature_style_good_only.png`
+- `output/figures/scaling/m500_tx_literature_style_good_only.pdf`
+
+## Uncertainty Provenance
+
+- M500 errors come from `M500_err_lo/M500_err_hi` in the canonical spectral table.
+- R500 errors are propagated from M500 and documented as aperture provenance; they are not included as independent linmix errors.
+- Lx errors come from `Lx_bol_err_lo/Lx_bol_err_hi`; missing values fall back only where reported below.
+- all Lx-M500: M500 fallback=none; Y fallback=Abell_0068, Abell_0697, Abell_0750, MACSJ0647.7+7015, MS2137-2353, RXJ1347.5-1145.
+- all Tx-M500: M500 fallback=none; Y fallback=Abell_0750, MS2137-2353.
+- exclude_bad Lx-M500: M500 fallback=none; Y fallback=Abell_0068, MACSJ0647.7+7015.
 
 ## Literature Context
 
@@ -53,14 +70,27 @@ M500c is the weak-lensing mass, independent of the X-ray observables. The redshi
 - Mantz et al. 2010: wiki/papers/mantz_2010.md; slope consistent with or slightly steeper than self-similar, 10-15% scatter.
 - Maughan et al. 2012: wiki/papers/maughan_2012.md; core-excised relaxed Lx-T is close to self-similar, disturbed systems are steeper.
 
+### Lx-M500
+- Mantz et al. 2010: core-excised Lx-M500 slope = 1.33 +/- 0.08. wiki/papers/mantz_2010.md; ROSAT 0.1-2.4 keV, core-excised.
+- Pratt et al. 2009: wiki/papers/pratt_2009.md; REXCESS bolometric Lx slopes are steeper than self-similar, mass is Yx-derived.
+
+### Tx-M500
+- Mantz et al. 2010: wiki/papers/mantz_2010.md; slope consistent with or slightly steeper than self-similar, 10-15% scatter.
+- Maughan et al. 2012: wiki/papers/maughan_2012.md; core-excised relaxed Lx-T is close to self-similar, disturbed systems are steeper.
+
 ## Assumptions
 
-- M500 errors are not present in the summary table; assumed 20% fractional 1-sigma.
-- Lx errors are not present in the summary table; assumed 10% fractional 1-sigma.
+- M500 errors use per-cluster literature columns M500_err_lo/M500_err_hi.
+- Lx errors from Lx_bol_err_lo/Lx_bol_err_hi; fallbacks are reported cluster-by-cluster.
+- R500 uncertainties are propagated from M500 for aperture provenance only and are not added as independent linmix errors.
 - All rows with status=done and positive M500/Y.
+- Lx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0068, Abell_0697, Abell_0750, MACSJ0647.7+7015, MS2137-2353, RXJ1347.5-1145.
 - Evolution exponent gamma is fixed to 2 for literature-style comparison.
 - All logarithms are base 10.
 - Rows with status != done or missing positive Y/M500 were excluded.
-- Tx errors from Tx_err_lo/Tx_err_hi when present; otherwise assumed 10% fractional 1-sigma.
+- Tx errors from Tx_err_lo/Tx_err_hi; fallbacks are reported cluster-by-cluster.
+- Tx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0750, MS2137-2353.
 - Evolution exponent gamma is fixed to 0.666667 for literature-style comparison.
 - Excludes rows with exclude_from_main_scaling=True in the canonical spectral table.
+- Lx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0068, MACSJ0647.7+7015.
+- Includes only rows with quality=good in the canonical spectral table.

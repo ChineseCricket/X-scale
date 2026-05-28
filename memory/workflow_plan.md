@@ -107,18 +107,21 @@ Raw try 的 `exclude_bad` 样本排除了 Abell_0750、MS2137-2353、ZwCl_0857.9
 
 该 raw try 基于旧 summary，未反映最新 Abell_0697、RXJ1347 全 ObsID 失败和 MACSJ1206/Abell_0068/MACSJ0647 rerun。因此它只能作为代码/方法草稿，不作为最终科学结果。
 
-正式 Phase 4 输入表已生成：`output/products/spectral/spectral_summary.csv`。
+正式 Phase 4 输入表已生成并升级不确定度：`output/products/spectral/spectral_summary.csv`。
 主样本 18/23，排除 Abell_0697、Abell_0750、MS2137-2353、RXJ1347.5-1145、ZwCl_0857.9+2107。
 
 正式 Phase 4 输入表包含：
-- M500 (Msun, h70), R500 (arcsec, Mpc)
-- T_X (keV) + 误差, L_X (bol + soft, 10^44 erg/s)
+- M500 (Msun, h70) + 文献误差/provenance；R500 (arcsec, Mpc) + 由 M500 误差传播的 aperture provenance
+- T_X (keV) + 误差, L_X (bol + soft, 10^44 erg/s) + Lx 不确定度/provenance
 - 流量 (10^-12 erg/s/cm^2)
 - nH, z, 拟合质量 (rstat, qval)
 - ACCEPT 参考值
 - quality/exclude flag（主样本排除 bad；保留 high/suspect 标记）
+- `configs/m500_reference.csv` 是 M500 中心值和误差来源表：CLASH 用 Umetsu+16 Table 3；LoCuSS 用 Okabe+16 Table 2（Table 3 是 c-M 关系，不是 individual M500）。
+- 已修正 3 个 LoCuSS config 质量列错误：Abell_0697 和 ZwCl_0857.9+2107 之前误用了 M180m，Abell_0750 之前误用了 M1000；三者都在 exclude_bad 样本外。
+- 当前 JSON 中 Lx 误差多数来自 `confidence_interval_parameter_fallback`；未来 rerun 的 `fit_spectral_xrb.py` 会保存 Sherpa `sample_energy_flux` 原生区间。Abell_0068、MACSJ0647.7+7015 以及若干 bad 团暂无可用 Lx CI，scaling 报告中明确 fallback。
 
-### 4b. linmix 拟合 ✅ (2026-05-28 full-R500 初版)
+### 4b. linmix 拟合 ✅ (2026-05-29 full-R500 uncertainty upgrade)
 
 `linmix` 已安装到 CIAO Python：`/data/jyz/Applications/ciao-4.18/ciao-4.18/binexe/python3.12`。
 
@@ -126,10 +129,13 @@ Raw try 的 `exclude_bad` 样本排除了 Abell_0750、MS2137-2353、ZwCl_0857.9
 输出位置：`output/products/scaling/` 和 `output/figures/scaling/`。
 
 主结果（exclude_bad, N=18）：
-- Lx-M500: beta=0.76 -0.43/+0.39, intrinsic scatter=0.194 dex
-- Tx-M500: beta=0.52 -0.25/+0.27, intrinsic scatter=0.112 dex
+- Lx-M500: beta=1.07 -0.47/+0.48, intrinsic scatter=0.172 dex
+- Tx-M500: beta=0.51 -0.25/+0.28, intrinsic scatter=0.116 dex
 
-已输出 all / exclude_bad / comparison 三套结果；论文主结论暂用 exclude_bad。
+已输出 all / exclude_bad / good_only / comparison 结果；论文主结论暂用 exclude_bad，good_only 作为严格质量敏感性样本 (N=11)。
+good_only 结果：
+- Lx-M500: beta=0.51 -0.65/+0.66, intrinsic scatter=0.225 dex
+- Tx-M500: beta=0.45 -0.18/+0.23, intrinsic scatter=0.061 dex
 Lx-Tx 与 core-excised 作为后续扩展。
 
 与文献对比：

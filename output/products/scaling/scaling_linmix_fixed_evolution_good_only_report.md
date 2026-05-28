@@ -15,24 +15,23 @@ M500c is the weak-lensing mass, independent of the X-ray observables. The redshi
 
 | Sample | Relation | N | quality counts | alpha | beta | fixed gamma | intrinsic scatter (dex) | observed RMS (dex) | self-similar beta/gamma |
 |---|---|---:|---|---:|---:|---:|---:|---:|---:|
-| exclude_bad | Lx-M500 | 18 | good:11, acceptable:4, high:3 | 0.755 -0.237/+0.225 | 1.069 -0.468/+0.484 | 2.000 -0.000/+0.000 | 0.172 -0.043/+0.048 | 0.197 | 1.333/2.000 |
-| exclude_bad | Tx-M500 | 18 | good:11, acceptable:4, high:3 | 0.653 -0.126/+0.124 | 0.509 -0.254/+0.280 | 0.667 -0.000/+0.000 | 0.116 -0.026/+0.029 | 0.113 | 0.667/0.667 |
+| good_only | Lx-M500 | 11 | good:11 | 1.055 -0.348/+0.315 | 0.511 -0.654/+0.662 | 2.000 -0.000/+0.000 | 0.225 -0.054/+0.082 | 0.187 | 1.333/2.000 |
+| good_only | Tx-M500 | 11 | good:11 | 0.638 -0.114/+0.093 | 0.449 -0.180/+0.228 | 0.667 -0.000/+0.000 | 0.061 -0.030/+0.035 | 0.061 | 0.667/0.667 |
 
 ## Figures
 
-- `output/figures/scaling/lx_m500_linmix_exclude_bad.png`
-- `output/figures/scaling/lx_m500_linmix_exclude_bad.pdf`
-- `output/figures/scaling/tx_m500_linmix_exclude_bad.png`
-- `output/figures/scaling/tx_m500_linmix_exclude_bad.pdf`
-- `output/figures/scaling/m500_tx_literature_style_exclude_bad.png`
-- `output/figures/scaling/m500_tx_literature_style_exclude_bad.pdf`
+- `output/figures/scaling/lx_m500_linmix_good_only.png`
+- `output/figures/scaling/lx_m500_linmix_good_only.pdf`
+- `output/figures/scaling/tx_m500_linmix_good_only.png`
+- `output/figures/scaling/tx_m500_linmix_good_only.pdf`
+- `output/figures/scaling/m500_tx_literature_style_good_only.png`
+- `output/figures/scaling/m500_tx_literature_style_good_only.pdf`
 
 ## Uncertainty Provenance
 
 - M500 errors come from `M500_err_lo/M500_err_hi` in the canonical spectral table.
 - R500 errors are propagated from M500 and documented as aperture provenance; they are not included as independent linmix errors.
 - Lx errors come from `Lx_bol_err_lo/Lx_bol_err_hi`; missing values fall back only where reported below.
-- exclude_bad Lx-M500: M500 fallback=none; Y fallback=Abell_0068, MACSJ0647.7+7015.
 
 ## Literature Context
 
@@ -49,8 +48,7 @@ M500c is the weak-lensing mass, independent of the X-ray observables. The redshi
 - M500 errors use per-cluster literature columns M500_err_lo/M500_err_hi.
 - Lx errors from Lx_bol_err_lo/Lx_bol_err_hi; fallbacks are reported cluster-by-cluster.
 - R500 uncertainties are propagated from M500 for aperture provenance only and are not added as independent linmix errors.
-- Excludes rows with exclude_from_main_scaling=True in the canonical spectral table.
-- Lx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0068, MACSJ0647.7+7015.
+- Includes only rows with quality=good in the canonical spectral table.
 - Evolution exponent gamma is fixed to 2 for literature-style comparison.
 - All logarithms are base 10.
 - Rows with status != done or missing positive Y/M500 were excluded.

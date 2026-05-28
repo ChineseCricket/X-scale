@@ -60,6 +60,7 @@ DEFAULT_CXB_NORM_INIT = 1.0e-5
 DEFAULT_ICM_ANN_KT_FACTOR = 0.7
 DEFAULT_ABUNDANCE = 0.3
 DEFAULT_BLANKSKY_RENORM_BAND = (9.5, 12.0)
+DEFAULT_FLUX_SAMPLES = 3000
 DEFAULT_POINT_SOURCE_SIGMA_MIN = 3.0
 DEFAULT_POINT_SOURCE_RADIUS_SCALE = 1.5
 DEFAULT_POINT_SOURCE_MIN_RADIUS_PIX = 3.0
@@ -446,6 +447,7 @@ def write_joint_sherpa_script(
     xrb_policy: str,
     fit_band: tuple[float, float],
     abundance_policy: str,
+    flux_samples: int,
 ) -> None:
     """Write two-step Sherpa script: annulus XRB → source ICM."""
     source_literal = repr(source_spectra)
@@ -472,6 +474,7 @@ bolo_obs = ({0.01:.8g} / (1 + {z:.8g}), builtins.min({100.0:.8g} / (1 + {z:.8g})
 plot_caveat = "WSTAT with blank-sky PHA; plotted residuals are qualitative."
 xrb_policy = {xrb_policy!r}
 abundance_policy = {abundance_policy!r}
+flux_samples = {flux_samples:d}
 
 # Step 2pre: rough source-only ICM fit to estimate the source APEC norm.
 clean()
@@ -646,6 +649,64 @@ dl_cm = {dl_cm:.12g}
 soft_lum = 4.0 * math.pi * dl_cm * dl_cm * soft_flux_unabs
 bolo_lum = 4.0 * math.pi * dl_cm * dl_cm * bolo_flux_unabs
 
+def flux_interval_from_samples(label, band, best_flux):
+    out = {{
+        "band": label,
+        "method": "sherpa.sample_energy_flux",
+        "n_samples_requested": int(flux_samples),
+        "n_samples_used": 0,
+        "flux_median_erg_s_cm2": None,
+        "flux_err_lo_erg_s_cm2": None,
+        "flux_err_hi_erg_s_cm2": None,
+        "luminosity_median_erg_s": None,
+        "luminosity_err_lo_erg_s": None,
+        "luminosity_err_hi_erg_s": None,
+        "flag": "",
+    }}
+    if flux_samples <= 0:
+        out["method"] = "not_requested"
+        out["flag"] = "flux_sampling_disabled"
+        return out
+    try:
+        ids = tuple(range(2, len(source_spectra) + 1))
+        vals = sample_energy_flux(
+            band[0], band[1],
+            id=1,
+            otherids=ids,
+            model=icm_src,
+            num=flux_samples,
+            correlated=False,
+            numcores=1,
+        )
+        fluxes = np.asarray(vals[:, 0], dtype=float)
+        if vals.shape[1] >= 2:
+            clipped = np.asarray(vals[:, -1], dtype=float)
+            fluxes = fluxes[clipped == 0]
+        fluxes = fluxes[np.isfinite(fluxes) & (fluxes > 0)]
+        if fluxes.size < 20:
+            raise ValueError(f"only {{fluxes.size}} valid sampled fluxes")
+        p16, p50, p84 = np.percentile(fluxes, [16, 50, 84])
+        out.update({{
+            "n_samples_used": int(fluxes.size),
+            "flux_median_erg_s_cm2": float(p50),
+            "flux_err_lo_erg_s_cm2": float(max(p50 - p16, 0.0)),
+            "flux_err_hi_erg_s_cm2": float(max(p84 - p50, 0.0)),
+            "luminosity_median_erg_s": float(4.0 * math.pi * dl_cm * dl_cm * p50),
+            "luminosity_err_lo_erg_s": float(4.0 * math.pi * dl_cm * dl_cm * max(p50 - p16, 0.0)),
+            "luminosity_err_hi_erg_s": float(4.0 * math.pi * dl_cm * dl_cm * max(p84 - p50, 0.0)),
+        }})
+    except Exception as exc:
+        out["method"] = "failed"
+        out["flag"] = f"sample_energy_flux_failed: {{exc}}"
+        out["flux_median_erg_s_cm2"] = float(best_flux)
+        out["luminosity_median_erg_s"] = float(4.0 * math.pi * dl_cm * dl_cm * best_flux)
+    return out
+
+flux_uncertainty = {{
+    "soft": flux_interval_from_samples("soft", soft_obs, soft_flux_unabs),
+    "bolometric": flux_interval_from_samples("bolometric", bolo_obs, bolo_flux_unabs),
+}}
+
 confidence = {{}}
 if conf_values is not None:
     for pname, pval, pmin, pmax in zip(conf_values.parnames, conf_values.parvals, conf_values.parmins, conf_values.parmaxes):
@@ -723,6 +784,8 @@ out = {{
     "bolometric_flux_unabsorbed_erg_s_cm2": bolo_flux_unabs,
     "soft_luminosity_unabsorbed_erg_s": soft_lum,
     "bolometric_luminosity_unabsorbed_erg_s": bolo_lum,
+    "flux_uncertainty": flux_uncertainty,
+    "lx_uncertainty_method": "sherpa.sample_energy_flux",
     "fit_band_keV": [fit_band[0], fit_band[1]],
     "source_spectra": source_spectra,
     "annulus_spectra": annulus_spectra,
@@ -820,6 +883,7 @@ def parse_args():
     p.add_argument("--abundance-policy", choices=("fixed", "free_source"), default="fixed")
     p.add_argument("--fit-min-kev", type=float, default=DEFAULT_FIT_BAND[0])
     p.add_argument("--fit-max-kev", type=float, default=DEFAULT_FIT_BAND[1])
+    p.add_argument("--flux-samples", type=int, default=DEFAULT_FLUX_SAMPLES)
     p.add_argument("--renormalize-blanksky-pha", action=argparse.BooleanOptionalAction, default=True)
     p.add_argument("--no-run-blanksky", action="store_true")
     p.add_argument("--no-run-specextract", action="store_true")
@@ -966,6 +1030,7 @@ def main():
             r_em, area_scale, args.xrb_policy,
             (args.fit_min_kev, args.fit_max_kev),
             args.abundance_policy,
+            args.flux_samples,
         )
         print(f"[info] Running Sherpa fit...")
         run_sherpa(sherpa_script, fit_dir)

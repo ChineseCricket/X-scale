@@ -1,0 +1,27 @@
+cluster_key,cluster_name,m500_1e14_msun_h70,m500_err_lo,m500_err_hi,m500_err_source,m500_err_note
+Abell_383,Abell 383,5.88,1.73,1.73,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+Abell_209,Abell 209,9.64,1.97,1.97,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+Abell_2261,Abell 2261,15.65,3.05,3.05,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+RXJ2129_7_0005,RXJ2129.7+0005,4.48,1.16,1.16,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+Abell_611,Abell 611,10.73,2.65,2.65,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+MS2137_2353,MS2137-2353,8.28,2.57,2.57,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+RXJ2248_7_4431,RXJ2248.7-4431,12.45,3.62,3.62,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+MACSJ1115_9_0129,MACSJ1115.9+0129,10.67,2.22,2.22,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+MACSJ1931_8_2635,MACSJ1931.8-2635,10.51,4.05,4.05,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+RXJ1532_9_3021,RXJ1532.9+3021,4.17,1.71,1.71,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+MACSJ1720_3_3536,MACSJ1720.3+3536,9.96,2.53,2.53,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+MACSJ0429_6_0253,MACSJ0429.6-0253,6.85,2.10,2.10,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+MACSJ1206_2_0847,MACSJ1206.2-0847,12.24,2.49,2.49,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+MACSJ0329_7_0211,MACSJ0329.7-0211,6.51,1.37,1.37,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+RXJ1347_5_1145,RXJ1347.5-1145,22.33,4.89,4.89,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+MACSJ0744_9_3927,MACSJ0744.9+3927,11.94,2.81,2.81,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+MACSJ0647_7_7015,MACSJ0647.7+7015,9.49,2.51,2.51,Umetsu+2016 Table 3,CLASH M500c in 1e14 Msun physical units h=0.7
+Abell_0068,Abell 0068,6.828571,1.014286,1.114286,Okabe+2016 Table 2,LoCuSS M500 converted from 4.78 -0.71/+0.78 1e14 h^-1 Msun by dividing by h=0.7
+Abell_0209,Abell 0209,12.342857,1.500000,1.642857,Okabe+2016 Table 2,LoCuSS M500 converted from 8.64 -1.05/+1.15 1e14 h^-1 Msun by dividing by h=0.7
+Abell_0267,Abell 0267,5.600000,0.842857,0.914286,Okabe+2016 Table 2,LoCuSS M500 converted from 3.92 -0.59/+0.64 1e14 h^-1 Msun by dividing by h=0.7
+Abell_0383,Abell 0383,5.200000,0.857143,0.928571,Okabe+2016 Table 2,LoCuSS M500 converted from 3.64 -0.60/+0.65 1e14 h^-1 Msun by dividing by h=0.7
+Abell_0586,Abell 0586,7.200000,1.400000,1.600000,Okabe+2016 Table 2,LoCuSS M500 converted from 5.04 -0.98/+1.12 1e14 h^-1 Msun by dividing by h=0.7
+Abell_0611,Abell 0611,9.100000,1.557143,1.671429,Okabe+2016 Table 2,LoCuSS M500 converted from 6.37 -1.09/+1.17 1e14 h^-1 Msun by dividing by h=0.7
+Abell_0697,Abell 0697,7.700000,1.428571,1.542857,Okabe+2016 Table 2,Corrects prior config value that used M180m; LoCuSS M500 converted from 5.39 -1.00/+1.08 1e14 h^-1 Msun by dividing by h=0.7
+ZwCl_0857_9_2107,ZwCl 0857.9+2107,2.071429,1.071429,0.985714,Okabe+2016 Table 2,Corrects prior config value that used M180m; LoCuSS M500 converted from 1.45 -0.75/+0.69 1e14 h^-1 Msun by dividing by h=0.7
+Abell_0750,Abell 0750,6.157143,1.357143,1.714286,Okabe+2016 Table 2,Corrects prior config value that used M1000; LoCuSS M500 converted from 4.31 -0.95/+1.20 1e14 h^-1 Msun by dividing by h=0.7

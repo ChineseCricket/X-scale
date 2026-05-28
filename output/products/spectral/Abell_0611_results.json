@@ -47,6 +47,23 @@
     7
   ],
   "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/Abell_0611/processed_joint_bxc/fits/phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV/Abell_0611_phase3_BC_fixed_shape_fixed_heRenorm_0p7_7keV_fit_plot.png",
+  "flux_uncertainty": {
+    "bolometric": {
+      "flag": "native_flux_sampling_missing",
+      "luminosity_err_hi_erg_s": 9.897802515060408e+43,
+      "luminosity_err_lo_erg_s": 5.852184616225373e+43,
+      "luminosity_median_erg_s": 1.717750596669671e+45,
+      "method": "confidence_interval_parameter_fallback"
+    },
+    "soft": {
+      "flag": "native_flux_sampling_missing",
+      "luminosity_err_hi_erg_s": 2.3445905408807436e+43,
+      "luminosity_err_lo_erg_s": 1.3862649485895578e+43,
+      "luminosity_median_erg_s": 4.06900601867523e+44,
+      "method": "confidence_interval_parameter_fallback"
+    }
+  },
+  "lx_uncertainty_method": "confidence_interval_parameter_fallback",
   "method": "phase3_BC_annulus_constrained_xrb",
   "model_annulus": "lhb + phabs*(halo + cxb + icm_ann)",
   "model_selection_note": "For WSTAT fits compare variants with lower AIC/BIC; q_value is reported but is not the main selection criterion.",
