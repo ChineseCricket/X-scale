@@ -37,7 +37,7 @@
     0.7,
     7
   ],
-  "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/Abell_0209/processed_joint_bxc_coreexcised/fits/phase3_BC_src_coreexcised_0p15_1p0r500_fixed_shape_fixed_heRenorm_0p7_7keV/Abell_0209_phase3_BC_src_coreexcised_0p15_1p0r500_fixed_shape_fixed_heRenorm_0p7_7keV_fit_plot.png",
+  "fit_plot_png": "output/figures/spectral/core_excised/Abell_0209_fit.png",
   "flux_uncertainty": {
     "bolometric": {
       "band": "bolometric",

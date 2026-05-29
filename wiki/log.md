@@ -42,3 +42,9 @@
 - Claims: 5 extracted
 - Updated: index.md
 - Note: CIAO 4.18 软件综述，非标度关系文献，作为方法参考
+
+## [2026-05-29] analysis | Final QA and reporting update
+- Completed core-excised spectral QA for 18/18 included clusters.
+- Added `output/products/spectral/core_excised_spectral_qa_report.md`.
+- Added `output/products/scaling/full_vs_core_excised_comparison.md`.
+- Updated method notes for blank-sky XRB fitting, `0.15-1.0 R500` core-excised products, linmix scaling, and Tx fallback caveat.

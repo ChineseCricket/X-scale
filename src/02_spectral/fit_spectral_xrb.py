@@ -796,6 +796,7 @@ component_styles = {{
 residual_summaries = []
 raw_positive_values = []
 fit_positive_values = []
+residual_finite_values = []
 
 for i, pha in enumerate(source_spectra, start=1):
     color = colors[(i - 1) % len(colors)]
@@ -868,6 +869,8 @@ for i, pha in enumerate(source_spectra, start=1):
         "rms_residual": float(np.sqrt(np.mean(resid * resid))) if resid.size else None,
         "max_abs_residual": float(np.max(np.abs(resid))) if resid.size else None,
     }})
+    if resid.size:
+        residual_finite_values.extend(resid.tolist())
     rax.axhline(0, color="0.25", ls="--", lw=0.8)
     rax.errorbar(net_x[:n], resid_plot, yerr=None, fmt="o", ms=2.5, lw=0.7, alpha=0.7, color=color)
 
@@ -877,6 +880,13 @@ if raw_positive_values:
     raw_ax.set_ylim(max(min(raw_positive_values) * 0.55, 1.0e-6), max(raw_positive_values) * 1.5)
 if fit_positive_values:
     fit_ax.set_ylim(max(min(fit_positive_values) * 0.55, 1.0e-6), max(fit_positive_values) * 1.6)
+if residual_finite_values:
+    finite_resid = np.asarray(residual_finite_values, dtype=float)
+    finite_resid = finite_resid[np.isfinite(finite_resid)]
+    if finite_resid.size:
+        robust_abs = np.nanpercentile(np.abs(finite_resid), 98)
+        limit = max(5.0, min(float(robust_abs) * 1.25, 25.0))
+        rax.set_ylim(-limit, limit)
 raw_ax.set_ylabel("Raw counts s$^{{-1}}$ keV$^{{-1}}$")
 fit_ax.set_ylabel("Net counts s$^{{-1}}$ keV$^{{-1}}$")
 rax.set_xlabel("Energy (keV)")

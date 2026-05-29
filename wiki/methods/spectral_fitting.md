@@ -19,12 +19,13 @@ provenance: llm-derived
 - **Absorption**: phabs (Galactic NH, fixed from config)
 
 ### 流程
-1. `specextract` (CIAO) 逐 ObsID 提取光谱 + ARF + RMF
-2. Sherpa 联合拟合多 ObsID 光谱
-3. Full R500 aperture + core-excised (0.15R500–R500) 分别提取
+1. `specextract` (CIAO) 逐 ObsID 提取光谱 + ARF + RMF。
+2. 使用 blank-sky background，并按 9.5-12 keV 计数率做高能重归一化。
+3. Sherpa 对多 ObsID 做联合 WSTAT 拟合。
+4. Full R500 aperture 与 core-excised aperture (`0.15-1.0 R500`) 分别提取并写入独立输出目录。
 
 ### 能段与 Grouping
-- 能段: 0.5–7.0 keV (匹配 Vikhlinin+2006 的 0.6–8.0 keV 范围)
+- 能段: 0.7–7.0 keV
 - Grouping: WSTAT 模式用 `group_counts(1)` (minimal), chi2gehrels 模式用 `group_counts(25)`
 - `ignore_bad()` 过滤 quality flags（部分 PHA 无 flags，已加 try/except 保护）
 
@@ -38,10 +39,10 @@ provenance: llm-derived
 - `--fit-method`: levmar (default) / neldermead / moncar
 
 ### 已知局限
-- **背景**: 使用 local annulus + WSTAT，非文献标准的 blank-sky background
-  - Vikhlinin+2006, Donahue+2014 均用 blank-sky + 10-12 keV 归一化
-  - 实测发现 blank-sky 对单 ObsID 团效果更差（soft X-ray background 天区不匹配）
-  - Local annulus + WSTAT 是当前最优方案（Abell_0068 实测 T_X=33.4 vs blank-sky T_X=63 keV）
+- Full-R500 与 core-excised 都使用 blank-sky + XRB 模型；早期 local-annulus 方案只作为历史测试，不作为最终输入。
+- Core-excised Lx 不确定度来自 Sherpa `sample_energy_flux`。
+- Core-excised Tx confidence intervals 尚未回填到 JSON；对应 Tx-M500 和 Lx-Tx scaling 使用明确记录的 10% Tx fallback。
+- Spectral QA 图的顶部面板显示 raw source 与 scaled blank-sky/background；中部面板比较 net source data 与 folded source-region model components。
 
 ## 文献方法对比
 
@@ -52,7 +53,7 @@ provenance: llm-derived
 | [[mantz_2010]] | phabs*apec | blank-sky | 0.1–2.4 keV | 0.15r500 | — |
 | [[pratt_2009]] (REXCESS) | XMM-Newton | standard | bolometric | no (Lx study) | — |
 | [[maughan_2008]] | phabs*apec | blank-sky | — | — | ≥20 cts/bin |
-| **本项目** | phabs*apec + WSTAT | local annulus + WSTAT | 0.5–7 keV | 0.15R500 | group_counts(1) |
+| **本项目** | phabs*apec + XRB + WSTAT | blank-sky (9.5-12 keV renorm) | 0.7-7 keV | full R500 and 0.15-1.0R500 | group_counts(1) |
 
 ## L_X 计算方式
 - **Model-derived** (本项目): 从 APEC normalization 反算 $L_X$

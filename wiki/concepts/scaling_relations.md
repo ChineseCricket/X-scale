@@ -65,6 +65,15 @@ $$E(z)^{-7/3} \left(\frac{L_X}{10^{44}\text{erg/s}}\right) = A_{LM} \left(\frac{
 - **拟合**: linmix (Kelly 2007) — 与 BCES 同属考虑测量误差的方法
 - **M500**: 弱透镜（CLASH: Umetsu+16, LoCuSS: Okabe+16）— 与 WtG 系列类似
 
+当前主结果使用 18 个 included clusters；5 个 bad/suspect spectral fits 从主 scaling 样本排除。Full-R500 baseline 与 core-excised `0.15-1.0 R500` comparison 的 mass-based slopes 在统计误差内一致：
+
+| Branch | Lx-M500 beta | Tx-M500 beta | Lx-Tx beta |
+|---|---:|---:|---:|
+| full-R500 | 1.09 -0.48/+0.45 | 0.50 -0.27/+0.29 | 0.77 -0.44/+0.47 |
+| core-excised | 1.15 -0.51/+0.54 | 0.55 -0.34/+0.36 | 0.69 -0.41/+0.40 |
+
+Interpretation: core excision does not materially change the main mass-scaling slopes for this small heterogeneous sample. The Lx-Tx relation remains shallow and noisy compared with common Chandra literature values.
+
 ## 相关概念
 - [[self_similar_model]] — self-similar model 的详细推导
 - [[spectral_fitting]] — 光谱拟合方法

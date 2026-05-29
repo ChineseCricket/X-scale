@@ -2,7 +2,7 @@
 note: 将此文件内容直接粘贴到新 session 作为初始 prompt，然后删除本文件。
 ---
 
-# Next Session Prompt: Final QA + Reporting
+# Next Session Prompt: Final Report Polish
 
 Read `CLAUDE.md`, `memory/pipeline_status.csv`, and `memory/workflow_plan.md` first.
 
@@ -10,6 +10,8 @@ Read `CLAUDE.md`, `memory/pipeline_status.csv`, and `memory/workflow_plan.md` fi
 
 - Phase 4 full-R500 scaling is complete.
 - Core-excised spectral fitting for the main included sample is complete: 18/18 included clusters have `0.15-1.0 R500` result JSONs.
+- Core-excised lightweight QA is complete; see `output/products/spectral/core_excised_spectral_qa_report.md`.
+- Full-vs-core interpretation is drafted; see `output/products/scaling/full_vs_core_excised_comparison.md`.
 - The five excluded bad clusters do not have core-excised JSONs yet; this is optional completeness/appendix work only.
 - Full-R500 remains the canonical baseline, and core-excised is now available as the formal literature-style comparison branch.
 
@@ -29,6 +31,8 @@ Read `CLAUDE.md`, `memory/pipeline_status.csv`, and `memory/workflow_plan.md` fi
 - Core-excised spectral JSONs: `output/products/spectral/core_excised/`
 - Core-excised spectral figures: `output/figures/spectral/core_excised/`
 - Core-excised scaling figures: `output/figures/scaling/core_excised/`
+- Core-excised spectral QA report: `output/products/spectral/core_excised_spectral_qa_report.md`
+- Full-vs-core comparison note: `output/products/scaling/full_vs_core_excised_comparison.md`
 
 ## Formal scripts
 
@@ -76,7 +80,13 @@ good_only N=6:
 Core-excised caveat:
 - Included core-excised Lx uncertainties are native `sherpa.sample_energy_flux`.
 - Core-excised T_X confidence intervals are missing in the JSONs, so Tx-M500 and Lx-Tx currently use the documented 10% Tx fallback.
-- Decide whether to add/perform core-excised Tx confidence interval support or explicitly report the fallback in final methods.
+- Decision: do not block final reporting on core-excised Tx confidence interval recovery; explicitly report the 10% fallback in final methods and tables.
+
+Core-excised QA:
+- 18/18 included core-excised JSONs and QA plots exist.
+- Low-q clusters: Abell_0209, Abell_0383, Abell_2261, MACSJ0329.7-0211, MACSJ1720.3+3536.
+- High core-excised Tx relative to ACCEPT: Abell_0383, Abell_0611, MACSJ0329.7-0211, MACSJ0647.7+7015, MACSJ1206.2-0847, MACSJ1720.3+3536.
+- Abell_0267 has one low-count ObsID residual-summary outlier, but joint rstat/q are acceptable; do not exclude on that basis.
 
 ## Rebuild commands
 
@@ -102,15 +112,16 @@ Use `--xrb-policy flexible` only when scientifically justified by the full-R500 
 - Core-excised luminosity must be labeled explicitly as `0.15-1.0 R500`; do not mix it silently with full-R500 luminosity.
 - R500 uncertainties are aperture provenance propagated from M500; they are not independent linmix errors.
 - Component curves in spectral QA plots are folded source-region model components: ICM, LHB, Galactic halo, and CXB. Blank-sky particle/background remains separate in the top panel.
+- Spectral QA residual panels use robust y-axis limits for readability; JSON residual summaries preserve original extrema.
 - Output figures under `output/figures/` are ignored by git; product CSV/JSON/Markdown under `output/products/` are tracked.
 
 ## Next priority
 
-1. QA the 18 core-excised spectral fit plots/JSONs, especially high/low-q clusters.
-2. Decide whether core-excised Tx confidence intervals must be added or whether the 10% fallback is acceptable with explicit documentation.
-3. Compare full-R500 vs core-excised slopes/scatter and write final result interpretation.
-4. Update README, wiki/method notes, and final tables/figures.
+1. Polish final report/manuscript text around sample definition, exclusions, spectral method, and scaling interpretation.
+2. Make final tables from `spectral_summary.csv`, `spectral_summary_core_excised.csv`, and scaling summaries.
+3. Choose final figures from `output/figures/scaling/` and `output/figures/scaling/core_excised/`.
+4. Optional only: run the five excluded bad clusters core-excised for appendix completeness.
 
 ## Are we at the final step?
 
-Yes. The main analysis products now exist for both full-R500 and core-excised included samples. The project is in final QA/reporting mode unless you choose to run optional excluded bad clusters or add core-excised Tx confidence intervals.
+Yes. The main analysis products now exist for both full-R500 and core-excised included samples, and final QA/reporting notes are in place. The remaining work is final prose/table/figure polish unless you choose optional excluded-bad appendix runs or core-excised Tx confidence recovery.
