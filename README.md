@@ -55,7 +55,7 @@ Full-R500 baseline (`output/products/scaling/`, exclude_bad N=18):
 
 | Relation | beta | intrinsic scatter |
 |---|---:|---:|
-| Lx-M500 | 1.09 -0.48/+0.45 | 0.169 dex |
+| Lx-M500 | 1.08 -0.48/+0.45 | 0.169 dex |
 | Tx-M500 | 0.50 -0.27/+0.29 | 0.117 dex |
 | Lx-Tx | 0.77 -0.44/+0.47 | 0.227 dex |
 
@@ -101,5 +101,9 @@ python src/03_scaling/fit_scaling_relations.py --summary output/products/spectra
 - Core-excised spectral summary: `output/products/spectral/spectral_summary_core_excised.csv`
 - Full-R500 scaling products: `output/products/scaling/`
 - Core-excised scaling products: `output/products/scaling/core_excised/`
+- Final report polish note: `output/products/final_report_polish.md`
+- Final spectral table: `output/products/final_spectral_table.csv`
+- Final scaling table: `output/products/final_scaling_table.csv`
+- Final figure shortlist: `output/products/final_figure_selection.md`
 - Core-excised spectral QA report: `output/products/spectral/core_excised_spectral_qa_report.md`
 - Full-vs-core comparison: `output/products/scaling/full_vs_core_excised_comparison.md`

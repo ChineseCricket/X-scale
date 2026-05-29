@@ -8,7 +8,7 @@ Both comparisons use the same 18-cluster `exclude_bad` sample. Excluded clusters
 
 | Relation | Full-R500 beta | Full scatter dex | Core-excised beta | Core scatter dex | Interpretation |
 |---|---:|---:|---:|---:|---|
-| Lx-M500 | 1.09 -0.48/+0.45 | 0.169 | 1.15 -0.51/+0.54 | 0.186 | Slopes agree well; core-excised Lx-M500 is marginally steeper with slightly larger scatter. |
+| Lx-M500 | 1.08 -0.48/+0.45 | 0.169 | 1.15 -0.51/+0.54 | 0.186 | Slopes agree well; core-excised Lx-M500 is marginally steeper with slightly larger scatter. |
 | Tx-M500 | 0.50 -0.27/+0.29 | 0.117 | 0.55 -0.34/+0.36 | 0.157 | Slopes agree and remain consistent with self-similar within current uncertainty. |
 | Lx-Tx | 0.77 -0.44/+0.47 | 0.227 | 0.69 -0.41/+0.40 | 0.245 | Lx-Tx remains the noisiest relation and is shallow relative to common literature values. |
 
@@ -18,9 +18,9 @@ Full-R500 good-only has 11 clusters; core-excised good-only has 6 clusters. The 
 
 | Relation | Full-R500 good-only beta | Core-excised good-only beta |
 |---|---:|---:|
-| Lx-M500 | 0.51 -0.61/+0.71 | 2.29 -5.52/+6.23 |
-| Tx-M500 | 0.43 -0.21/+0.23 | 0.54 -3.07/+2.62 |
-| Lx-Tx | 1.17 -0.93/+0.90 | 2.53 -1.80/+2.15 |
+| Lx-M500 | 0.52 -0.62/+0.64 | 2.29 -5.52/+6.23 |
+| Tx-M500 | 0.43 -0.17/+0.20 | 0.54 -3.07/+2.62 |
+| Lx-Tx | 1.18 -0.89/+0.84 | 2.53 -1.80/+2.15 |
 
 ## Reporting Interpretation
 
