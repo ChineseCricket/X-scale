@@ -11,6 +11,8 @@
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
 
 \sisetup{detect-all}
 \graphicspath{{../}}
@@ -39,7 +41,39 @@
 
 \section{科学背景}
 
-星系团是晚期宇宙中最大质量的近似维里化系统。其深引力势阱束缚着温度约为 $10^7$--$10^8$ K 的星系团内介质（ICM）。在这个温度范围内，ICM 通过热轫致辐射和金属线辐射产生强 X 射线发射，因此 X 射线光度 \Lx{} 与温度 \Tx{} 是追踪星系团质量的自然观测量。本项目的目标是标定 \Lx{}、\Tx{} 与晕质量 \Mfive{} 的关系；其中 \Mfive{} 是 \Rfive{} 内包围的质量，\Rfive{} 定义为平均密度等于该红移临界密度 500 倍的半径。
+星系团是连接宇宙学和重子物理的极端实验室。从宇宙学角度看，它们是晚期宇宙中质量最大的引力束缚系统，星系团的丰度和增长记录了大尺度结构形成。从重子物理角度看，同一个暗物质晕中还包含热气体、星系、金属、磁场、激波、湍动以及 AGN 反馈。因此介绍这个项目时，可以先抓住一个核心问题：我们能否用热气体的 X 射线观测量去追踪背后的暗物质晕质量？
+
+口头报告中最清楚的物理链条是：晕质量决定引力势阱深度；引力势阱加热星系团内气体；热气体产生 X 射线辐射；于是 X 射线光度和温度可以与晕质量建立标度关系。本项目要做的事情，就是把这条链条定量化，测量 \Lx--\Mfive{}、\Tx--\Mfive{} 和 \Lx--\Tx{} 三个关系。
+
+\subsection{基本定义与物理链条}
+
+\Mfive{} 表示 \Rfive{} 内的质量；\Rfive{} 的定义是该半径内平均密度等于星系团红移处临界密度的 500 倍。\Ez{} 描述哈勃膨胀率随红移的变化，也对应塌缩晕的特征密度尺度。星系团内介质（ICM）是被星系团引力势阱束缚的弥散热等离子体，典型温度约为 $10^7$--$10^8$ K，因此主要在 X 射线波段发光。
+
+温度 \Tx{} 更直接反映引力物理：晕质量越大，引力势阱越深，维里平衡下气体温度越高。光度 \Lx{} 也与质量相关，但它对气体密度更敏感，因为热轫致辐射近似满足 $L_{\mathrm{X}}\sim n_e^2\Lambda(T)$。这里 $n_e$ 是电子数密度，$\Lambda(T)$ 是冷却函数。正因为有密度平方项，\Lx{} 会强烈受到 cool core、气体团块、反馈和并合扰动的影响。
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[
+    node distance=1.2cm,
+    box/.style={draw, rounded corners=2pt, align=center, minimum width=2.5cm, minimum height=0.9cm},
+    arrow/.style={-{Latex[length=2.5mm]}, thick}
+  ]
+    \node[box] (m) {晕质量\\\Mfive};
+    \node[box, right=of m] (phi) {引力势阱\\深度};
+    \node[box, right=of phi] (gas) {气体状态\\\Tx{}, $n_e$};
+    \node[box, right=of gas] (lx) {X 射线辐射\\\Lx};
+    \node[box, below=of gas, minimum width=4.8cm] (fit) {标度关系\\\Lx--\Mfive{}, \Tx--\Mfive{}, \Lx--\Tx};
+    \draw[arrow] (m) -- (phi);
+    \draw[arrow] (phi) -- (gas);
+    \draw[arrow] (gas) -- (lx);
+    \draw[arrow] (lx.south) |- (fit.east);
+    \draw[arrow] (m.south) |- (fit.west);
+  \end{tikzpicture}
+  \caption{口头报告中可使用的概念链条：质量决定势阱，势阱决定气体温度和密度状态，热气体产生 X 射线观测量，最后进入标度关系拟合。}
+  \label{fig:physical-chain}
+\end{figure}
+
+\subsection{自相似预期与真实散布}
 
 在最简单的自相似模型中，星系团只由质量和红移相关的密度尺度决定 \citep{kaiser1986,arnaud2005}。维里定理给出
 \begin{equation}
@@ -49,9 +83,15 @@
 \begin{equation}
   L_{\mathrm{X}} \propto M_{500}^{4/3} E(z)^2.
 \end{equation}
-等价地，bolometric 的 $L_{\mathrm{X}}$--$T_{\mathrm{X}}$ 自相似斜率为 2。真实星系团会偏离这些简单预言，因为辐射冷却、AGN 反馈、并合激波、核心熵结构、气体分数变化、投影效应和非球对称性都会改变 ICM 的热力学状态 \citep{pratt2009,mantz2010,maughan2012}。因此，本项目不仅拟合标度关系，也显式记录质量控制、异常样本和 core-excised 对比。
+等价地，bolometric 的 $L_{\mathrm{X}}$--$T_{\mathrm{X}}$ 自相似斜率为 2。这是报告中需要先建立的理论基准线。
+
+真实星系团不会完美落在一条线上。辐射冷却、AGN 反馈、并合激波、核心熵结构、气体分数变化、气体团块、投影效应和非球对称性都会改变 ICM 的热力学状态 \citep{pratt2009,mantz2010,maughan2012}。因此观测到的标度关系应该理解为“平均趋势 + 内禀散布”。这个散布不只是噪声，它本身也包含动力学状态、重子物理和测量系统误差的信息。这也是为什么本项目需要质量标记、异常样本排除，以及 full-\Rfive{} 和 core-excised 两套孔径的对比。
+
+\subsection{从背景到本项目}
 
 本项目使用弱引力透镜质量作为独立质量标尺。CLASH 的 \Mfive{} 来自 \citet{umetsu2016}，LoCuSS 的 \Mfive{} 来自 \citet{okabe2016}。这样可以避免用 X 射线静水平衡质量去校准 X 射线观测量时产生的共同系统误差。
+
+整个项目可以理解为把上述物理背景落到一个可复现的测量链条上。第一步，选择具有弱透镜质量的星系团；第二步，用 CIAO 处理 Chandra 数据，并保留逐 ObsID 的光谱响应；第三步，通过源区和背景光谱建模测量 \Tx{} 与 model-derived \Lx{}；第四步，用 \texttt{linmix} 拟合 \Lx--\Mfive{}、\Tx--\Mfive{} 和 \Lx--\Tx{}，同时考虑测量误差和内禀散布。最终要回答的问题是：在真实星系团物理和数据质量限制都存在的情况下，热气体观测量到底能多好地追踪晕质量？
 
 \section{样本与数据产品}
 
@@ -181,6 +221,29 @@ Full-\Rfive{} 与 core-excised 的质量标度关系斜率在当前误差内一�
 \end{enumerate}
 
 \appendix
+\section{20 分钟口头报告提纲}
+
+这份报告可以作为上台前的讲稿参考。报告时不需要逐段照读，重点是保持“物理链条”和“项目流程”清晰。
+
+\begin{table}[ht]
+\centering
+\caption{建议的 20 分钟报告结构。}
+\begin{tabular}{p{0.13\linewidth}p{0.25\linewidth}p{0.52\linewidth}}
+\toprule
+时间 & 部分 & 主要讲述重点 \\
+\midrule
+2 min & 动机 & 星系团同时连接宇宙学和重子物理；X 射线热气体可以追踪质量，是因为它被束缚在星系团引力势阱中。 \\
+4 min & 物理标度逻辑 & 按图~\ref{fig:physical-chain} 讲：\Mfive{} 决定势阱深度，势阱决定 \Tx{} 和气体密度，气体产生 \Lx{}，真实星系团带来内禀散布。 \\
+4 min & 样本和 Chandra 流程 & 说明 CLASH+LoCuSS 样本、23 个完成处理的星系团、18 个主样本，以及为什么光谱必须保留逐 ObsID 的响应。 \\
+5 min & 光谱拟合和背景 & 强调 absorbed APEC、WSTAT、blank-sky 9.5--12 keV 重归一化、XRB 分量，以及背景控制为什么是技术风险核心。 \\
+3 min & 标度关系结果 & 重点讲 full-\Rfive{} 的 \Lx--\Mfive{} 和 \Tx--\Mfive{} 斜率，再用 core-excised 分支说明结论稳定性。 \\
+2 min & 局限和结论 & 总结质量标度关系斜率在误差内稳定，\Lx--\Tx{} 最不稳定；未来改进需要补齐置信区间和加强背景 QA。 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+最简洁的收尾句可以是：本项目说明 Chandra 测得的热气体观测量总体上能够追踪弱透镜晕质量，但当前精度受小样本、非均匀数据质量和背景敏感的光谱建模限制。
+
 \section{保留样本光谱表}
 
 \begin{longtable}{lrrrrrr}

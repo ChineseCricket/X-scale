@@ -12,6 +12,8 @@
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
 
 \sisetup{detect-all}
 \graphicspath{{../}}
@@ -37,7 +39,39 @@ This project measures X-ray luminosity--mass, temperature--mass, and luminosity-
 
 \section{Scientific Motivation}
 
-Galaxy clusters are the most massive virialized systems in the late-time Universe. Their deep gravitational potentials confine an intracluster medium (ICM) with temperatures of order $10^7$--$10^8$ K. At these temperatures the gas emits strongly in X-rays through thermal bremsstrahlung and metal-line emission, making X-ray luminosity and temperature natural observables for tracing cluster mass. The project goal is to calibrate how \Lx{} and \Tx{} scale with halo mass \Mfive{}, where \Mfive{} is the mass enclosed within the radius \Rfive{} at which the mean density is 500 times the critical density at the cluster redshift.
+Galaxy clusters are extreme laboratories for both cosmology and baryonic astrophysics. On the cosmological side, they are the most massive gravitationally bound systems in the late-time Universe, so their abundance and growth trace the formation of large-scale structure. On the baryonic side, the same dark-matter halos contain hot gas, galaxies, metals, magnetic fields, shocks, turbulence, and feedback from active galactic nuclei. A cluster therefore lets us ask two linked questions in one object: how massive is the halo, and how do baryons behave inside that halo?
+
+For an oral presentation, the core physical chain is simple: halo mass sets the depth of the gravitational potential; the potential heats the intracluster gas; the hot gas emits X-rays; and the measured X-ray luminosity and temperature can then be calibrated against halo mass. The project goal is to measure that chain quantitatively by fitting \Lx--\Mfive{}, \Tx--\Mfive{}, and \Lx--\Tx{} relations.
+
+\subsection{Definitions and Physical Chain}
+
+\Mfive{} is the mass enclosed within \Rfive{}, the radius where the mean enclosed density is 500 times the critical density at the cluster redshift. The factor \Ez{} describes the redshift evolution of the Hubble expansion rate and therefore the characteristic density scale of collapsed halos. The intracluster medium, or ICM, is the diffuse plasma trapped by the cluster potential; its typical temperature is $10^7$--$10^8$ K, which places much of its thermal emission in the X-ray band.
+
+Temperature is the more direct gravitational observable. If the halo is more massive, the potential well is deeper, and virial equilibrium requires a hotter gas. Luminosity is also mass-related, but it depends strongly on gas density because thermal bremsstrahlung scales approximately as $n_e^2\Lambda(T)$, where $n_e$ is the electron density and $\Lambda(T)$ is the cooling function. This density-squared dependence is why \Lx{} is especially sensitive to cool cores, gas clumping, feedback, and mergers.
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[
+    node distance=1.2cm,
+    box/.style={draw, rounded corners=2pt, align=center, minimum width=2.6cm, minimum height=0.9cm},
+    arrow/.style={-{Latex[length=2.5mm]}, thick}
+  ]
+    \node[box] (m) {Halo mass\\\Mfive};
+    \node[box, right=of m] (phi) {Potential\\depth};
+    \node[box, right=of phi] (gas) {Gas state\\\Tx{}, $n_e$};
+    \node[box, right=of gas] (lx) {X-ray emission\\\Lx};
+    \node[box, below=of gas, minimum width=4.6cm] (fit) {Scaling relations\\\Lx--\Mfive{}, \Tx--\Mfive{}, \Lx--\Tx};
+    \draw[arrow] (m) -- (phi);
+    \draw[arrow] (phi) -- (gas);
+    \draw[arrow] (gas) -- (lx);
+    \draw[arrow] (lx.south) |- (fit.east);
+    \draw[arrow] (m.south) |- (fit.west);
+  \end{tikzpicture}
+  \caption{Conceptual chain used in the talk: mass sets the potential, the potential sets the thermodynamic state of the gas, and the gas produces the X-ray observables used in the scaling-relation fit.}
+  \label{fig:physical-chain}
+\end{figure}
+
+\subsection{Self-Similar Expectation and Real Scatter}
 
 In the simplest self-similar picture, clusters differ only by mass and redshift-dependent density scale \citep{kaiser1986,arnaud2005}. Virial equilibrium predicts
 \begin{equation}
@@ -47,9 +81,15 @@ and bolometric bremsstrahlung luminosity gives approximately
 \begin{equation}
   L_{\mathrm{X}} \propto M_{500}^{4/3} E(z)^2.
 \end{equation}
-Equivalently, the self-similar bolometric luminosity--temperature slope is $L_{\mathrm{X}}\propto E(z)T_{\mathrm{X}}^2$. Real clusters deviate from these ideal scalings because gas cooling, AGN feedback, merger shocks, core entropy structure, gas-fraction variation, projection, and asphericity change the thermodynamic state of the ICM \citep{pratt2009,mantz2010,maughan2012}. These effects motivate explicit quality control and a comparison between full-aperture and core-excised measurements.
+Equivalently, the self-similar bolometric luminosity--temperature slope is $L_{\mathrm{X}}\propto E(z)T_{\mathrm{X}}^2$. This is the clean theoretical baseline to keep in mind during the presentation.
+
+Real clusters deviate from these ideal scalings because gas cooling, AGN feedback, merger shocks, core entropy structure, gas-fraction variation, gas clumping, projection, and asphericity change the thermodynamic state of the ICM \citep{pratt2009,mantz2010,maughan2012}. Observationally, a scaling relation is therefore not just a line; it is a mean trend plus intrinsic scatter. That scatter is not merely a nuisance term. It contains information about dynamical state, baryonic physics, and measurement systematics. These effects motivate explicit quality control and a comparison between full-aperture and core-excised measurements.
+
+\subsection{From Background to This Project}
 
 The mass scale used here is deliberately independent of the X-ray observables. CLASH cluster masses are taken from the weak-lensing analysis of \citet{umetsu2016}, while LoCuSS masses are taken from \citet{okabe2016}. Using weak-lensing \Mfive{} avoids calibrating X-ray observables against X-ray hydrostatic masses, which would partially share the same physical assumptions and systematics.
+
+The project then connects the background physics to a reproducible measurement chain. First, select clusters with lensing-based halo masses. Second, reduce their Chandra observations with CIAO and preserve per-ObsID spectral responses. Third, model source and background spectra to measure \Tx{} and model-derived \Lx{}. Finally, fit the scaling relations with \texttt{linmix}, including measurement errors and intrinsic scatter. The final scientific question is: how well do the observable properties of hot gas trace the underlying halo mass once real cluster physics and data quality are accounted for?
 
 \section{Sample and Data Products}
 
@@ -179,6 +219,29 @@ Compared with the literature, the \Tx--\Mfive{} slope is broadly compatible with
 \end{enumerate}
 
 \appendix
+\section{20-Minute Presentation Guide}
+
+This report can be used as a speaking reference with the following timing. The goal is not to read every paragraph, but to keep the causal story visible while presenting the figures.
+
+\begin{table}[ht]
+\centering
+\caption{Suggested oral-report structure.}
+\begin{tabular}{p{0.13\linewidth}p{0.25\linewidth}p{0.52\linewidth}}
+\toprule
+Time & Section & Main speaking point \\
+\midrule
+2 min & Motivation & Clusters connect cosmology and baryonic physics; X-ray gas is a mass tracer because it lives in the cluster potential. \\
+4 min & Physical scaling logic & Walk through Figure~\ref{fig:physical-chain}: \Mfive{} sets potential depth, potential sets \Tx{} and gas density, gas produces \Lx{}, and real clusters add intrinsic scatter. \\
+4 min & Sample/workflow & Explain the CLASH+LoCuSS parent sample, the 23 processed clusters, the 18-cluster main sample, and why per-ObsID spectral responses matter. \\
+5 min & Spectral model & Emphasize absorbed APEC, WSTAT, blank-sky 9.5--12 keV renormalization, XRB components, and why background control is the dominant technical risk. \\
+3 min & Scaling results & Focus on the full-\Rfive{} \Lx--\Mfive{} and \Tx--\Mfive{} slopes, then use the core-excised branch as a stability check. \\
+2 min & Limitations and conclusion & State that mass-based slopes are stable within uncertainty, while \Lx--\Tx{} is noisy; future improvements need better confidence intervals and background QA. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The simplest closing sentence is: this project shows that Chandra-measured hot-gas observables trace weak-lensing halo mass in the expected broad sense, but the precision is currently limited by small-sample statistics, heterogeneous data quality, and background-sensitive spectral modeling.
+
 \section{Retained Cluster Spectral Table}
 
 \begin{longtable}{lrrrrrr}
