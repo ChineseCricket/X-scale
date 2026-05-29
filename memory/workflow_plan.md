@@ -158,6 +158,27 @@ good_only 结果：
 - Mantz et al. (2016) WtG: L_X-M500 β=1.65±0.10
 - Maughan et al. (2012): L_X-T_X β=2.96±0.15
 
+#### Lx-M500 good_only normalization caveat (2026-05-29)
+
+`good_only` 的 Lx-M500 拟合不是代码错误，但不能把固定 pivot `3e14 Msun` 下的 normalization `A=10^alpha`
+当作稳健物理量单独解读。当前模型为
+`log10(E^-2 Lx) = alpha + beta log10(M500 / 3e14 Msun)`，而 good_only 样本质量都明显高于
+`3e14 Msun`：
+- full-R500 good_only: N=11, M500=4.17--15.65e14 Msun
+- core-excised good_only: N=6, M500=6.85--12.45e14 Msun
+
+因此 `alpha` 是向低质量端外推的截距，和 `beta` 强退化。实测 posterior 相关系数：
+- full-R500 good_only Lx-M500: corr(alpha, beta) = -0.975
+- core-excised good_only Lx-M500: corr(alpha, beta) = -0.997
+
+把 normalization 评估在样本平均质量附近时，表观差异大幅减小：
+- full all / exclude_bad / good_only: `A_at_3e14 = 5.39 / 5.64 / 11.08`，但 `Y_at_mean_mass = 17.76 / 17.17 / 19.69`
+- core all / exclude_bad / good_only: `A_at_3e14 = 2.34 / 2.46 / 0.34`，但 `Y_at_mean_mass = 7.92 / 8.10 / 7.43`
+
+结论：good_only 是质量筛选敏感性检查，不应作为主物理 scaling relation。若后续报告 normalization，优先报告
+near-sample-pivot（如 `~1e15 Msun` 或各样本 mean mass）下的 normalization，或在图注中明确 Mantz+10 dashed line 只是
+“slope guide anchored to this fit”，不是固定文献 normalization。
+
 ### 4c. Scatter 分析
 
 - 计算 scatter in log Y at fixed M500

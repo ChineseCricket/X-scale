@@ -51,27 +51,40 @@
   "fit_plot_png": "output/figures/spectral/MACSJ0329_7_0211_fit.png",
   "flux_uncertainty": {
     "bolometric": {
-      "flag": "native_flux_sampling_missing",
-      "luminosity_err_hi_erg_s": 6.081190347298474e+43,
-      "luminosity_err_lo_erg_s": 5.6205383193840865e+43,
-      "luminosity_median_erg_s": 2.7584696684749524e+45,
-      "method": "confidence_interval_parameter_fallback"
+      "band": "bolometric",
+      "flag": "",
+      "flux_err_hi_erg_s_cm2": 6.14908195227804e-14,
+      "flux_err_lo_erg_s_cm2": 6.204446700454224e-14,
+      "flux_median_erg_s_cm2": 3.694106072949718e-12,
+      "luminosity_err_hi_erg_s": 4.589896952193499e+43,
+      "luminosity_err_lo_erg_s": 4.631223200710757e+43,
+      "luminosity_median_erg_s": 2.7574142509240595e+45,
+      "method": "sherpa.sample_energy_flux",
+      "n_samples_requested": 3000,
+      "n_samples_used": 3000
     },
     "soft": {
-      "flag": "native_flux_sampling_missing",
-      "luminosity_err_hi_erg_s": 1.7936065850396937e+43,
-      "luminosity_err_lo_erg_s": 1.6577403378918503e+43,
-      "luminosity_median_erg_s": 8.13592254057115e+44,
-      "method": "confidence_interval_parameter_fallback"
+      "band": "soft",
+      "flag": "",
+      "flux_err_hi_erg_s_cm2": 1.12229471290937e-14,
+      "flux_err_lo_erg_s_cm2": 1.162361045848631e-14,
+      "flux_median_erg_s_cm2": 1.0901104274597093e-12,
+      "luminosity_err_hi_erg_s": 8.377213252682756e+42,
+      "luminosity_err_lo_erg_s": 8.676282838794476e+42,
+      "luminosity_median_erg_s": 8.136978117031008e+44,
+      "method": "sherpa.sample_energy_flux",
+      "n_samples_requested": 3000,
+      "n_samples_used": 3000
     }
   },
-  "lx_uncertainty_method": "confidence_interval_parameter_fallback",
+  "lx_uncertainty_method": "sherpa.sample_energy_flux",
   "method": "phase3_BC_annulus_constrained_xrb",
   "model_annulus": "lhb + phabs*(halo + cxb + icm_ann)",
   "model_selection_note": "For WSTAT fits compare variants with lower AIC/BIC; q_value is reported but is not the main selection criterion.",
   "model_source": "lhb + phabs*(halo + cxb + icm_src)",
   "nH_1e22_cm2": 0.0165,
   "n_free_parameters": 2,
+  "native_flux_sampling_note": "Backfilled by src/03_scaling/backfill_native_lx_uncertainties.py from saved full-R500 source model; no CIAO repro, merge, source detection, or spectral extraction was rerun.",
   "plot_caveat": "Three-panel background-aware display: raw source and blank-sky/background are shown separately; net source data are compared with folded total and component source-region models.",
   "q_value": 0.0023306879078766438,
   "qa_flags": [

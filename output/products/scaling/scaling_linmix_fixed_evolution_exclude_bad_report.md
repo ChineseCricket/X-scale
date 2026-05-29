@@ -16,9 +16,9 @@ M500c is the weak-lensing mass for the mass-scaling relations. The redshift expo
 
 | Sample | Relation | N | quality counts | alpha | beta | fixed gamma | intrinsic scatter (dex) | observed RMS (dex) | self-similar beta/gamma |
 |---|---|---:|---|---:|---:|---:|---:|---:|---:|
-| exclude_bad | Lx-M500 | 18 | good:11, acceptable:4, high:3 | 0.753 -0.219/+0.242 | 1.081 -0.484/+0.453 | 2.000 -0.000/+0.000 | 0.169 -0.046/+0.054 | 0.197 | 1.333/2.000 |
-| exclude_bad | Tx-M500 | 18 | good:11, acceptable:4, high:3 | 0.665 -0.141/+0.122 | 0.497 -0.270/+0.292 | 0.667 -0.000/+0.000 | 0.117 -0.024/+0.029 | 0.112 | 0.667/0.667 |
-| exclude_bad | Lx-Tx | 18 | good:11, acceptable:4, high:3 | 1.152 -0.125/+0.112 | 0.766 -0.437/+0.470 | 1.000 -0.000/+0.000 | 0.227 -0.038/+0.049 | 0.197 | 2.000/1.000 |
+| exclude_bad | Lx-M500 | 18 | good:11, acceptable:4, high:3 | 0.752 -0.243/+0.232 | 1.084 -0.490/+0.531 | 2.000 -0.000/+0.000 | 0.169 -0.042/+0.054 | 0.197 | 1.333/2.000 |
+| exclude_bad | Tx-M500 | 18 | good:11, acceptable:4, high:3 | 0.670 -0.119/+0.112 | 0.478 -0.246/+0.262 | 0.667 -0.000/+0.000 | 0.117 -0.027/+0.031 | 0.112 | 0.667/0.667 |
+| exclude_bad | Lx-Tx | 18 | good:11, acceptable:4, high:3 | 1.154 -0.114/+0.107 | 0.759 -0.415/+0.427 | 1.000 -0.000/+0.000 | 0.227 -0.039/+0.045 | 0.197 | 2.000/1.000 |
 
 ## Figures
 

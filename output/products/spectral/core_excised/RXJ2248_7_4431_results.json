@@ -30,7 +30,13 @@
   "bic_wstat": 470.1582644770186,
   "bolometric_flux_unabsorbed_erg_s_cm2": 1.0015039266015203e-11,
   "bolometric_luminosity_unabsorbed_erg_s": 4.077090496602212e+45,
-  "confidence_intervals": {},
+  "confidence_intervals": {
+    "icm_src.kT": {
+      "best": 12.607974975,
+      "lower_delta_1sigma": -0.7757924861806611,
+      "upper_delta_1sigma": 0.8739850194494743
+    }
+  },
   "dof": 431,
   "fit_band_keV": [
     0.7,
@@ -105,7 +111,11 @@
   ],
   "statname": "wstat",
   "statval": 457.984715023194,
+  "temperature_err_hi_keV": 0.8739850194494743,
+  "temperature_err_lo_keV": 0.7757924861806611,
   "temperature_keV": 12.607974975038578,
+  "tx_confidence_method": "sherpa.conf icm_src.kT",
+  "tx_confidence_status": "accepted_without_best_fit_change",
   "xrb_area_scale_source_over_annulus": 0.54153316778,
   "xrb_policy": "fixed_shape"
 }

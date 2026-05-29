@@ -111,6 +111,7 @@ Use `--xrb-policy flexible` only when scientifically justified by the full-R500 
 - `weiwwqeo_scaling/` is a raw reference, not the formal output location.
 - Core-excised luminosity must be labeled explicitly as `0.15-1.0 R500`; do not mix it silently with full-R500 luminosity.
 - R500 uncertainties are aperture provenance propagated from M500; they are not independent linmix errors.
+- Do not over-interpret the Lx-M500 `good_only` normalization `A` at the fixed `3e14 Msun` pivot. The good-only samples lie well above that pivot, especially core-excised good-only (N=6, M500=6.85-12.45e14 Msun), so `alpha` and `beta` are strongly degenerate. Treat good-only as a sensitivity check and compare normalization near the sample mass range instead of at the extrapolated pivot.
 - Component curves in spectral QA plots are folded source-region model components: ICM, LHB, Galactic halo, and CXB. Blank-sky particle/background remains separate in the top panel.
 - Spectral QA residual panels use robust y-axis limits for readability; JSON residual summaries preserve original extrema.
 - Output figures under `output/figures/` are ignored by git; product CSV/JSON/Markdown under `output/products/` are tracked.
