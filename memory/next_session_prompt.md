@@ -71,17 +71,17 @@ Sensitivity:
 
 ## Core-excised status
 
-- Current core-excised summary has 13 done clusters, all in the included/exclude_bad sample.
-- Done: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847.
-- Remaining included clusters to run: MACSJ1720.3+3536, MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
+- Current core-excised summary has 14 done clusters, all in the included/exclude_bad sample.
+- Done: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536.
+- Remaining included clusters to run: MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
 - Excluded bad clusters can be run later for completeness only: Abell_0697, Abell_0750, MS2137-2353, RXJ1347.5-1145, ZwCl_0857.9+2107.
 - Current core-excised Lx uncertainties use native `sherpa.sample_energy_flux`.
 - Current core-excised T_X confidence intervals are missing, so scaling uses the documented 10% Tx fallback for Tx-M500 and Lx-Tx.
 
-Current core-excised exclude_bad N=13:
-- Lx-M500 beta=1.18 -0.48/+0.56, scatter=0.172 dex.
-- Tx-M500 beta=0.45 -0.48/+0.50, scatter=0.174 dex.
-- Lx-Tx beta=0.78 -0.44/+0.42, scatter=0.236 dex.
+Current core-excised exclude_bad N=14:
+- Lx-M500 beta=1.20 -0.47/+0.51, scatter=0.165 dex.
+- Tx-M500 beta=0.49 -0.51/+0.45, scatter=0.169 dex.
+- Lx-Tx beta=0.78 -0.37/+0.41, scatter=0.225 dex.
 
 ## Commands
 
@@ -112,7 +112,7 @@ source /data/jyz/Applications/ciao-4.18/ciao-4.18/bin/ciao.sh && python src/03_s
 
 ## Next priority
 
-1. Finish the remaining 5 included core-excised clusters.
+1. Finish the remaining 4 included core-excised clusters.
 2. Rebuild `spectral_summary_core_excised.csv` and `output/products/scaling/core_excised/`.
 3. Decide whether to add core-excised T_X confidence interval support or explicitly keep/report the 10% Tx fallback.
 4. Start final README/wiki/method notes and final comparison table/figures.

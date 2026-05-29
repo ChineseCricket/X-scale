@@ -181,19 +181,19 @@ good_only 结果：
 `src/03_scaling/fit_scaling_relations.py` 支持独立 `--summary/--outdir/--figdir`，并且当 partial batch 的某个 sample 小于 5 团时会跳过该 sample 而不是中止整个 run。
 
 当前 core-excised 状态：
-- 13/23 已完成 result JSON；13/18 exclude_bad included clusters 已完成。
-- 已完成 included clusters: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847.
-- 尚未完成 included clusters: MACSJ1720.3+3536, MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
+- 14/23 已完成 result JSON；14/18 exclude_bad included clusters 已完成。
+- 已完成 included clusters: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536.
+- 尚未完成 included clusters: MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
 - Excluded bad clusters仍可选跑作 completeness，但不影响主 core-excised scaling。
 - 当前 core-excised JSON 都有 native Sherpa `sample_energy_flux` Lx 区间；但 T_X confidence intervals 仍缺失，因此 scaling 中 Tx-M500 和 Lx-Tx 的 Tx errors 使用脚本记录的 10% fallback。
 
-当前 core-excised exclude_bad N=13 初版结果：
-- Lx-M500: beta=1.18 -0.48/+0.56, intrinsic scatter=0.172 dex
-- Tx-M500: beta=0.45 -0.48/+0.50, intrinsic scatter=0.174 dex
-- Lx-Tx: beta=0.78 -0.44/+0.42, intrinsic scatter=0.236 dex
+当前 core-excised exclude_bad N=14 初版结果：
+- Lx-M500: beta=1.20 -0.47/+0.51, intrinsic scatter=0.165 dex
+- Tx-M500: beta=0.49 -0.51/+0.45, intrinsic scatter=0.169 dex
+- Lx-Tx: beta=0.78 -0.37/+0.41, intrinsic scatter=0.225 dex
 
 Core-excised 下一步：
-1. 跑完剩余 5 个 included clusters。
+1. 跑完剩余 4 个 included clusters。
 2. 重新生成 `spectral_summary_core_excised.csv` 和 `output/products/scaling/core_excised/`。
 3. 判断是否需要为 core-excised T_X 增加/回填 confidence intervals；否则在论文中明确 Tx error fallback。
 4. 若时间允许，再跑 5 个 excluded bad clusters 作完整性/附录，不纳入主样本。
