@@ -43,11 +43,15 @@ Galaxy clusters are extreme laboratories for both cosmology and baryonic astroph
 
 For an oral presentation, the core physical chain is simple: halo mass sets the depth of the gravitational potential; the potential heats the intracluster gas; the hot gas emits X-rays; and the measured X-ray luminosity and temperature can then be calibrated against halo mass. The project goal is to measure that chain quantitatively by fitting \Lx--\Mfive{}, \Tx--\Mfive{}, and \Lx--\Tx{} relations.
 
+This framing is useful because scaling relations are not just empirical lines on a log-log plot. They are the bridge between a quantity we can observe efficiently, the X-ray emission from hot gas, and the underlying quantity that matters for cosmology, the halo mass. At the same time, departures from a perfect relation are scientifically meaningful: the scatter is where cooling, feedback, mergers, projection, and background systematics show up.
+
 \subsection{Definitions and Physical Chain}
 
 \Mfive{} is the mass enclosed within \Rfive{}, the radius where the mean enclosed density is 500 times the critical density at the cluster redshift. The factor \Ez{} describes the redshift evolution of the Hubble expansion rate and therefore the characteristic density scale of collapsed halos. The intracluster medium, or ICM, is the diffuse plasma trapped by the cluster potential; its typical temperature is $10^7$--$10^8$ K, which places much of its thermal emission in the X-ray band.
 
 Temperature is the more direct gravitational observable. If the halo is more massive, the potential well is deeper, and virial equilibrium requires a hotter gas. Luminosity is also mass-related, but it depends strongly on gas density because thermal bremsstrahlung scales approximately as $n_e^2\Lambda(T)$, where $n_e$ is the electron density and $\Lambda(T)$ is the cooling function. This density-squared dependence is why \Lx{} is especially sensitive to cool cores, gas clumping, feedback, and mergers.
+
+In presentation language, \Tx--\Mfive{} should be introduced as the closer-to-gravity relation: it asks whether the gas temperature remembers the halo potential. \Lx--\Mfive{} is the more astrophysically complicated relation: it asks whether the gas density structure and emissivity still preserve a usable mass trend after cluster-specific baryonic processes have acted. The \Lx--\Tx{} relation then acts as an internal X-ray consistency check, connecting the two gas observables without using the lensing mass on either axis.
 
 \begin{figure}[t]
   \centering
@@ -85,11 +89,15 @@ Equivalently, the self-similar bolometric luminosity--temperature slope is $L_{\
 
 Real clusters deviate from these ideal scalings because gas cooling, AGN feedback, merger shocks, core entropy structure, gas-fraction variation, gas clumping, projection, and asphericity change the thermodynamic state of the ICM \citep{pratt2009,mantz2010,maughan2012}. Observationally, a scaling relation is therefore not just a line; it is a mean trend plus intrinsic scatter. That scatter is not merely a nuisance term. It contains information about dynamical state, baryonic physics, and measurement systematics. These effects motivate explicit quality control and a comparison between full-aperture and core-excised measurements.
 
+The practical logic for the talk is therefore: first show the self-similar expectation as the gravity-only reference, then explain why the measured relation can be shallower, steeper, or broader. Core excision is one diagnostic in that logic. If the cluster center dominates the luminosity through a cool core, removing the inner $0.15\Rfive$ should change \Lx{} and possibly reduce scatter. If the result is stable to core excision, then the headline mass trend is less likely to be driven only by central gas physics.
+
 \subsection{From Background to This Project}
 
 The mass scale used here is deliberately independent of the X-ray observables. CLASH cluster masses are taken from the weak-lensing analysis of \citet{umetsu2016}, while LoCuSS masses are taken from \citet{okabe2016}. Using weak-lensing \Mfive{} avoids calibrating X-ray observables against X-ray hydrostatic masses, which would partially share the same physical assumptions and systematics.
 
 The project then connects the background physics to a reproducible measurement chain. First, select clusters with lensing-based halo masses. Second, reduce their Chandra observations with CIAO and preserve per-ObsID spectral responses. Third, model source and background spectra to measure \Tx{} and model-derived \Lx{}. Finally, fit the scaling relations with \texttt{linmix}, including measurement errors and intrinsic scatter. The final scientific question is: how well do the observable properties of hot gas trace the underlying halo mass once real cluster physics and data quality are accounted for?
+
+For a 20-minute report, this also provides a clean slide-to-slide transition. The weak-lensing catalog supplies the independent mass axis; Chandra supplies the X-ray spectra; Sherpa converts those spectra into \Tx{} and \Lx{}; and \texttt{linmix} turns the measured points into slopes, normalizations, and intrinsic scatter. The rest of the report follows that same order.
 
 \section{Sample and Data Products}
 
@@ -129,7 +137,7 @@ The fixed-evolution relations are
   E(z)^{-2/3} T_{\mathrm{X}} &= A \left(\frac{M_{500}}{3\times10^{14}M_\odot}\right)^\beta,\\
   E(z)^{-1} L_{\mathrm{X,bol}} &= A \left(\frac{T_{\mathrm{X}}}{5\,\mathrm{keV}}\right)^\beta.
 \end{align}
-The fixed exponents match the self-similar comparison convention. \Mfive{} errors are taken from the literature mass references encoded in the canonical products. \Rfive{} uncertainties are propagated from \Mfive{} as aperture provenance and are not added as independent regression errors.
+The fixed exponents match the self-similar comparison convention. The chosen pivots define the reported normalization rather than the slope: moving the pivot would transform the intercept but should not change the physical line, intrinsic scatter, or slope if the fit is otherwise unchanged. Because the retained clusters are mostly above $3\times10^{14}M_\odot$, a future normalization-focused analysis should also quote a sample-centered pivot, but the present report focuses on slopes and scatter. \Mfive{} errors are taken from the literature mass references encoded in the canonical products. \Rfive{} uncertainties are propagated from \Mfive{} as aperture provenance and are not added as independent regression errors.
 
 \section{Results}
 
