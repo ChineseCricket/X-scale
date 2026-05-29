@@ -16,9 +16,9 @@ M500c is the weak-lensing mass for the mass-scaling relations. The redshift expo
 
 | Sample | Relation | N | quality counts | alpha | beta | fixed gamma | intrinsic scatter (dex) | observed RMS (dex) | self-similar beta/gamma |
 |---|---|---:|---|---:|---:|---:|---:|---:|---:|
-| exclude_bad | Lx-M500 | 14 | good:4, acceptable:4, high:6 | 0.322 -0.240/+0.227 | 1.203 -0.467/+0.509 | 2.000 -0.000/+0.000 | 0.165 -0.046/+0.058 | 0.153 | 1.333/2.000 |
-| exclude_bad | Tx-M500 | 14 | good:4, acceptable:4, high:6 | 0.770 -0.225/+0.232 | 0.485 -0.512/+0.453 | 0.667 -0.000/+0.000 | 0.169 -0.040/+0.052 | 0.145 | 0.667/0.667 |
-| exclude_bad | Lx-Tx | 14 | good:4, acceptable:4, high:6 | 0.688 -0.148/+0.142 | 0.782 -0.369/+0.405 | 1.000 -0.000/+0.000 | 0.225 -0.045/+0.062 | 0.183 | 2.000/1.000 |
+| exclude_bad | Lx-M500 | 18 | good:6, acceptable:6, high:6 | 0.385 -0.244/+0.247 | 1.154 -0.508/+0.538 | 2.000 -0.000/+0.000 | 0.186 -0.045/+0.056 | 0.204 | 1.333/2.000 |
+| exclude_bad | Tx-M500 | 18 | good:6, acceptable:6, high:6 | 0.714 -0.172/+0.155 | 0.550 -0.338/+0.359 | 0.667 -0.000/+0.000 | 0.157 -0.033/+0.043 | 0.146 | 0.667/0.667 |
+| exclude_bad | Lx-Tx | 18 | good:6, acceptable:6, high:6 | 0.781 -0.138/+0.133 | 0.689 -0.411/+0.395 | 1.000 -0.000/+0.000 | 0.245 -0.041/+0.060 | 0.210 | 2.000/1.000 |
 
 ## Figures
 
@@ -37,8 +37,8 @@ M500c is the weak-lensing mass for the mass-scaling relations. The redshift expo
 - Tx errors come from `Tx_err_lo/Tx_err_hi` and are used as Y errors for Tx-M500 or X errors for Lx-Tx.
 - R500 errors are propagated from M500 and documented as aperture provenance; they are not included as independent linmix errors.
 - Lx errors come from `Lx_bol_err_lo/Lx_bol_err_hi`; missing values fall back only where reported below.
-- exclude_bad Tx-M500: X fallback=none; Y fallback=Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536.
-- exclude_bad Lx-Tx: X fallback=Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536; Y fallback=none.
+- exclude_bad Tx-M500: X fallback=none; Y fallback=Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536, MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
+- exclude_bad Lx-Tx: X fallback=Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536, MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431; Y fallback=none.
 
 ## Literature Context
 
@@ -64,8 +64,8 @@ M500c is the weak-lensing mass for the mass-scaling relations. The redshift expo
 - All logarithms are base 10.
 - Rows with status != done or missing positive Y/M500 were excluded.
 - Tx errors from Tx_err_lo/Tx_err_hi; fallbacks are reported cluster-by-cluster.
-- Tx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536.
+- Tx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536, MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
 - Evolution exponent gamma is fixed to 0.666667 for literature-style comparison.
 - Tx errors from Tx_err_lo/Tx_err_hi.
-- Lx-Tx X fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536.
+- Lx-Tx X fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536, MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
 - Evolution exponent gamma is fixed to 1 for literature-style comparison.

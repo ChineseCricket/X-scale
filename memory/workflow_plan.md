@@ -181,22 +181,27 @@ good_only 结果：
 `src/03_scaling/fit_scaling_relations.py` 支持独立 `--summary/--outdir/--figdir`，并且当 partial batch 的某个 sample 小于 5 团时会跳过该 sample 而不是中止整个 run。
 
 当前 core-excised 状态：
-- 14/23 已完成 result JSON；14/18 exclude_bad included clusters 已完成。
-- 已完成 included clusters: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536.
-- 尚未完成 included clusters: MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
-- Excluded bad clusters仍可选跑作 completeness，但不影响主 core-excised scaling。
-- 当前 core-excised JSON 都有 native Sherpa `sample_energy_flux` Lx 区间；但 T_X confidence intervals 仍缺失，因此 scaling 中 Tx-M500 和 Lx-Tx 的 Tx errors 使用脚本记录的 10% fallback。
+- 18/18 exclude_bad included clusters 已完成并已纳入 `output/products/spectral/spectral_summary_core_excised.csv`；主 core-excised spectral batch 完成。
+- 18 个 included clusters: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536, MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
+- 5 个 excluded bad clusters仍未跑 core-excised result JSON：Abell_0697, Abell_0750, MS2137-2353, RXJ1347.5-1145, ZwCl_0857.9+2107。它们只作 completeness/附录候选，不影响主 core-excised scaling。
+- 当前 core-excised included JSON 都有 native Sherpa `sample_energy_flux` Lx 区间；但 T_X confidence intervals 仍缺失，因此 scaling 中 Tx-M500 和 Lx-Tx 的 Tx errors 使用脚本记录的 10% fallback。
+- Core-excised good_only 现在有 6 个 clusters，已可输出但误差很大，适合作质量敏感性而不是主结论。
 
-当前 core-excised exclude_bad N=14 初版结果：
-- Lx-M500: beta=1.20 -0.47/+0.51, intrinsic scatter=0.165 dex
-- Tx-M500: beta=0.49 -0.51/+0.45, intrinsic scatter=0.169 dex
-- Lx-Tx: beta=0.78 -0.37/+0.41, intrinsic scatter=0.225 dex
+当前 core-excised exclude_bad N=18 初版结果：
+- Lx-M500: beta=1.15 -0.51/+0.54, intrinsic scatter=0.186 dex
+- Tx-M500: beta=0.55 -0.34/+0.36, intrinsic scatter=0.157 dex
+- Lx-Tx: beta=0.69 -0.41/+0.40, intrinsic scatter=0.245 dex
+
+当前 core-excised good_only N=6 初版结果：
+- Lx-M500: beta=2.29 -5.52/+6.23, intrinsic scatter=0.398 dex
+- Tx-M500: beta=0.54 -3.07/+2.62, intrinsic scatter=0.160 dex
+- Lx-Tx: beta=2.53 -1.80/+2.15, intrinsic scatter=0.319 dex
 
 Core-excised 下一步：
-1. 跑完剩余 4 个 included clusters。
-2. 重新生成 `spectral_summary_core_excised.csv` 和 `output/products/scaling/core_excised/`。
-3. 判断是否需要为 core-excised T_X 增加/回填 confidence intervals；否则在论文中明确 Tx error fallback。
-4. 若时间允许，再跑 5 个 excluded bad clusters 作完整性/附录，不纳入主样本。
+1. QA 检查 18 个 core-excised spectral fit plots/JSON，尤其 high/low-q 团。
+2. 判断是否需要为 core-excised T_X 增加/回填 confidence intervals；否则在论文中明确 Tx error fallback。
+3. 若时间允许，再跑 5 个 excluded bad clusters 作完整性/附录，不纳入主样本。
+4. 开始 final README/wiki/method notes 和最终论文式结果表。
 
 ---
 
@@ -207,4 +212,4 @@ Core-excised 下一步：
 - 更新 README.md 加入最终结果
 - 完整参数表
 
-当前判断（2026-05-29）：项目已经接近最终阶段。full-R500 主结果基本可以冻结；最后主要剩下 core-excised included batch 收尾、方法/README/wiki 文档整理、最终图表与论文式表格。
+当前判断（2026-05-29）：项目已经进入最终阶段。full-R500 主结果和 core-excised included spectral batch 都已完成；最后主要剩下 QA、是否补 core-excised Tx intervals 的决策、方法/README/wiki 文档整理、最终图表与论文式表格。

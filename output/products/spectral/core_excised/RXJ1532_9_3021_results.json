@@ -1,0 +1,111 @@
+{
+  "abundance_policy": "fixed",
+  "abundance_solar": 0.3,
+  "aic_wstat": 372.5194019232806,
+  "annulus_fit": {
+    "aic_wstat": 346.90822554380793,
+    "bic_wstat": 359.16854972454485,
+    "cxb_norm": 9.839069760755508e-06,
+    "cxb_phoindex": 1.4,
+    "dof": 379,
+    "halo_kT": 0.25,
+    "halo_norm": 1.2517872245530302e-05,
+    "icm_ann_kT": 1.623355516354449,
+    "icm_ann_norm": 2.1696963254507686e-05,
+    "icm_ann_norm_policy": "frozen_to_beta_R_EM_times_source_prefit_norm",
+    "lhb_kT": 0.1,
+    "lhb_norm": 5e-06,
+    "n_free_parameters": 3,
+    "q_value": 0.9204942352812507,
+    "rstat": 0.899493998796327,
+    "statname": "wstat",
+    "statval": 340.90822554380793,
+    "xrb_policy": "fixed_shape"
+  },
+  "annulus_spectra": [
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1532.9+3021/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/RXJ1532_9_3021_obs1665_ann_1.2_1.8r500_he9p5_12keV.pi"
+  ],
+  "apec_norm": 0.0031605385594596497,
+  "aperture_label": "core_excised_0.15_1.0R500",
+  "bic_wstat": 380.6929513771052,
+  "bolometric_flux_unabsorbed_erg_s_cm2": 3.1247966818933786e-12,
+  "bolometric_luminosity_unabsorbed_erg_s": 1.4040546048878205e+45,
+  "confidence_intervals": {},
+  "dof": 412,
+  "fit_band_keV": [
+    0.7,
+    7
+  ],
+  "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/RXJ1532.9+3021/processed_joint_bxc_coreexcised/fits/phase3_BC_src_coreexcised_0p15_1p0r500_fixed_shape_fixed_heRenorm_0p7_7keV/RXJ1532_9_3021_phase3_BC_src_coreexcised_0p15_1p0r500_fixed_shape_fixed_heRenorm_0p7_7keV_fit_plot.png",
+  "flux_uncertainty": {
+    "bolometric": {
+      "band": "bolometric",
+      "flag": "",
+      "flux_err_hi_erg_s_cm2": 1.5914836361383307e-13,
+      "flux_err_lo_erg_s_cm2": 1.7547090761575898e-13,
+      "flux_median_erg_s_cm2": 3.1225852680573948e-12,
+      "luminosity_err_hi_erg_s": 7.150961023709512e+43,
+      "luminosity_err_lo_erg_s": 7.884376519257906e+43,
+      "luminosity_median_erg_s": 1.4030609575898323e+45,
+      "method": "sherpa.sample_energy_flux",
+      "n_samples_requested": 3000,
+      "n_samples_used": 3000
+    },
+    "soft": {
+      "band": "soft",
+      "flag": "",
+      "flux_err_hi_erg_s_cm2": 2.825825860859942e-14,
+      "flux_err_lo_erg_s_cm2": 2.765289998130326e-14,
+      "flux_median_erg_s_cm2": 9.573151460160952e-13,
+      "luminosity_err_hi_erg_s": 1.2697190302146096e+43,
+      "luminosity_err_lo_erg_s": 1.2425186503246536e+43,
+      "luminosity_median_erg_s": 4.301472626623257e+44,
+      "method": "sherpa.sample_energy_flux",
+      "n_samples_requested": 3000,
+      "n_samples_used": 3000
+    }
+  },
+  "lx_uncertainty_method": "sherpa.sample_energy_flux",
+  "method": "phase3_BC_annulus_constrained_xrb",
+  "model_annulus": "lhb + phabs*(halo + cxb + icm_ann)",
+  "model_selection_note": "For WSTAT fits compare variants with lower AIC/BIC; q_value is reported but is not the main selection criterion.",
+  "model_source": "lhb + phabs*(halo + cxb + icm_src)",
+  "nH_1e22_cm2": 0.0165,
+  "n_free_parameters": 2,
+  "plot_caveat": "Three-panel background-aware display: raw source and blank-sky/background are shown separately; net source data are compared with folded total and component source-region models.",
+  "q_value": 0.9392018197259059,
+  "qa_flags": [],
+  "r_em_annulus_to_source": 0.00676071665212,
+  "redshift": 0.363,
+  "residual_summaries": [
+    {
+      "dataset_id": 1,
+      "max_abs_residual": 5.094968645484784,
+      "mean_residual": -0.2597475508828106,
+      "n_bins": 414,
+      "rms_residual": 1.136957495594376,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/RXJ1532.9+3021/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/RXJ1532_9_3021_obs1665_src_coreexcised_0p15_1p0r500_he9p5_12keV.pi"
+    }
+  ],
+  "rstat": 0.894464567774953,
+  "soft_flux_unabsorbed_erg_s_cm2": 9.567675897543848e-13,
+  "soft_luminosity_unabsorbed_erg_s": 4.2990123101004424e+44,
+  "source_inner_r500": 0.15,
+  "source_outer_r500": 1,
+  "source_prefit": {
+    "apec_norm": 0.0032092696998393213,
+    "dof": 412,
+    "q_value": 0.9408911633277968,
+    "rstat": 0.8935472065304157,
+    "statval": 368.1414490905313,
+    "temperature_keV": 6.672958645167643
+  },
+  "source_spectra": [
+    "/data/jyz/X_scale/chandra_data_evt/RXJ1532.9+3021/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/RXJ1532_9_3021_obs1665_src_coreexcised_0p15_1p0r500_he9p5_12keV.pi"
+  ],
+  "statname": "wstat",
+  "statval": 368.5194019232806,
+  "temperature_keV": 6.711948984201443,
+  "xrb_area_scale_source_over_annulus": 0.540604641138,
+  "xrb_policy": "fixed_shape"
+}
