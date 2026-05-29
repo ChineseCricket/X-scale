@@ -51,14 +51,14 @@ Read `CLAUDE.md`, `memory/pipeline_status.csv`, and `memory/workflow_plan.md` fi
 ## Full-R500 results
 
 Main exclude_bad N=18:
-- Lx-M500 beta=1.09 -0.45/+0.47, scatter=0.165 dex.
-- Tx-M500 beta=0.51 -0.25/+0.24, scatter=0.116 dex.
-- Lx-Tx beta=0.77 -0.43/+0.46, scatter=0.227 dex.
+- Lx-M500 beta=1.08 -0.49/+0.53, scatter=0.169 dex.
+- Tx-M500 beta=0.48 -0.25/+0.26, scatter=0.117 dex.
+- Lx-Tx beta=0.76 -0.41/+0.43, scatter=0.227 dex.
 
 good_only N=11:
-- Lx-M500 beta=0.51 -0.61/+0.71, scatter=0.227 dex.
-- Tx-M500 beta=0.43 -0.21/+0.23, scatter=0.071 dex.
-- Lx-Tx beta=1.17 -0.93/+0.90, scatter=0.231 dex.
+- Lx-M500 beta=0.55 -0.68/+0.68, scatter=0.223 dex.
+- Tx-M500 beta=0.44 -0.17/+0.20, scatter=0.064 dex.
+- Lx-Tx beta=1.23 -0.96/+0.85, scatter=0.228 dex.
 
 Sensitivity:
 - Leave-one-out removes Abell_0068, Abell_0611, MACSJ0647.7+7015, and MACSJ1206.2-0847 one at a time from exclude_bad.
@@ -68,19 +68,19 @@ Sensitivity:
 ## Core-excised results
 
 Main exclude_bad N=18:
-- Lx-M500 beta=1.15 -0.51/+0.54, scatter=0.186 dex.
-- Tx-M500 beta=0.55 -0.34/+0.36, scatter=0.157 dex.
-- Lx-Tx beta=0.69 -0.41/+0.40, scatter=0.245 dex.
+- Lx-M500 beta=1.16 -0.49/+0.53, scatter=0.192 dex.
+- Tx-M500 beta=0.56 -0.31/+0.30, scatter=0.134 dex.
+- Lx-Tx beta=0.90 -0.43/+0.46, scatter=0.230 dex.
 
 good_only N=6:
-- Lx-M500 beta=2.29 -5.52/+6.23, scatter=0.398 dex.
-- Tx-M500 beta=0.54 -3.07/+2.62, scatter=0.160 dex.
-- Lx-Tx beta=2.53 -1.80/+2.15, scatter=0.319 dex.
+- Lx-M500 beta=2.58 -5.47/+8.48, scatter=0.392 dex.
+- Tx-M500 beta=0.55 -2.54/+2.38, scatter=0.157 dex.
+- Lx-Tx beta=2.68 -1.60/+1.53, scatter=0.288 dex.
 
 Core-excised caveat:
 - Included core-excised Lx uncertainties are native `sherpa.sample_energy_flux`.
-- Core-excised T_X confidence intervals are missing in the JSONs, so Tx-M500 and Lx-Tx currently use the documented 10% Tx fallback.
-- Decision: do not block final reporting on core-excised Tx confidence interval recovery; explicitly report the 10% fallback in final methods and tables.
+- Included core-excised T_X uncertainties are now native Sherpa `conf()` intervals for `icm_src.kT` after the 2026-05-29 server backfill.
+- Decision: final reporting should describe the native core-excised Tx intervals; the earlier 10% Tx fallback no longer applies to the 18-cluster included core-excised comparison.
 
 Core-excised QA:
 - 18/18 included core-excised JSONs and QA plots exist.

@@ -4,13 +4,11 @@ Date: 2026-05-29
 
 The final report has been written from local products only. Do not rerun these tasks on the local laptop unless the full CIAO/Sherpa environment is available.
 
-## Task 1: Backfill core-excised temperature confidence intervals
+## Completed: Backfilled core-excised temperature confidence intervals
 
-Prompt for server agent:
+This task was completed on the server and pulled locally on 2026-05-29. The 18 included core-excised clusters now use Sherpa `conf()` intervals for `icm_src.kT`; see `output/products/scaling/core_excised/tx_confidence_backfill_change_note.md`. No further server action is needed for the headline core-excised Tx uncertainty provenance.
 
-> Use the existing CIAO/Sherpa environment and the already extracted core-excised spectra in `processed_joint_bxc_coreexcised/` to compute and store `T_X` confidence intervals for the 18 included clusters. Do not change the best-fit values unless the confidence calculation exposes a real fit failure. Update the core-excised result JSON files under `output/products/spectral/core_excised/`, rebuild `output/products/spectral/spectral_summary_core_excised.csv`, and rerun the core-excised scaling fits. Compare the new `Tx-M500` and `Lx-Tx` results against the current 10 percent fallback results and write a short change note to `output/products/scaling/core_excised/`.
-
-## Task 2: Replace remaining full-R500 luminosity uncertainty fallbacks
+## Task 1: Replace remaining full-R500 luminosity uncertainty fallbacks
 
 Prompt for server agent:
 

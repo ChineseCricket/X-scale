@@ -26,7 +26,7 @@ Spectra are extracted per ObsID and fit jointly in Sherpa over 0.7-7 keV. The so
 
 For the baseline branch, source regions extend to R500. For the comparison branch, source regions cover `0.15-1.0 R500`. Full-R500 and core-excised products are kept in separate spectral and scaling directories so that full-aperture luminosities are never mixed silently with core-excised luminosities.
 
-Full-R500 luminosity and temperature uncertainties use the stored spectral confidence information where available, with documented fallbacks in the canonical summary table. Core-excised luminosity intervals for the included sample use native Sherpa `sample_energy_flux` intervals. Core-excised temperature confidence intervals are not stored in the current JSON products, so the core-excised Tx-M500 and Lx-Tx fits use the documented 10 percent fractional Tx fallback. This fallback must remain explicit in the methods text and table notes.
+Full-R500 luminosity and temperature uncertainties use the stored spectral confidence information where available, with documented fallbacks in the canonical summary table. Core-excised luminosity intervals for the included sample use native Sherpa `sample_energy_flux` intervals. After the 2026-05-29 server backfill, the 18 included core-excised clusters also use native Sherpa `conf()` intervals for `icm_src.kT`; the earlier 10 percent core-Tx fallback is no longer used for the included-sample core-excised Tx-M500 or Lx-Tx fits.
 
 ## Scaling Method Text
 
@@ -40,11 +40,11 @@ The reported intrinsic scatter is in dex in the dependent variable at fixed inde
 
 ## Results Text
 
-The full-R500 baseline yields mass-relation slopes of beta = 1.08 -0.48/+0.45 for Lx-M500 and beta = 0.50 -0.27/+0.29 for Tx-M500, with intrinsic scatters of 0.169 dex and 0.117 dex, respectively. The Lx-Tx relation is substantially noisier, with beta = 0.77 -0.44/+0.47 and intrinsic scatter of 0.227 dex.
+The full-R500 baseline yields mass-relation slopes of beta = 1.08 -0.49/+0.53 for Lx-M500 and beta = 0.48 -0.25/+0.26 for Tx-M500, with intrinsic scatters of 0.169 dex and 0.117 dex, respectively. The Lx-Tx relation is substantially noisier, with beta = 0.76 -0.41/+0.43 and intrinsic scatter of 0.227 dex.
 
-The core-excised `0.15-1.0 R500` comparison gives beta = 1.15 -0.51/+0.54 for Lx-M500 and beta = 0.55 -0.34/+0.36 for Tx-M500, with intrinsic scatters of 0.186 dex and 0.157 dex. The core-excised Lx-Tx slope is beta = 0.69 -0.41/+0.40 with intrinsic scatter of 0.245 dex. These values agree with the full-R500 baseline within the current statistical uncertainties.
+The core-excised `0.15-1.0 R500` comparison gives beta = 1.16 -0.49/+0.53 for Lx-M500 and beta = 0.56 -0.31/+0.30 for Tx-M500, with intrinsic scatters of 0.192 dex and 0.134 dex. The core-excised Lx-Tx slope is beta = 0.90 -0.43/+0.46 with intrinsic scatter of 0.230 dex. These values agree with the full-R500 baseline within the current statistical uncertainties.
 
-The principal interpretation is that the mass-based slopes are stable to core excision at the present precision. Core excision does not reduce the measured scatter in this heterogeneous small sample, likely because the result is limited by sample size, high-temperature systems, variable fit quality, and the temporary 10 percent Tx fallback in the core-excised branch. The Lx-Tx relation remains the least stable relation and should be discussed as sensitivity-limited rather than used as the headline result.
+The principal interpretation is that the mass-based slopes are stable to core excision at the present precision. Core excision does not reduce the Lx-M500 scatter in this heterogeneous small sample, likely because the result is limited by sample size, high-temperature systems, variable fit quality, and residual background/aperture sensitivity. The Lx-Tx relation remains the least stable relation and should be discussed as sensitivity-limited rather than used as the headline result.
 
 ## Final Tables
 
@@ -57,12 +57,12 @@ Compact manuscript table for the main `exclude_bad` scaling sample:
 
 | Aperture | Relation | N | beta | Intrinsic scatter dex | Note |
 |---|---|---:|---:|---:|---|
-| Full R500 | Lx-M500 | 18 | 1.08 -0.48/+0.45 | 0.169 | Baseline |
-| Full R500 | Tx-M500 | 18 | 0.50 -0.27/+0.29 | 0.117 | Baseline |
-| Full R500 | Lx-Tx | 18 | 0.77 -0.44/+0.47 | 0.227 | Noisiest baseline relation |
-| 0.15-1.0 R500 | Lx-M500 | 18 | 1.15 -0.51/+0.54 | 0.186 | Core-excised comparison |
-| 0.15-1.0 R500 | Tx-M500 | 18 | 0.55 -0.34/+0.36 | 0.157 | Core Tx uses 10 percent fallback |
-| 0.15-1.0 R500 | Lx-Tx | 18 | 0.69 -0.41/+0.40 | 0.245 | Core Tx uses 10 percent fallback |
+| Full R500 | Lx-M500 | 18 | 1.08 -0.49/+0.53 | 0.169 | Baseline |
+| Full R500 | Tx-M500 | 18 | 0.48 -0.25/+0.26 | 0.117 | Baseline |
+| Full R500 | Lx-Tx | 18 | 0.76 -0.41/+0.43 | 0.227 | Noisiest baseline relation |
+| 0.15-1.0 R500 | Lx-M500 | 18 | 1.16 -0.49/+0.53 | 0.192 | Core-excised comparison |
+| 0.15-1.0 R500 | Tx-M500 | 18 | 0.56 -0.31/+0.30 | 0.134 | Native core Tx intervals |
+| 0.15-1.0 R500 | Lx-Tx | 18 | 0.90 -0.43/+0.46 | 0.230 | Native core Tx intervals |
 
 ## Final Figure Selection
 
@@ -87,4 +87,3 @@ Sensitivity or appendix figures:
 - `output/figures/scaling/core_excised/lx_tx_linmix_good_only.pdf`
 
 Avoid using `all` sample figures as headline figures unless explicitly discussing why the excluded bad clusters bias or destabilize the fits.
-

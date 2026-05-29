@@ -141,15 +141,15 @@ Raw try 的 `exclude_bad` 样本排除了 Abell_0750、MS2137-2353、ZwCl_0857.9
 输出位置：`output/products/scaling/` 和 `output/figures/scaling/`。
 
 主结果（exclude_bad, N=18）：
-- Lx-M500: beta=1.09 -0.45/+0.47, intrinsic scatter=0.165 dex
-- Tx-M500: beta=0.51 -0.25/+0.24, intrinsic scatter=0.116 dex
-- Lx-Tx: beta=0.77 -0.43/+0.46, intrinsic scatter=0.227 dex (fixed self-similar bolometric evolution gamma=1)
+- Lx-M500: beta=1.08 -0.49/+0.53, intrinsic scatter=0.169 dex
+- Tx-M500: beta=0.48 -0.25/+0.26, intrinsic scatter=0.117 dex
+- Lx-Tx: beta=0.76 -0.41/+0.43, intrinsic scatter=0.227 dex (fixed self-similar bolometric evolution gamma=1)
 
 已输出 all / exclude_bad / good_only / comparison 结果，并加入 Lx-Tx 图和表。论文主结论暂用 exclude_bad，good_only 作为严格质量敏感性样本 (N=11)。
 good_only 结果：
-- Lx-M500: beta=0.51 -0.61/+0.71, intrinsic scatter=0.227 dex
-- Tx-M500: beta=0.43 -0.21/+0.23, intrinsic scatter=0.071 dex
-- Lx-Tx: beta=1.17 -0.93/+0.90, intrinsic scatter=0.231 dex
+- Lx-M500: beta=0.55 -0.68/+0.68, intrinsic scatter=0.223 dex
+- Tx-M500: beta=0.44 -0.17/+0.20, intrinsic scatter=0.064 dex
+- Lx-Tx: beta=1.23 -0.96/+0.85, intrinsic scatter=0.228 dex
 
 新增 leave-one-out sensitivity 输出：`output/products/scaling/scaling_linmix_fixed_evolution_sensitivity_summary.csv` / `.json` / `.md`。默认逐个移除 Abell_0068、Abell_0611、MACSJ0647.7+7015、MACSJ1206.2-0847，并对 Lx-M500、Tx-M500、Lx-Tx 都重拟合。结果显示这些单点移除对 M500 关系 beta 的影响均小于当前统计误差；Lx-Tx 对 Abell_0611 和 MACSJ1206.2-0847 更敏感但仍误差很大。
 
@@ -205,24 +205,24 @@ near-sample-pivot（如 `~1e15 Msun` 或各样本 mean mass）下的 normalizati
 - 18/18 exclude_bad included clusters 已完成并已纳入 `output/products/spectral/spectral_summary_core_excised.csv`；主 core-excised spectral batch 完成。
 - 18 个 included clusters: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847, MACSJ1720.3+3536, MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
 - 5 个 excluded bad clusters仍未跑 core-excised result JSON：Abell_0697, Abell_0750, MS2137-2353, RXJ1347.5-1145, ZwCl_0857.9+2107。它们只作 completeness/附录候选，不影响主 core-excised scaling。
-- 当前 core-excised included JSON 都有 native Sherpa `sample_energy_flux` Lx 区间；但 T_X confidence intervals 仍缺失，因此 scaling 中 Tx-M500 和 Lx-Tx 的 Tx errors 使用脚本记录的 10% fallback。
+- 当前 core-excised included JSON 都有 native Sherpa `sample_energy_flux` Lx 区间。2026-05-29 服务器 backfill 后，18 个 included core-excised clusters 也都有 Sherpa `conf()` 的 `icm_src.kT` 区间；Tx-M500 和 Lx-Tx 不再使用早期 10% Tx fallback。
 - 18/18 core-excised included JSON/plots 已完成 lightweight QA；报告见 `output/products/spectral/core_excised_spectral_qa_report.md`。
 - QA 图 residual panel 已更新为 robust y-axis limits，避免单个低计数 bin 使整张 residual panel 不可读；JSON residual summary 仍保留原始极值。
 - Core-excised good_only 现在有 6 个 clusters，已可输出但误差很大，适合作质量敏感性而不是主结论。
 
-当前 core-excised exclude_bad N=18 初版结果：
-- Lx-M500: beta=1.15 -0.51/+0.54, intrinsic scatter=0.186 dex
-- Tx-M500: beta=0.55 -0.34/+0.36, intrinsic scatter=0.157 dex
-- Lx-Tx: beta=0.69 -0.41/+0.40, intrinsic scatter=0.245 dex
+当前 core-excised exclude_bad N=18 结果（native core Tx intervals）：
+- Lx-M500: beta=1.16 -0.49/+0.53, intrinsic scatter=0.192 dex
+- Tx-M500: beta=0.56 -0.31/+0.30, intrinsic scatter=0.134 dex
+- Lx-Tx: beta=0.90 -0.43/+0.46, intrinsic scatter=0.230 dex
 
-当前 core-excised good_only N=6 初版结果：
-- Lx-M500: beta=2.29 -5.52/+6.23, intrinsic scatter=0.398 dex
-- Tx-M500: beta=0.54 -3.07/+2.62, intrinsic scatter=0.160 dex
-- Lx-Tx: beta=2.53 -1.80/+2.15, intrinsic scatter=0.319 dex
+当前 core-excised good_only N=6 结果：
+- Lx-M500: beta=2.58 -5.47/+8.48, intrinsic scatter=0.392 dex
+- Tx-M500: beta=0.55 -2.54/+2.38, intrinsic scatter=0.157 dex
+- Lx-Tx: beta=2.68 -1.60/+1.53, intrinsic scatter=0.288 dex
 
 Core-excised 决策：
 1. QA 已完成；low-q/high-Tx clusters 已记录，暂不额外排除主 included sample。
-2. 不阻塞 final reporting 以回填 core-excised T_X confidence intervals；最终方法中必须明确 Tx-M500 和 Lx-Tx 使用 10% Tx fallback。
+2. Core-excised T_X confidence intervals 已回填；最终方法中应明确使用 native Sherpa `conf()` Tx intervals，而不是 10% fallback。
 3. 5 个 excluded bad clusters 可作为 completeness/附录候选，不纳入主样本。
 4. full-vs-core comparison 已写入 `output/products/scaling/full_vs_core_excised_comparison.md`。
 
@@ -235,4 +235,4 @@ Core-excised 决策：
 - 更新 README.md 加入最终结果
 - 完整参数表
 
-当前判断（2026-05-29）：项目已经进入最终阶段。full-R500 主结果、core-excised included spectral batch、core-excised QA、Tx fallback 决策、README/wiki/method notes 初步整理都已完成；最后主要剩下最终论文/报告文字、最终表格排版、以及可选 excluded bad clusters appendix。
+当前判断（2026-05-29）：项目已经进入最终阶段。full-R500 主结果、core-excised included spectral batch、core-excised QA、core-excised Tx confidence backfill、README/wiki/method notes 初步整理都已完成；最后主要剩下最终论文/报告文字、最终表格排版、以及可选 excluded bad clusters appendix。

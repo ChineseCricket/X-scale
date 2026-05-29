@@ -34,7 +34,7 @@
 \maketitle
 
 \begin{abstract}
-This project measures X-ray luminosity--mass, temperature--mass, and luminosity--temperature scaling relations for a Chandra sample with weak-lensing mass calibration. The working sample begins with CLASH and LoCuSS clusters, removes seven visually unsuitable systems, processes 23 clusters through a Chandra/CIAO imaging and spectral pipeline, and adopts an 18-cluster main scaling sample after spectral quality control. Temperatures and luminosities are measured from per-ObsID Sherpa spectral fits using an absorbed APEC intracluster-medium model, blank-sky particle backgrounds renormalized at 9.5--12 keV, and explicit sky-background components. Scaling relations are fit with \texttt{linmix} at fixed self-similar redshift evolution. For the full-\Rfive{} baseline sample, the fitted slopes are $\beta_{\Lx-M}=1.08^{+0.45}_{-0.48}$ and $\beta_{\Tx-M}=0.50^{+0.29}_{-0.27}$, with intrinsic scatters of 0.169 dex and 0.117 dex. A core-excised $0.15$--$1.0\Rfive$ branch gives consistent mass-based slopes within the present uncertainties. The main conclusion is that this repository now implements a complete, reproducible chain from Chandra data products to weak-lensing calibrated scaling-relation inference, while the final precision remains limited by sample size, background systematics, and a few high-temperature or low-quality spectra.
+This project measures X-ray luminosity--mass, temperature--mass, and luminosity--temperature scaling relations for a Chandra sample with weak-lensing mass calibration. The working sample begins with CLASH and LoCuSS clusters, removes seven visually unsuitable systems, processes 23 clusters through a Chandra/CIAO imaging and spectral pipeline, and adopts an 18-cluster main scaling sample after spectral quality control. Temperatures and luminosities are measured from per-ObsID Sherpa spectral fits using an absorbed APEC intracluster-medium model, blank-sky particle backgrounds renormalized at 9.5--12 keV, and explicit sky-background components. Scaling relations are fit with \texttt{linmix} at fixed self-similar redshift evolution. For the full-\Rfive{} baseline sample, the fitted slopes are $\beta_{\Lx-M}=1.08^{+0.53}_{-0.49}$ and $\beta_{\Tx-M}=0.48^{+0.26}_{-0.25}$, with intrinsic scatters of 0.169 dex and 0.117 dex. A core-excised $0.15$--$1.0\Rfive$ branch gives consistent mass-based slopes within the present uncertainties. The main conclusion is that this repository now implements a complete, reproducible chain from Chandra data products to weak-lensing calibrated scaling-relation inference, while the final precision remains limited by sample size, background systematics, and a few high-temperature or low-quality spectra.
 \end{abstract}
 
 \section{Scientific Motivation}
@@ -115,7 +115,7 @@ Spectra are extracted with CIAO \texttt{specextract} and fit jointly in Sherpa \
 
 The background model is a central technical part of the project. Particle background is handled with CIAO blank-sky spectra, reprojected to the observation and renormalized through the 9.5--12 keV count-rate ratio, where cluster thermal emission is weak and the particle background dominates. The sky background is represented by source-region components for the local hot bubble, Galactic halo, and cosmic X-ray background. The default branch uses a fixed-shape XRB treatment, with flexible tests for clusters where the full-\Rfive{} behavior warrants them. This strategy follows the broad logic of Chandra cluster background work in the literature \citep[e.g.][]{vikhlinin2009,donahue2014}, while keeping the implementation reproducible in the project scripts.
 
-Two apertures are measured. The baseline branch uses the full \Rfive{} source region. The comparison branch uses $0.15$--$1.0\Rfive$, removing the central core in a literature-style way. Full-\Rfive{} and core-excised products are kept in separate output directories so that aperture definitions cannot be mixed silently. Core-excised luminosity intervals use Sherpa \texttt{sample\_energy\_flux}. Core-excised temperature confidence intervals are not stored in the current JSON products, so \Tx{}-based core-excised scaling fits use a documented 10 percent temperature-error fallback.
+Two apertures are measured. The baseline branch uses the full \Rfive{} source region. The comparison branch uses $0.15$--$1.0\Rfive$, removing the central core in a literature-style way. Full-\Rfive{} and core-excised products are kept in separate output directories so that aperture definitions cannot be mixed silently. Core-excised luminosity intervals use Sherpa \texttt{sample\_energy\_flux}, and the updated included-sample core-excised products now store Sherpa confidence intervals for \Tx{} as well. The earlier 10 percent core-\Tx{} fallback is therefore no longer used for the 18-cluster core-excised scaling comparison.
 
 \begin{figure}[t]
   \centering
@@ -143,7 +143,7 @@ The fixed exponents match the self-similar comparison convention. The chosen piv
 
 \subsection{Full-\texorpdfstring{$R_{500}$}{R500} Baseline}
 
-The main full-\Rfive{} scaling sample contains 18 clusters. Figure~\ref{fig:full-scaling} shows the three baseline relations. The luminosity--mass fit gives $\beta=1.08^{+0.45}_{-0.48}$ and intrinsic scatter 0.169 dex. This is statistically consistent with the self-similar slope of $4/3$, but the uncertainty is large enough that it does not strongly discriminate among literature values. The temperature--mass fit gives $\beta=0.50^{+0.29}_{-0.27}$ and intrinsic scatter 0.117 dex, slightly shallower than but consistent with the self-similar value of $2/3$. The luminosity--temperature relation gives $\beta=0.77^{+0.47}_{-0.44}$ and intrinsic scatter 0.227 dex; it is the noisiest relation and is shallower than common Chandra literature comparisons such as \citet{maughan2012}.
+The main full-\Rfive{} scaling sample contains 18 clusters. Figure~\ref{fig:full-scaling} shows the three baseline relations. The luminosity--mass fit gives $\beta=1.08^{+0.53}_{-0.49}$ and intrinsic scatter 0.169 dex. This is statistically consistent with the self-similar slope of $4/3$, but the uncertainty is large enough that it does not strongly discriminate among literature values. The temperature--mass fit gives $\beta=0.48^{+0.26}_{-0.25}$ and intrinsic scatter 0.117 dex, slightly shallower than but consistent with the self-similar value of $2/3$. The luminosity--temperature relation gives $\beta=0.76^{+0.43}_{-0.41}$ and intrinsic scatter 0.227 dex; it is the noisiest relation and is shallower than common Chandra literature comparisons such as \citet{maughan2012}.
 
 \begin{figure}[p]
   \centering
@@ -165,7 +165,7 @@ The main full-\Rfive{} scaling sample contains 18 clusters. Figure~\ref{fig:full
 
 \subsection{Core-Excised Comparison}
 
-The core-excised branch measures the same retained 18 clusters over $0.15$--$1.0\Rfive$. Figure~\ref{fig:core-scaling} shows the corresponding fits. The core-excised \Lx--\Mfive{} slope is $\beta=1.15^{+0.54}_{-0.51}$ with scatter 0.186 dex, and the \Tx--\Mfive{} slope is $\beta=0.55^{+0.36}_{-0.34}$ with scatter 0.157 dex. The \Lx--\Tx{} slope is $\beta=0.69^{+0.40}_{-0.41}$ with scatter 0.245 dex. These values agree with the full-\Rfive{} mass-based slopes within the statistical uncertainties. In this small heterogeneous sample, core excision does not reduce the measured scatter; the likely reasons are sample size, retained high-temperature systems, heterogeneous Chandra coverage, and the temporary 10 percent \Tx{} uncertainty fallback in the core-excised branch.
+The core-excised branch measures the same retained 18 clusters over $0.15$--$1.0\Rfive$. Figure~\ref{fig:core-scaling} shows the corresponding fits. The core-excised \Lx--\Mfive{} slope is $\beta=1.16^{+0.53}_{-0.49}$ with scatter 0.192 dex, and the \Tx--\Mfive{} slope is $\beta=0.56^{+0.30}_{-0.31}$ with scatter 0.134 dex. The \Lx--\Tx{} slope is $\beta=0.90^{+0.46}_{-0.43}$ with scatter 0.230 dex. These values agree with the full-\Rfive{} mass-based slopes within the statistical uncertainties. In this small heterogeneous sample, core excision does not reduce the luminosity--mass scatter; the likely reasons are sample size, retained high-temperature systems, heterogeneous Chandra coverage, and residual sensitivity to background and aperture choices.
 
 \begin{figure}[p]
   \centering
@@ -194,12 +194,12 @@ The core-excised branch measures the same retained 18 clusters over $0.15$--$1.0
 Aperture & Relation & $N$ & $\beta$ & Intrinsic scatter & Note \\
  & & & & (dex) & \\
 \midrule
-Full \Rfive{} & \Lx--\Mfive{} & 18 & $1.08^{+0.45}_{-0.48}$ & 0.169 & Baseline \\
-Full \Rfive{} & \Tx--\Mfive{} & 18 & $0.50^{+0.29}_{-0.27}$ & 0.117 & Baseline \\
-Full \Rfive{} & \Lx--\Tx{} & 18 & $0.77^{+0.47}_{-0.44}$ & 0.227 & Noisiest relation \\
-$0.15$--$1.0\Rfive$ & \Lx--\Mfive{} & 18 & $1.15^{+0.54}_{-0.51}$ & 0.186 & Core-excised \\
-$0.15$--$1.0\Rfive$ & \Tx--\Mfive{} & 18 & $0.55^{+0.36}_{-0.34}$ & 0.157 & 10\% core \Tx{} fallback \\
-$0.15$--$1.0\Rfive$ & \Lx--\Tx{} & 18 & $0.69^{+0.40}_{-0.41}$ & 0.245 & 10\% core \Tx{} fallback \\
+Full \Rfive{} & \Lx--\Mfive{} & 18 & $1.08^{+0.53}_{-0.49}$ & 0.169 & Baseline \\
+Full \Rfive{} & \Tx--\Mfive{} & 18 & $0.48^{+0.26}_{-0.25}$ & 0.117 & Baseline \\
+Full \Rfive{} & \Lx--\Tx{} & 18 & $0.76^{+0.43}_{-0.41}$ & 0.227 & Noisiest relation \\
+$0.15$--$1.0\Rfive$ & \Lx--\Mfive{} & 18 & $1.16^{+0.53}_{-0.49}$ & 0.192 & Core-excised \\
+$0.15$--$1.0\Rfive$ & \Tx--\Mfive{} & 18 & $0.56^{+0.30}_{-0.31}$ & 0.134 & Native core \Tx{} intervals \\
+$0.15$--$1.0\Rfive$ & \Lx--\Tx{} & 18 & $0.90^{+0.46}_{-0.43}$ & 0.230 & Native core \Tx{} intervals \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -212,16 +212,16 @@ The retained high/suspect systems were tested with leave-one-out refits. Removin
 
 \section{Discussion}
 
-The full-\Rfive{} and core-excised mass-based slopes agree within the current uncertainties. This stability is encouraging: it suggests that the main mass calibration is not driven purely by cool-core emission, despite the heterogeneous sample. At the same time, the scatter does not improve after core excision, unlike in some larger and more controlled literature samples \citep{pratt2009,mantz2010,mantz2016}. This difference should not be over-interpreted. The present project has only 18 clusters in the baseline fit, a mix of CLASH and LoCuSS selection, non-uniform Chandra depth, several high-temperature retained systems, and a known core-excised \Tx{} error fallback.
+The full-\Rfive{} and core-excised mass-based slopes agree within the current uncertainties. This stability is encouraging: it suggests that the main mass calibration is not driven purely by cool-core emission, despite the heterogeneous sample. At the same time, the luminosity--mass scatter does not improve after core excision, unlike in some larger and more controlled literature samples \citep{pratt2009,mantz2010,mantz2016}. This difference should not be over-interpreted. The present project has only 18 clusters in the baseline fit, a mix of CLASH and LoCuSS selection, non-uniform Chandra depth, and several high-temperature retained systems.
 
-Compared with the literature, the \Tx--\Mfive{} slope is broadly compatible with self-similar expectations and with the idea that temperature is a relatively low-scatter mass proxy. The \Lx--\Mfive{} slope is lower than many steep luminosity--mass measurements but is consistent with self-similar within the large uncertainty. The shallow \Lx--\Tx{} slope is the least robust result and likely reflects the combination of temperature outliers, small dynamic range, and measurement covariance. A publication-level version should strengthen the background QA, fill missing confidence intervals, and eventually use a hierarchical model with explicit selection effects if the sample definition is expanded.
+Compared with the literature, the \Tx--\Mfive{} slope is broadly compatible with self-similar expectations and with the idea that temperature is a relatively low-scatter mass proxy. The \Lx--\Mfive{} slope is lower than many steep luminosity--mass measurements but is consistent with self-similar within the large uncertainty. The shallow \Lx--\Tx{} slope is the least robust result and likely reflects the combination of temperature outliers, small dynamic range, and measurement covariance. A publication-level version should strengthen the background QA, audit any remaining fallback intervals in excluded objects, and eventually use a hierarchical model with explicit selection effects if the sample definition is expanded.
 
 \section{Conclusions}
 
 \begin{enumerate}
 \item The project reproduces a full Chandra-to-scaling-relation workflow: CIAO reprocessing, point-source masking, per-ObsID spectra, Sherpa WSTAT fits, canonical spectral tables, and \texttt{linmix} regressions.
 \item The final main sample contains 18 weak-lensing calibrated CLASH+LoCuSS clusters after excluding five bad or failed spectral objects.
-\item The full-\Rfive{} baseline gives $\beta_{\Lx-M}=1.08^{+0.45}_{-0.48}$ and $\beta_{\Tx-M}=0.50^{+0.29}_{-0.27}$, with intrinsic scatter 0.169 dex and 0.117 dex.
+\item The full-\Rfive{} baseline gives $\beta_{\Lx-M}=1.08^{+0.53}_{-0.49}$ and $\beta_{\Tx-M}=0.48^{+0.26}_{-0.25}$, with intrinsic scatter 0.169 dex and 0.117 dex.
 \item The core-excised branch gives consistent mass-based slopes, so the current scientific conclusion is stable to core excision at the available precision.
 \item The \Lx--\Tx{} relation remains shallow and noisy and should be treated as a sensitivity-limited consistency check rather than the primary result.
 \end{enumerate}

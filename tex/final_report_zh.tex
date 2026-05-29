@@ -36,7 +36,7 @@
 \maketitle
 
 \begin{abstract}
-本项目使用 Chandra X 射线数据和弱引力透镜质量标定，测量星系团的 $L_{\mathrm{X}}$--$M_{500}$、$T_{\mathrm{X}}$--$M_{500}$ 和 $L_{\mathrm{X}}$--$T_{\mathrm{X}}$ 标度关系。工作样本来自 CLASH 与 LoCuSS，先排除 7 个形态或投影明显不适合的天体，对 23 个星系团完成 CIAO 成像和光谱处理，并在光谱质量控制后采用 18 个星系团作为主标度关系样本。温度和光度来自逐 ObsID 的 Sherpa 联合光谱拟合；模型包括被吸收的 APEC 星系团等离子体、在 9.5--12 keV 归一化的 blank-sky 粒子背景，以及显式的 X-ray background 分量。标度关系使用 \texttt{linmix} 拟合，并固定自相似红移演化。Full-\Rfive{} 基线结果为 $\beta_{\Lx-M}=1.08^{+0.45}_{-0.48}$、$\beta_{\Tx-M}=0.50^{+0.29}_{-0.27}$，内禀散布分别为 0.169 dex 和 0.117 dex。Core-excised 的 $0.15$--$1.0\Rfive$ 分支给出与 full-\Rfive{} 一致的质量标度关系斜率。主要结论是：本项目已经形成从 Chandra 数据产品到弱透镜质量标定标度关系的完整可复现流程，但最终精度仍受样本量、背景系统误差和少数高温/低质量光谱限制。
+本项目使用 Chandra X 射线数据和弱引力透镜质量标定，测量星系团的 $L_{\mathrm{X}}$--$M_{500}$、$T_{\mathrm{X}}$--$M_{500}$ 和 $L_{\mathrm{X}}$--$T_{\mathrm{X}}$ 标度关系。工作样本来自 CLASH 与 LoCuSS，先排除 7 个形态或投影明显不适合的天体，对 23 个星系团完成 CIAO 成像和光谱处理，并在光谱质量控制后采用 18 个星系团作为主标度关系样本。温度和光度来自逐 ObsID 的 Sherpa 联合光谱拟合；模型包括被吸收的 APEC 星系团等离子体、在 9.5--12 keV 归一化的 blank-sky 粒子背景，以及显式的 X-ray background 分量。标度关系使用 \texttt{linmix} 拟合，并固定自相似红移演化。Full-\Rfive{} 基线结果为 $\beta_{\Lx-M}=1.08^{+0.53}_{-0.49}$、$\beta_{\Tx-M}=0.48^{+0.26}_{-0.25}$，内禀散布分别为 0.169 dex 和 0.117 dex。Core-excised 的 $0.15$--$1.0\Rfive$ 分支给出与 full-\Rfive{} 一致的质量标度关系斜率。主要结论是：本项目已经形成从 Chandra 数据产品到弱透镜质量标定标度关系的完整可复现流程，但最终精度仍受样本量、背景系统误差和少数高温/低质量光谱限制。
 \end{abstract}
 
 \section{科学背景}
@@ -117,7 +117,7 @@ Full-\Rfive{} 的 canonical 输入表为 \texttt{output/products/spectral/spectr
 
 背景处理是本项目的关键技术环节。粒子背景使用 CIAO blank-sky spectra，并根据 9.5--12 keV 计数率重新归一化；在这个高能段，星系团热辐射很弱，粒子背景占主导。天空背景由 local hot bubble、Galactic halo 和 cosmic X-ray background 的源区分量表示。默认采用 fixed-shape XRB 模型，只在 full-\Rfive{} 行为需要时测试 flexible XRB。该策略与 Chandra 星系团背景处理文献的思路一致 \citep{vikhlinin2009,donahue2014}，同时保持项目脚本的可复现性。
 
-本项目测量两个孔径。基线分支使用 full \Rfive{} 源区；对比分支使用 $0.15$--$1.0\Rfive$，即去除中心 cool-core 区域的文献式孔径。两个分支的光谱和标度关系结果保存在独立目录，避免不同孔径的光度被混用。Core-excised 光度误差来自 Sherpa \texttt{sample\_energy\_flux}；但当前 JSON 中尚未保存 core-excised \Tx{} 的 confidence interval，因此涉及 core-excised \Tx{} 的标度关系使用明确记录的 10\% 温度误差 fallback。
+本项目测量两个孔径。基线分支使用 full \Rfive{} 源区；对比分支使用 $0.15$--$1.0\Rfive$，即去除中心 cool-core 区域的文献式孔径。两个分支的光谱和标度关系结果保存在独立目录，避免不同孔径的光度被混用。Core-excised 光度误差来自 Sherpa \texttt{sample\_energy\_flux}；更新后的 included-sample core-excised 产品也已经保存 \Tx{} 的 Sherpa confidence intervals。因此，早期的 10\% core-\Tx{} fallback 不再用于 18 个星系团的 core-excised 标度关系对比。
 
 \begin{figure}[t]
   \centering
@@ -145,7 +145,7 @@ Full-\Rfive{} 的 canonical 输入表为 \texttt{output/products/spectral/spectr
 
 \subsection{Full-\texorpdfstring{$R_{500}$}{R500} 基线结果}
 
-Full-\Rfive{} 主样本包含 18 个星系团。图~\ref{fig:full-scaling} 展示三个基线关系。\Lx--\Mfive{} 的斜率为 $\beta=1.08^{+0.45}_{-0.48}$，内禀散布为 0.169 dex；在当前误差下与自相似斜率 $4/3$ 一致。\Tx--\Mfive{} 的斜率为 $\beta=0.50^{+0.29}_{-0.27}$，内禀散布为 0.117 dex，略低于但仍与自相似值 $2/3$ 相容。\Lx--\Tx{} 的斜率为 $\beta=0.77^{+0.47}_{-0.44}$，内禀散布为 0.227 dex，是三个关系中最不稳定、噪声最大的一个，也明显浅于常见 Chandra 文献结果 \citep{maughan2012}。
+Full-\Rfive{} 主样本包含 18 个星系团。图~\ref{fig:full-scaling} 展示三个基线关系。\Lx--\Mfive{} 的斜率为 $\beta=1.08^{+0.53}_{-0.49}$，内禀散布为 0.169 dex；在当前误差下与自相似斜率 $4/3$ 一致。\Tx--\Mfive{} 的斜率为 $\beta=0.48^{+0.26}_{-0.25}$，内禀散布为 0.117 dex，略低于但仍与自相似值 $2/3$ 相容。\Lx--\Tx{} 的斜率为 $\beta=0.76^{+0.43}_{-0.41}$，内禀散布为 0.227 dex，是三个关系中最不稳定、噪声最大的一个，也明显浅于常见 Chandra 文献结果 \citep{maughan2012}。
 
 \begin{figure}[p]
   \centering
@@ -167,7 +167,7 @@ Full-\Rfive{} 主样本包含 18 个星系团。图~\ref{fig:full-scaling} 展�
 
 \subsection{Core-excised 对比}
 
-Core-excised 分支对同一 18 个星系团使用 $0.15$--$1.0\Rfive$ 孔径。图~\ref{fig:core-scaling} 展示对应结果。\Lx--\Mfive{} 斜率为 $\beta=1.15^{+0.54}_{-0.51}$，散布 0.186 dex；\Tx--\Mfive{} 斜率为 $\beta=0.55^{+0.36}_{-0.34}$，散布 0.157 dex；\Lx--\Tx{} 斜率为 $\beta=0.69^{+0.40}_{-0.41}$，散布 0.245 dex。Core-excised 与 full-\Rfive{} 的质量标度关系斜率在统计误差内一致。对这个小而异质的样本，core excision 并没有降低测得的散布；合理原因包括样本量小、Chandra 曝光不均匀、仍保留若干高温系统，以及 core-excised \Tx{} 当前使用 10\% 误差 fallback。
+Core-excised 分支对同一 18 个星系团使用 $0.15$--$1.0\Rfive$ 孔径。图~\ref{fig:core-scaling} 展示对应结果。\Lx--\Mfive{} 斜率为 $\beta=1.16^{+0.53}_{-0.49}$，散布 0.192 dex；\Tx--\Mfive{} 斜率为 $\beta=0.56^{+0.30}_{-0.31}$，散布 0.134 dex；\Lx--\Tx{} 斜率为 $\beta=0.90^{+0.46}_{-0.43}$，散布 0.230 dex。Core-excised 与 full-\Rfive{} 的质量标度关系斜率在统计误差内一致。对这个小而异质的样本，core excision 并没有降低 \Lx--\Mfive{} 散布；合理原因包括样本量小、Chandra 曝光不均匀、仍保留若干高温系统，以及背景和孔径选择带来的残余敏感性。
 
 \begin{figure}[p]
   \centering
@@ -196,12 +196,12 @@ Core-excised 分支对同一 18 个星系团使用 $0.15$--$1.0\Rfive$ 孔径。
 孔径 & 关系 & $N$ & $\beta$ & 内禀散布 & 注释 \\
  & & & & (dex) & \\
 \midrule
-Full \Rfive{} & \Lx--\Mfive{} & 18 & $1.08^{+0.45}_{-0.48}$ & 0.169 & 基线 \\
-Full \Rfive{} & \Tx--\Mfive{} & 18 & $0.50^{+0.29}_{-0.27}$ & 0.117 & 基线 \\
-Full \Rfive{} & \Lx--\Tx{} & 18 & $0.77^{+0.47}_{-0.44}$ & 0.227 & 最不稳定 \\
-$0.15$--$1.0\Rfive$ & \Lx--\Mfive{} & 18 & $1.15^{+0.54}_{-0.51}$ & 0.186 & Core-excised \\
-$0.15$--$1.0\Rfive$ & \Tx--\Mfive{} & 18 & $0.55^{+0.36}_{-0.34}$ & 0.157 & Core \Tx{} 使用 10\% fallback \\
-$0.15$--$1.0\Rfive$ & \Lx--\Tx{} & 18 & $0.69^{+0.40}_{-0.41}$ & 0.245 & Core \Tx{} 使用 10\% fallback \\
+Full \Rfive{} & \Lx--\Mfive{} & 18 & $1.08^{+0.53}_{-0.49}$ & 0.169 & 基线 \\
+Full \Rfive{} & \Tx--\Mfive{} & 18 & $0.48^{+0.26}_{-0.25}$ & 0.117 & 基线 \\
+Full \Rfive{} & \Lx--\Tx{} & 18 & $0.76^{+0.43}_{-0.41}$ & 0.227 & 最不稳定 \\
+$0.15$--$1.0\Rfive$ & \Lx--\Mfive{} & 18 & $1.16^{+0.53}_{-0.49}$ & 0.192 & Core-excised \\
+$0.15$--$1.0\Rfive$ & \Tx--\Mfive{} & 18 & $0.56^{+0.30}_{-0.31}$ & 0.134 & 原生 core \Tx{} 区间 \\
+$0.15$--$1.0\Rfive$ & \Lx--\Tx{} & 18 & $0.90^{+0.46}_{-0.43}$ & 0.230 & 原生 core \Tx{} 区间 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -214,16 +214,16 @@ $0.15$--$1.0\Rfive$ & \Lx--\Tx{} & 18 & $0.69^{+0.40}_{-0.41}$ & 0.245 & Core \T
 
 \section{讨论}
 
-Full-\Rfive{} 与 core-excised 的质量标度关系斜率在当前误差内一致。这说明主质量标定并非完全由 cool-core 发射驱动。另一方面，core excision 没有降低散布，这与一些更大、更均匀的文献样本不同 \citep{pratt2009,mantz2010,mantz2016}。这一点不应过度解释：本项目主样本只有 18 个星系团，CLASH 与 LoCuSS 选择函数不同，Chandra 观测深度不均匀，还包含若干高温保留系统，并且 core-excised \Tx{} 误差仍有 fallback。
+Full-\Rfive{} 与 core-excised 的质量标度关系斜率在当前误差内一致。这说明主质量标定并非完全由 cool-core 发射驱动。另一方面，core excision 没有降低 \Lx--\Mfive{} 散布，这与一些更大、更均匀的文献样本不同 \citep{pratt2009,mantz2010,mantz2016}。这一点不应过度解释：本项目主样本只有 18 个星系团，CLASH 与 LoCuSS 选择函数不同，Chandra 观测深度不均匀，还包含若干高温保留系统。
 
-与文献比较，\Tx--\Mfive{} 斜率大体符合自相似图像，也支持温度作为较低散布质量 proxy 的经验认识。\Lx--\Mfive{} 斜率低于一些陡的光度--质量测量，但在大误差下仍与自相似值相容。\Lx--\Tx{} 斜率偏浅且不稳定，可能来自温度离群点、小动态范围和测量协方差。若要发展到发表级分析，需要进一步强化背景 QA、补齐 confidence interval，并在扩展样本后考虑带选择函数的层级模型。
+与文献比较，\Tx--\Mfive{} 斜率大体符合自相似图像，也支持温度作为较低散布质量 proxy 的经验认识。\Lx--\Mfive{} 斜率低于一些陡的光度--质量测量，但在大误差下仍与自相似值相容。\Lx--\Tx{} 斜率偏浅且不稳定，可能来自温度离群点、小动态范围和测量协方差。若要发展到发表级分析，需要进一步强化背景 QA，检查 excluded objects 中仍可能存在的 fallback interval，并在扩展样本后考虑带选择函数的层级模型。
 
 \section{结论}
 
 \begin{enumerate}
 \item 本项目完成了从 Chandra 数据到标度关系的完整流程：CIAO 重新处理、点源 masking、逐 ObsID 光谱、Sherpa WSTAT 拟合、canonical 光谱表和 \texttt{linmix} 回归。
 \item 最终主样本包含 18 个具有弱透镜质量的 CLASH+LoCuSS 星系团；5 个 bad/failed 光谱对象从主拟合中排除。
-\item Full-\Rfive{} 基线结果为 $\beta_{\Lx-M}=1.08^{+0.45}_{-0.48}$、$\beta_{\Tx-M}=0.50^{+0.29}_{-0.27}$，内禀散布分别为 0.169 dex 和 0.117 dex。
+\item Full-\Rfive{} 基线结果为 $\beta_{\Lx-M}=1.08^{+0.53}_{-0.49}$、$\beta_{\Tx-M}=0.48^{+0.26}_{-0.25}$，内禀散布分别为 0.169 dex 和 0.117 dex。
 \item Core-excised 分支给出一致的质量标度关系斜率，因此当前结论对 core excision 稳健。
 \item \Lx--\Tx{} 关系最浅、噪声最大，应作为敏感性受限的一致性检查，而不是主结果。
 \end{enumerate}

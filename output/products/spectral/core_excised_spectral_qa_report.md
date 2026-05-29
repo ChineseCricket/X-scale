@@ -14,7 +14,7 @@ Input summary: `output/products/spectral/spectral_summary_core_excised.csv`
 
 - Aperture label is consistently `core_excised_0.15_1.0R500` for the core-excised summary.
 - Included core-excised rows all use native Sherpa `sample_energy_flux` luminosity intervals.
-- Included core-excised rows have no stored `Tx_err_lo/Tx_err_hi`; Tx-M500 and Lx-Tx fits therefore use the documented 10% Tx fallback.
+- Included core-excised rows now have stored `Tx_err_lo/Tx_err_hi` values from Sherpa `conf()` intervals after the 2026-05-29 server backfill; Tx-M500 and Lx-Tx no longer use the earlier 10% Tx fallback for the 18 included clusters.
 - JSON `fit_plot_png` fields now point to the copied QA products in `output/figures/spectral/core_excised/`.
 - Residual summaries are retained in JSON. The residual plot y-axis uses robust limits so one low-count bin cannot make a QA panel unreadable.
 
@@ -32,10 +32,10 @@ Abell_0267 has one low-count ObsID residual-summary outlier in ObsID 523 (`max_a
 
 ## Tx-Interval Decision
 
-Do not block final reporting on new core-excised Tx confidence intervals. The current core-excised comparison is acceptable if the methods and tables explicitly state that:
+The server-side confidence backfill is complete for the 18 included clusters. The current core-excised comparison is acceptable if the methods and tables explicitly state that:
 
 - luminosity errors are native Sherpa `sample_energy_flux` intervals;
-- Tx errors for core-excised Tx-M500 and Lx-Tx are 10% fractional fallbacks because the saved core-excised JSONs lack Sherpa confidence intervals;
+- Tx errors for core-excised Tx-M500 and Lx-Tx use native Sherpa `conf()` intervals for `icm_src.kT`;
 - full-R500 remains the canonical baseline, while core-excised is a literature-style comparison branch.
 
-Adding core-excised Tx confidence intervals would require rerunning the core-excised Sherpa fits or a focused confidence-only recovery pass. That can be done later, but it is not required for the current qualitative conclusion because full-R500 and core-excised slopes agree within the present statistical uncertainties.
+The qualitative conclusion is unchanged by replacing the temporary fallback: full-R500 and core-excised mass-based slopes agree within the present statistical uncertainties.

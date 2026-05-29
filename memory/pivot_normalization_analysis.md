@@ -2,7 +2,7 @@
 
 Date: 2026-05-29
 
-Context: after checking the current repository state, `git pull --ff-only` reported `Already up to date`; no newer pushed products were available beyond the current local commit.
+Context: after the first report update, a later `git pull --ff-only` fast-forwarded the repository from `4418b91` to `c470ef9`. The pulled server products backfilled native Sherpa core-excised `Tx` confidence intervals and refreshed the scaling outputs/figures. This note was rechecked against the updated products.
 
 ## Question
 
@@ -26,6 +26,13 @@ Current sample centers are substantially above those pivots:
 
 The current `M500` pivot is therefore below the retained sample range: the full `exclude_bad` sample has `M500=4.17--15.65e14 Msun`, and the core `good_only` sample has `M500=6.85--12.45e14 Msun`.
 
+The updated workflow notes also quantify the degeneracy for the `good_only` Lx-M500 fits:
+
+- full-R500 `good_only` Lx-M500: posterior `corr(alpha, beta) = -0.975`
+- core-excised `good_only` Lx-M500: posterior `corr(alpha, beta) = -0.997`
+
+This is exactly the behavior expected when the intercept is evaluated far below the data cloud.
+
 ## Interpretation
 
 Changing the pivot does not change the underlying fitted physical relation if the model is transformed consistently. In
@@ -35,6 +42,8 @@ Changing the pivot does not change the underlying fitted physical relation if th
 a different `X_pivot` mainly changes the reported intercept/normalization `alpha`. The slope `beta`, intrinsic scatter, residuals, and plotted line in physical units should remain equivalent apart from MCMC noise.
 
 The `good_only` plots are therefore not evidence that the headline slopes need to change. They are evidence that the current normalization parameter is evaluated below the center of the data, especially for `M500` relations. This can make the intercept less intuitive and more correlated with slope, and it can visually make the fit feel anchored away from the data cloud.
+
+After the server refresh, the numerical `good_only` slopes remain broad and sensitivity-oriented rather than headline results. The full-R500 `good_only` Lx-M500 slope is `0.55 -0.68/+0.68`; the core-excised `good_only` Lx-M500 slope is `2.58 -5.47/+8.48`. The very large core-excised uncertainty comes mostly from the six-cluster subsample size and the alpha-beta degeneracy, not from evidence that the physical normalization point must be changed for the baseline fit.
 
 ## Recommendation
 
