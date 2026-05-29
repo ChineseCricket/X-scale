@@ -10,6 +10,7 @@ quality and exclusion decisions come from ``memory/pipeline_status.csv``.
 from __future__ import annotations
 
 import csv
+import argparse
 import json
 import math
 import re
@@ -58,6 +59,9 @@ FIELDNAMES = [
     "R500_err_lo",
     "R500_err_hi",
     "R500_err_source",
+    "aperture_label",
+    "source_inner_r500",
+    "source_outer_r500",
     "Tx_keV",
     "Tx_err_lo",
     "Tx_err_hi",
@@ -264,9 +268,9 @@ def interval_from_result(
     return None, None, method or "missing", flag or "lx_uncertainty_unavailable"
 
 
-def find_result_json(cluster_key: str) -> Path | None:
+def find_result_json(cluster_key: str, results_dir: Path) -> Path | None:
     for form in key_forms(cluster_key):
-        path = RESULTS_DIR / f"{slug_key(form)}_results.json"
+        path = results_dir / f"{slug_key(form)}_results.json"
         if path.exists():
             return path
     return None
@@ -295,12 +299,39 @@ def quality_for(row: dict[str, str], spectral_status: str, ratio: float | None, 
     return "high"
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--results-dir",
+        type=Path,
+        default=RESULTS_DIR,
+        help="Directory containing per-cluster *_results.json files.",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=OUTPUT_CSV,
+        help="Output spectral summary CSV.",
+    )
+    parser.add_argument(
+        "--default-aperture-label",
+        default="full_R500",
+        help="Aperture label to use when a result JSON lacks aperture metadata.",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
+    results_dir = args.results_dir
+    output_csv = args.output
+    use_legacy_values = results_dir == RESULTS_DIR
+
     pipeline = read_pipeline_status(PIPELINE_STATUS)
     configs = index_rows(read_csv(CLUSTER_TABLE))
     m500_ref = index_rows(read_csv(M500_REFERENCE)) if M500_REFERENCE.exists() else {}
     accept = index_rows(read_csv(ACCEPT_REFERENCE))
-    legacy = index_rows(read_csv(LEGACY_SUMMARY)) if LEGACY_SUMMARY.exists() else {}
+    legacy = index_rows(read_csv(LEGACY_SUMMARY)) if use_legacy_values and LEGACY_SUMMARY.exists() else {}
 
     rows: list[dict[str, str]] = []
     for pipe in pipeline:
@@ -309,7 +340,7 @@ def main() -> None:
         old = get_indexed(legacy, key)
         acc = get_indexed(accept, key)
         mass_ref = get_indexed(m500_ref, key) or get_indexed(m500_ref, cfg.get("cluster_key", ""))
-        result_path = find_result_json(key)
+        result_path = find_result_json(key, results_dir)
         result = load_json(result_path)
 
         z = as_float(cfg.get("redshift")) or as_float(old.get("z"))
@@ -364,6 +395,14 @@ def main() -> None:
         )
         exclude = key in FIXED_EXCLUDE or quality == "bad"
         exclude_reason = pipe.get("notes", "") if exclude else ""
+        qa_flags = result.get("qa_flags") or old.get("qa_flags", "")
+        if isinstance(qa_flags, list):
+            qa_flags = ";".join(str(flag) for flag in qa_flags)
+        source_inner = as_float(result.get("source_inner_r500"))
+        source_outer = as_float(result.get("source_outer_r500"))
+        if use_legacy_values:
+            source_inner = 0.0 if source_inner is None else source_inner
+            source_outer = 1.0 if source_outer is None else source_outer
 
         rows.append({
             "cluster_key": key,
@@ -381,6 +420,9 @@ def main() -> None:
             "R500_err_lo": fmt(r500_lo_arcsec),
             "R500_err_hi": fmt(r500_hi_arcsec),
             "R500_err_source": "propagated_from_M500_err; delta_R500/R500=(1/3)delta_M500/M500" if r500_lo_arcsec or r500_hi_arcsec else "",
+            "aperture_label": str(result.get("aperture_label") or args.default_aperture_label),
+            "source_inner_r500": fmt(source_inner),
+            "source_outer_r500": fmt(source_outer),
             "Tx_keV": fmt(tx),
             "Tx_err_lo": fmt(tx_lo),
             "Tx_err_hi": fmt(tx_hi),
@@ -409,7 +451,7 @@ def main() -> None:
             "xrb_policy": str(result.get("xrb_policy") or annulus_fit.get("xrb_policy") or old.get("xrb_policy", "")),
             "abundance_policy": str(result.get("abundance_policy") or old.get("abundance_policy", "")),
             "fit_band": str(fit_band),
-            "qa_flags": old.get("qa_flags", ""),
+            "qa_flags": str(qa_flags),
             "quality": quality,
             "exclude_from_main_scaling": str(bool(exclude)),
             "exclude_reason": exclude_reason,
@@ -419,14 +461,14 @@ def main() -> None:
             "result_json": str(result_path) if result_path else "",
         })
 
-    OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
-    with OUTPUT_CSV.open("w", newline="") as handle:
+    output_csv.parent.mkdir(parents=True, exist_ok=True)
+    with output_csv.open("w", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=FIELDNAMES)
         writer.writeheader()
         writer.writerows(rows)
 
     excluded = [row["cluster_key"] for row in rows if row["exclude_from_main_scaling"] == "True"]
-    print(f"Wrote {OUTPUT_CSV}")
+    print(f"Wrote {output_csv}")
     print(f"Rows: {len(rows)}")
     print(f"Main sample: {len(rows) - len(excluded)} included, {len(excluded)} excluded")
     print("Excluded:", ", ".join(excluded))

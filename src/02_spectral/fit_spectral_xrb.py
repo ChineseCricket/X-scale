@@ -49,6 +49,8 @@ DEFAULT_H0 = 70.0
 DEFAULT_OMEGA_M = 0.3
 DEFAULT_FIT_BAND = (0.7, 7.0)
 DEFAULT_SOURCE_OUTER_R500 = 1.0
+DEFAULT_SOURCE_INNER_R500 = 0.0
+DEFAULT_CORE_INNER_R500 = 0.15
 DEFAULT_ANNULUS_INNER_R500 = 1.2
 DEFAULT_ANNULUS_OUTER_R500 = 1.8
 DEFAULT_LHB_KT = 0.10
@@ -184,6 +186,7 @@ def run_specextract_blanksky(
     if shutil.which("specextract") is None:
         print("[warn] specextract not found; skipping extraction")
         return None
+    outroot.parent.mkdir(parents=True, exist_ok=True)
     cmd = [
         "specextract",
         f"infile={evt}[sky=region({region})]",
@@ -192,6 +195,8 @@ def run_specextract_blanksky(
         "correctpsf=no",
         "weight=no",
         "bkgresp=no",
+        "parallel=no",
+        "nproc=1",
         "clobber=yes",
         "mode=h",
     ]
@@ -249,6 +254,9 @@ def extract_joint_spectra(
     r500_arcsec: float,
     masks: list[Any],
     run_specextract: bool,
+    source_inner_r500: float = DEFAULT_SOURCE_INNER_R500,
+    source_outer_r500: float = DEFAULT_SOURCE_OUTER_R500,
+    source_tag: str = "src_r500",
     ann_inner_r500: float = DEFAULT_ANNULUS_INNER_R500,
     ann_outer_r500: float = DEFAULT_ANNULUS_OUTER_R500,
 ) -> list[SpectrumSet]:
@@ -262,21 +270,19 @@ def extract_joint_spectra(
             continue
         blank = blank_by_obsid[obsid]
         src_reg = write_event_region(
-            region_dir / f"{cluster_key}_obs{obsid}_src_r500.reg",
+            region_dir / f"{cluster_key}_obs{obsid}_{source_tag}.reg",
             evt, center_ra, center_dec, r500_arcsec,
-            0.0, DEFAULT_SOURCE_OUTER_R500, masks,
+            source_inner_r500, source_outer_r500, masks,
         )
         ann_reg = write_event_region(
             region_dir / f"{cluster_key}_obs{obsid}_ann_{ann_inner_r500:.1f}_{ann_outer_r500:.1f}r500.reg",
             evt, center_ra, center_dec, r500_arcsec,
             ann_inner_r500, ann_outer_r500, masks,
         )
-        src_pattern = f"{cluster_key}_obs{obsid}_src_r500.pi"
-        ann_pattern = f"{cluster_key}_obs{obsid}_ann_{ann_inner_r500:.1f}_{ann_outer_r500:.1f}r500.pi"
         if run_specextract:
             src = run_specextract_blanksky(
                 cluster_dir, evt, blank, src_reg,
-                spectra_dir / f"{cluster_key}_obs{obsid}_src_r500",
+                spectra_dir / f"{cluster_key}_obs{obsid}_{source_tag}",
             )
             ann = run_specextract_blanksky(
                 cluster_dir, evt, blank, ann_reg,
@@ -284,7 +290,7 @@ def extract_joint_spectra(
             )
         else:
             # Look for existing spectra with all naming conventions
-            src_p = _find_spectrum(spectra_dir, cluster_key, obsid, "src_r500.pi")
+            src_p = _find_spectrum(spectra_dir, cluster_key, obsid, f"{source_tag}.pi")
             ann_p = _find_spectrum(spectra_dir, cluster_key, obsid,
                                    f"ann_{ann_inner_r500:.1f}_{ann_outer_r500:.1f}r500.pi")
             src = src_p.resolve() if src_p else None
@@ -448,6 +454,9 @@ def write_joint_sherpa_script(
     fit_band: tuple[float, float],
     abundance_policy: str,
     flux_samples: int,
+    aperture_label: str,
+    source_inner_r500: float,
+    source_outer_r500: float,
 ) -> None:
     """Write two-step Sherpa script: annulus XRB → source ICM."""
     source_literal = repr(source_spectra)
@@ -475,6 +484,9 @@ plot_caveat = "Three-panel background-aware display: raw source and blank-sky/ba
 xrb_policy = {xrb_policy!r}
 abundance_policy = {abundance_policy!r}
 flux_samples = {flux_samples:d}
+aperture_label = {aperture_label!r}
+source_inner_r500 = {source_inner_r500:.12g}
+source_outer_r500 = {source_outer_r500:.12g}
 
 def spectrum_label(path):
     stem = path.rsplit("/", 1)[-1].replace(".pi", "")
@@ -879,6 +891,9 @@ plt.close(fig)
 
 out = {{
     "method": "phase3_BC_annulus_constrained_xrb",
+    "aperture_label": aperture_label,
+    "source_inner_r500": source_inner_r500,
+    "source_outer_r500": source_outer_r500,
     "xrb_policy": xrb_policy,
     "abundance_policy": abundance_policy,
     "model_annulus": "lhb + phabs*(halo + cxb + icm_ann)",
@@ -998,6 +1013,18 @@ def parse_args():
     p.add_argument("--fit-min-kev", type=float, default=DEFAULT_FIT_BAND[0])
     p.add_argument("--fit-max-kev", type=float, default=DEFAULT_FIT_BAND[1])
     p.add_argument("--flux-samples", type=int, default=DEFAULT_FLUX_SAMPLES)
+    p.add_argument(
+        "--excise-core",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Use a core-excised source aperture from --core-inner-r500 to 1 R500.",
+    )
+    p.add_argument(
+        "--core-inner-r500",
+        type=float,
+        default=DEFAULT_CORE_INNER_R500,
+        help="Inner source radius in R500 when --excise-core is enabled.",
+    )
     p.add_argument("--renormalize-blanksky-pha", action=argparse.BooleanOptionalAction, default=True)
     p.add_argument("--no-run-blanksky", action="store_true")
     p.add_argument("--no-run-specextract", action="store_true")
@@ -1009,6 +1036,8 @@ def main():
     args = parse_args()
     if args.fit_min_kev >= args.fit_max_kev:
         raise SystemExit("--fit-min-kev must be < --fit-max-kev")
+    if args.excise_core and not (0.0 < args.core_inner_r500 < DEFAULT_SOURCE_OUTER_R500):
+        raise SystemExit("--core-inner-r500 must be between 0 and 1 when --excise-core is enabled")
 
     # Load cluster config
     configs = load_cluster_configs_from_table(args.cluster_table)
@@ -1034,12 +1063,24 @@ def main():
     print(f"[info] {config_key}: z={redshift:.4f}, R500={r500_arcsec:.1f}\", "
           f"M500={m500_msun:.2e} Msun, kT_init={kt_init:.1f} keV")
 
+    source_inner_r500 = args.core_inner_r500 if args.excise_core else DEFAULT_SOURCE_INNER_R500
+    source_outer_r500 = DEFAULT_SOURCE_OUTER_R500
+    aperture_label = (
+        f"core_excised_{source_inner_r500:.2f}_{source_outer_r500:.1f}R500"
+        if args.excise_core else "full_R500"
+    )
+    aperture_tag = (
+        f"src_coreexcised_{source_inner_r500:.2f}_{source_outer_r500:.1f}r500"
+        if args.excise_core else "src_r500"
+    ).replace(".", "p")
+
     # Output directory
-    outdir = cluster_dir / "processed_joint_bxc"
+    outdir = cluster_dir / ("processed_joint_bxc_coreexcised" if args.excise_core else "processed_joint_bxc")
     outdir.mkdir(parents=True, exist_ok=True)
     band_tag = f"{args.fit_min_kev:g}_{args.fit_max_kev:g}".replace(".", "p")
     bkg_tag = "heRenorm" if args.renormalize_blanksky_pha else "blanksky"
-    fit_tag = f"phase3_BC_{args.xrb_policy}_{args.abundance_policy}_{bkg_tag}_{band_tag}keV"
+    aperture_fit_tag = f"{aperture_tag}_" if args.excise_core else ""
+    fit_tag = f"phase3_BC_{aperture_fit_tag}{args.xrb_policy}_{args.abundance_policy}_{bkg_tag}_{band_tag}keV"
     fit_dir = outdir / "fits" / fit_tag
     fit_dir.mkdir(parents=True, exist_ok=True)
 
@@ -1089,13 +1130,15 @@ def main():
         print("[warn] No beta model found; using R_EM=0.05 default")
         r_em = 0.05
 
+    blanksky_dir = cluster_dir / "processed_joint_bxc" / "blanksky" if args.excise_core else outdir / "blanksky"
+
     # Step 1: Generate blank-sky events
     if args.no_run_blanksky:
         blank_by_obsid = load_existing_blanksky(
-            evt2_by_obsid, outdir / "blanksky", cluster_dir, config_key
+            evt2_by_obsid, blanksky_dir, cluster_dir, config_key
         )
     else:
-        blank_by_obsid = run_blanksky_for_obsids(evt2_by_obsid, outdir / "blanksky")
+        blank_by_obsid = run_blanksky_for_obsids(evt2_by_obsid, blanksky_dir)
     print(f"[info] Blank-sky files: {len(blank_by_obsid)}/{len(evt2_by_obsid)}")
 
     if not blank_by_obsid:
@@ -1106,6 +1149,9 @@ def main():
         cluster_dir, outdir, config_key, evt2_by_obsid, blank_by_obsid,
         center_ra, center_dec, r500_arcsec, masks,
         run_specextract=not args.no_run_specextract,
+        source_inner_r500=source_inner_r500,
+        source_outer_r500=source_outer_r500,
+        source_tag=aperture_tag,
     )
 
     # Step 3: Renormalize blank-sky backgrounds
@@ -1124,7 +1170,7 @@ def main():
         raise SystemExit("No source spectra available")
 
     # Compute area scaling
-    source_area = approximate_unmasked_area_arcsec2(0.0, DEFAULT_SOURCE_OUTER_R500, r500_arcsec, masks)
+    source_area = approximate_unmasked_area_arcsec2(source_inner_r500, source_outer_r500, r500_arcsec, masks)
     annulus_area = approximate_unmasked_area_arcsec2(
         DEFAULT_ANNULUS_INNER_R500, DEFAULT_ANNULUS_OUTER_R500, r500_arcsec, masks
     )
@@ -1145,6 +1191,9 @@ def main():
             (args.fit_min_kev, args.fit_max_kev),
             args.abundance_policy,
             args.flux_samples,
+            aperture_label,
+            source_inner_r500,
+            source_outer_r500,
         )
         print(f"[info] Running Sherpa fit...")
         run_sherpa(sherpa_script, fit_dir)
@@ -1172,8 +1221,8 @@ def main():
         print(f"{'='*50}")
 
     # Copy outputs to output/ directory
-    output_figs = Path("output/figures/spectral")
-    output_prods = Path("output/products/spectral")
+    output_figs = Path("output/figures/spectral") / ("core_excised" if args.excise_core else "")
+    output_prods = Path("output/products/spectral") / ("core_excised" if args.excise_core else "")
     output_figs.mkdir(parents=True, exist_ok=True)
     output_prods.mkdir(parents=True, exist_ok=True)
 
@@ -1186,6 +1235,9 @@ def main():
     # Write summary JSON
     summary = {
         "cluster_key": config_key,
+        "aperture_label": aperture_label,
+        "source_inner_r500": source_inner_r500,
+        "source_outer_r500": source_outer_r500,
         "redshift": redshift,
         "m500_msun": m500_msun,
         "r500_arcsec": r500_arcsec,

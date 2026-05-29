@@ -1,24 +1,24 @@
 cluster_key,quality,excluded_from_exclude_bad,exclude_reason,Tx_keV,rstat,qval,ratio_Tx_accept,qa_flags
 Abell_0209,good,False,,8.05366185506,0.932318114241,0.83990531666,0.972664475249,
-Abell_0068,acceptable,False,,11.900070201,1.11759164845,0.0461434597761,1.48937048823,
+Abell_0068,acceptable,False,,11.900070201,1.11759164845,0.0461434597761,1.48937048823,xrb_shapes_freed_compare_aic_bic_before_adopting
 Abell_0267,acceptable,False,,8.9009153216,0.947193961081,0.778298309334,1.31088590892,
-Abell_0383,acceptable,False,,4.72325203708,1.18650541536,3.46893913681e-06,1.20184530205,
-Abell_0586,good,False,,8.10149561389,1.03687922318,0.21967695204,0.931206392401,
+Abell_0383,acceptable,False,,4.72325203708,1.18650541536,3.46893913681e-06,1.20184530205,low_q_value
+Abell_0586,good,False,,8.10149561389,1.03687922318,0.21967695204,0.931206392401,annulus_xrb_fit_rstat_gt_2
 Abell_0611,high,False,,12.8718858023,1.03577034793,0.29404202657,1.9240486999,
-Abell_0697,bad,True,"T_X=62.92 (ACCEPT=9.06, 6.94x) rstat=5.34; full 2/2 ObsIDs failed; ObsID 532 drives poor fit; prefer prior 4217-only result for now",62.920783245,5.33592258477,0.9271,6.94489881291,
-Abell_0750,bad,True,T_X=6.52 rstat=3.02; blank-sky XRB; 2/2 ObsIDs; poor fit (early data); exclude from main scaling,6.51942952828,3.01881368387,1.2662033056e-173,,
+Abell_0697,bad,True,"T_X=62.92 (ACCEPT=9.06, 6.94x) rstat=5.34; full 2/2 ObsIDs failed; ObsID 532 drives poor fit; prefer prior 4217-only result for now",62.920783245,5.33592258477,0.9271,6.94489881291,high_reduced_statistic;low_q_value;very_high_temperature;annulus_xrb_fit_rstat_gt_2
+Abell_0750,bad,True,T_X=6.52 rstat=3.02; blank-sky XRB; 2/2 ObsIDs; poor fit (early data); exclude from main scaling,6.51942952828,3.01881368387,1.2662033056e-173,,high_reduced_statistic;low_q_value
 Abell_2261,good,False,,8.3485772881,1.08283110419,0.11381783132,1.10139542059,
 MACSJ0329.7-0211,good,False,,7.191112177,1.11526901932,0.00233068790788,1.0497973981,low_q_value
 MACSJ0429.6-0253,good,False,,6.43277926851,0.966895714569,0.679918036388,0.951594566348,
-MACSJ0647.7+7015,high,False,,16.7405492787,1.14892656469,0.00154091862137,1.84570554341,low_q_value
+MACSJ0647.7+7015,high,False,,16.7405492787,1.14892656469,0.00154091862137,1.84570554341,low_q_value;xrb_shapes_freed_compare_aic_bic_before_adopting
 MACSJ0744.9+3927,good,False,,10.1500299426,1.0601508327,0.0658963210255,0.899028338586,
 MACSJ1115.9+0129,good,False,,8.92363300875,0.98279976421,0.591427446959,0.963675270923,
-MACSJ1206.2-0847,high,False,,12.3487808554,1.08372850654,0.00356964926027,1.56710416946,
+MACSJ1206.2-0847,high,False,,12.3487808554,1.08372850654,0.00356964926027,1.56710416946,low_q_value
 MACSJ1720.3+3536,acceptable,False,,7.31651223319,1.10563887513,0.0640277459383,1.29495791738,
 MACSJ1931.8-2635,good,False,,7.38529988722,1.1096719471,0.0575879183164,0.984706651629,
-MS2137-2353,bad,True,T_X=54.52 rstat=15.56; 4974+5250 only still failed; ObsID 928 blanksky moved to blanksky_disabled,54.5196002811,15.5646926196,,8.65390480652,
-RXJ1347.5-1145,bad,True,"T_X=18.44 (ACCEPT=10.88, 1.70x) rstat=1.63; full 7/7 ObsIDs worsens fit; annulus rstat=3.20",18.4418573751,1.62522305869,2.55651057629e-94,1.6950236558,low_q_value
+MS2137-2353,bad,True,T_X=54.52 rstat=15.56; 4974+5250 only still failed; ObsID 928 blanksky moved to blanksky_disabled,54.5196002811,15.5646926196,,8.65390480652,high_reduced_statistic;low_q_value;very_high_temperature;annulus_xrb_fit_rstat_gt_2
+RXJ1347.5-1145,bad,True,"T_X=18.44 (ACCEPT=10.88, 1.70x) rstat=1.63; full 7/7 ObsIDs worsens fit; annulus rstat=3.20",18.4418573751,1.62522305869,2.55651057629e-94,1.6950236558,high_reduced_statistic;low_q_value;annulus_xrb_fit_rstat_gt_2
 RXJ1532.9+3021,good,False,,5.86356755622,0.966671736849,0.679821148063,1.07786168313,
-RXJ2129.7+0005,good,False,,6.84390325425,1.15337693659,0.00112932963557,1.12195135316,
+RXJ2129.7+0005,good,False,,6.84390325425,1.15337693659,0.00112932963557,1.12195135316,low_q_value
 RXJ2248.7-4431,good,False,,12.149296076,1.06449548465,0.171117958611,1.09453117801,
-ZwCl_0857.9+2107,bad,True,"T_X=4.68 (ACCEPT=12.10, 0.39x) rstat=1.13; blank-sky XRB; 2/2 ObsIDs; ACCEPT reference is single ObsID 7897 9ks with Lbol=0 flag, likely reference/aperture mismatch; exclude from main scaling",4.67501829932,1.13010318364,0.00451508556772,0.386365148704,
+ZwCl_0857.9+2107,bad,True,"T_X=4.68 (ACCEPT=12.10, 0.39x) rstat=1.13; blank-sky XRB; 2/2 ObsIDs; ACCEPT reference is single ObsID 7897 9ks with Lbol=0 flag, likely reference/aperture mismatch; exclude from main scaling",4.67501829932,1.13010318364,0.00451508556772,0.386365148704,low_q_value

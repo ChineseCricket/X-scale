@@ -1105,12 +1105,18 @@ def main() -> None:
     for sample_key in SAMPLES:
         results = []
         arrays_by_relation = {}
+        too_small: list[str] = []
         for relation in RELATION_NAMES:
             arrays = build_arrays(rows, relation, args, sample_key)
             if len(arrays["clusters"]) < 5:
-                raise SystemExit(f"Not enough clusters for {sample_key}/{relation}: {len(arrays['clusters'])}")
+                too_small.append(f"{relation}={len(arrays['clusters'])}")
+                continue
             arrays_by_relation[relation] = arrays
             results.append(fit_relation(relation, arrays, args))
+
+        if too_small:
+            print(f"[warn] Skipping {sample_key}: not enough clusters ({', '.join(too_small)}; need >=5).")
+            continue
 
         json_path = outdir / f"scaling_linmix_fixed_evolution_{sample_key}_results.json"
         csv_path = outdir / f"scaling_linmix_fixed_evolution_{sample_key}_summary.csv"

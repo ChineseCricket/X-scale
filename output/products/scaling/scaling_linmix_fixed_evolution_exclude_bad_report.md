@@ -16,9 +16,9 @@ M500c is the weak-lensing mass for the mass-scaling relations. The redshift expo
 
 | Sample | Relation | N | quality counts | alpha | beta | fixed gamma | intrinsic scatter (dex) | observed RMS (dex) | self-similar beta/gamma |
 |---|---|---:|---|---:|---:|---:|---:|---:|---:|
-| exclude_bad | Lx-M500 | 18 | good:11, acceptable:4, high:3 | 0.744 -0.226/+0.213 | 1.091 -0.451/+0.469 | 2.000 -0.000/+0.000 | 0.165 -0.035/+0.051 | 0.198 | 1.333/2.000 |
-| exclude_bad | Tx-M500 | 18 | good:11, acceptable:4, high:3 | 0.654 -0.113/+0.116 | 0.505 -0.252/+0.236 | 0.667 -0.000/+0.000 | 0.116 -0.024/+0.031 | 0.113 | 0.667/0.667 |
-| exclude_bad | Lx-Tx | 18 | good:11, acceptable:4, high:3 | 1.145 -0.112/+0.117 | 0.769 -0.433/+0.457 | 1.000 -0.000/+0.000 | 0.227 -0.040/+0.051 | 0.197 | 2.000/1.000 |
+| exclude_bad | Lx-M500 | 18 | good:11, acceptable:4, high:3 | 0.753 -0.219/+0.242 | 1.081 -0.484/+0.453 | 2.000 -0.000/+0.000 | 0.169 -0.046/+0.054 | 0.197 | 1.333/2.000 |
+| exclude_bad | Tx-M500 | 18 | good:11, acceptable:4, high:3 | 0.665 -0.141/+0.122 | 0.497 -0.270/+0.292 | 0.667 -0.000/+0.000 | 0.117 -0.024/+0.029 | 0.112 | 0.667/0.667 |
+| exclude_bad | Lx-Tx | 18 | good:11, acceptable:4, high:3 | 1.152 -0.125/+0.112 | 0.766 -0.437/+0.470 | 1.000 -0.000/+0.000 | 0.227 -0.038/+0.049 | 0.197 | 2.000/1.000 |
 
 ## Figures
 
@@ -37,8 +37,6 @@ M500c is the weak-lensing mass for the mass-scaling relations. The redshift expo
 - Tx errors come from `Tx_err_lo/Tx_err_hi` and are used as Y errors for Tx-M500 or X errors for Lx-Tx.
 - R500 errors are propagated from M500 and documented as aperture provenance; they are not included as independent linmix errors.
 - Lx errors come from `Lx_bol_err_lo/Lx_bol_err_hi`; missing values fall back only where reported below.
-- exclude_bad Lx-M500: X fallback=none; Y fallback=Abell_0068, MACSJ0647.7+7015.
-- exclude_bad Lx-Tx: X fallback=none; Y fallback=Abell_0068, MACSJ0647.7+7015.
 
 ## Literature Context
 
@@ -60,12 +58,10 @@ M500c is the weak-lensing mass for the mass-scaling relations. The redshift expo
 - Lx errors from Lx_bol_err_lo/Lx_bol_err_hi; fallbacks are reported cluster-by-cluster.
 - R500 uncertainties are propagated from M500 for aperture provenance only and are not added as independent linmix errors.
 - Excludes rows with exclude_from_main_scaling=True in the canonical spectral table.
-- Lx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0068, MACSJ0647.7+7015.
 - Evolution exponent gamma is fixed to 2 for literature-style comparison.
 - All logarithms are base 10.
 - Rows with status != done or missing positive Y/M500 were excluded.
 - Tx errors from Tx_err_lo/Tx_err_hi; fallbacks are reported cluster-by-cluster.
 - Evolution exponent gamma is fixed to 0.666667 for literature-style comparison.
 - Tx errors from Tx_err_lo/Tx_err_hi.
-- Lx-Tx Y fallback 10% fractional 1-sigma used for: Abell_0068, MACSJ0647.7+7015.
 - Evolution exponent gamma is fixed to 1 for literature-style comparison.

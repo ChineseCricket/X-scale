@@ -1,0 +1,131 @@
+{
+  "abundance_policy": "fixed",
+  "abundance_solar": 0.3,
+  "aic_wstat": 1243.9125423400656,
+  "annulus_fit": {
+    "aic_wstat": 1328.8227909783386,
+    "bic_wstat": 1344.3789520250798,
+    "cxb_norm": 0.0,
+    "cxb_phoindex": 1.4,
+    "dof": 1292,
+    "halo_kT": 0.25,
+    "halo_norm": 0.0,
+    "icm_ann_kT": 64.0,
+    "icm_ann_norm": 7.763108897248576e-06,
+    "icm_ann_norm_policy": "frozen_to_beta_R_EM_times_source_prefit_norm",
+    "lhb_kT": 0.1,
+    "lhb_norm": 5e-06,
+    "n_free_parameters": 3,
+    "q_value": 0.269380776636216,
+    "rstat": 1.023856649364039,
+    "statname": "wstat",
+    "statval": 1322.8227909783386,
+    "xrb_policy": "fixed_shape"
+  },
+  "annulus_spectra": [
+    "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/MACSJ0744_9_3927_obs3197_ann_1.2_1.8r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/MACSJ0744_9_3927_obs3585_ann_1.2_1.8r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/MACSJ0744_9_3927_obs6111_ann_1.2_1.8r500_he9p5_12keV.pi"
+  ],
+  "apec_norm": 0.0013153357689997956,
+  "aperture_label": "core_excised_0.15_1.0R500",
+  "bic_wstat": 1254.2833163712264,
+  "bolometric_flux_unabsorbed_erg_s_cm2": 1.0139739792654399e-12,
+  "bolometric_luminosity_unabsorbed_erg_s": 2.0952745602008168e+45,
+  "confidence_intervals": {},
+  "dof": 1273,
+  "fit_band_keV": [
+    0.7,
+    7
+  ],
+  "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc_coreexcised/fits/phase3_BC_src_coreexcised_0p15_1p0r500_fixed_shape_fixed_heRenorm_0p7_7keV/MACSJ0744_9_3927_phase3_BC_src_coreexcised_0p15_1p0r500_fixed_shape_fixed_heRenorm_0p7_7keV_fit_plot.png",
+  "flux_uncertainty": {
+    "bolometric": {
+      "band": "bolometric",
+      "flag": "",
+      "flux_err_hi_erg_s_cm2": 3.378047187380775e-14,
+      "flux_err_lo_erg_s_cm2": 3.70927028207246e-14,
+      "flux_median_erg_s_cm2": 1.012621779616388e-12,
+      "luminosity_err_hi_erg_s": 6.980392475164282e+43,
+      "luminosity_err_lo_erg_s": 7.664831462998305e+43,
+      "luminosity_median_erg_s": 2.0924803765403806e+45,
+      "method": "sherpa.sample_energy_flux",
+      "n_samples_requested": 3000,
+      "n_samples_used": 3000
+    },
+    "soft": {
+      "band": "soft",
+      "flag": "",
+      "flux_err_hi_erg_s_cm2": 5.579276851610528e-15,
+      "flux_err_lo_erg_s_cm2": 5.916230649569651e-15,
+      "flux_median_erg_s_cm2": 2.4259816060477174e-13,
+      "luminosity_err_hi_erg_s": 1.152901069509259e+43,
+      "luminosity_err_lo_erg_s": 1.2225291600977626e+43,
+      "luminosity_median_erg_s": 5.013045350877037e+44,
+      "method": "sherpa.sample_energy_flux",
+      "n_samples_requested": 3000,
+      "n_samples_used": 3000
+    }
+  },
+  "lx_uncertainty_method": "sherpa.sample_energy_flux",
+  "method": "phase3_BC_annulus_constrained_xrb",
+  "model_annulus": "lhb + phabs*(halo + cxb + icm_ann)",
+  "model_selection_note": "For WSTAT fits compare variants with lower AIC/BIC; q_value is reported but is not the main selection criterion.",
+  "model_source": "lhb + phabs*(halo + cxb + icm_src)",
+  "nH_1e22_cm2": 0.0165,
+  "n_free_parameters": 2,
+  "plot_caveat": "Three-panel background-aware display: raw source and blank-sky/background are shown separately; net source data are compared with folded total and component source-region models.",
+  "q_value": 0.7415952076393618,
+  "qa_flags": [],
+  "r_em_annulus_to_source": 0.00590171123171,
+  "redshift": 0.686,
+  "residual_summaries": [
+    {
+      "dataset_id": 1,
+      "max_abs_residual": 5.107125086914751,
+      "mean_residual": -0.21457962769677563,
+      "n_bins": 425,
+      "rms_residual": 1.1095018334073168,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/MACSJ0744_9_3927_obs3197_src_coreexcised_0p15_1p0r500_he9p5_12keV.pi"
+    },
+    {
+      "dataset_id": 2,
+      "max_abs_residual": 6.543827221650564,
+      "mean_residual": -0.381111926360782,
+      "n_bins": 417,
+      "rms_residual": 1.3395342199407962,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/MACSJ0744_9_3927_obs3585_src_coreexcised_0p15_1p0r500_he9p5_12keV.pi"
+    },
+    {
+      "dataset_id": 3,
+      "max_abs_residual": 4.40326922531148,
+      "mean_residual": -0.15591140623996264,
+      "n_bins": 433,
+      "rms_residual": 1.036177543932792,
+      "spectrum": "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/MACSJ0744_9_3927_obs6111_src_coreexcised_0p15_1p0r500_he9p5_12keV.pi"
+    }
+  ],
+  "rstat": 0.9740082814925888,
+  "soft_flux_unabsorbed_erg_s_cm2": 2.423799612698975e-13,
+  "soft_luminosity_unabsorbed_erg_s": 5.008536482555328e+44,
+  "source_inner_r500": 0.15,
+  "source_outer_r500": 1,
+  "source_prefit": {
+    "apec_norm": 0.0013153996585343886,
+    "dof": 1273,
+    "q_value": 0.741892831475538,
+    "rstat": 0.9739724202160815,
+    "statval": 1239.8668909350718,
+    "temperature_keV": 10.713174411977896
+  },
+  "source_spectra": [
+    "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/MACSJ0744_9_3927_obs3197_src_coreexcised_0p15_1p0r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/MACSJ0744_9_3927_obs3585_src_coreexcised_0p15_1p0r500_he9p5_12keV.pi",
+    "/data/jyz/X_scale/chandra_data_evt/MACSJ0744.9+3927/processed_joint_bxc_coreexcised/spectra_high_energy_renorm/MACSJ0744_9_3927_obs6111_src_coreexcised_0p15_1p0r500_he9p5_12keV.pi"
+  ],
+  "statname": "wstat",
+  "statval": 1239.9125423400656,
+  "temperature_keV": 10.716127550990326,
+  "xrb_area_scale_source_over_annulus": 0.543480918056,
+  "xrb_policy": "fixed_shape"
+}

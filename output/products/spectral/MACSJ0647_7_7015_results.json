@@ -27,6 +27,7 @@
     "/data/jyz/X_scale/chandra_data_evt/MACSJ0647.7+7015/processed_joint_bxc/spectra_high_energy_renorm/MACSJ0647_7_7015_obs3584_ann_1.2_1.8r500_he9p5_12keV.pi"
   ],
   "apec_norm": 0.0031898464960123767,
+  "aperture_label": "full_R500",
   "bic_wstat": 999.3388363224515,
   "bolometric_flux_unabsorbed_erg_s_cm2": 2.9745520208856267e-12,
   "bolometric_luminosity_unabsorbed_erg_s": 4.153940503165342e+45,
@@ -36,24 +37,36 @@
     0.7,
     7
   ],
-  "fit_plot_png": "output/figures/spectral/MACSJ0647_7_7015_fit.png",
+  "fit_plot_png": "/data/jyz/X_scale/chandra_data_evt/MACSJ0647.7+7015/processed_joint_bxc/fits/phase3_BC_flexible_fixed_heRenorm_0p7_7keV/MACSJ0647_7_7015_phase3_BC_flexible_fixed_heRenorm_0p7_7keV_fit_plot.png",
   "flux_uncertainty": {
     "bolometric": {
-      "flag": "lx_uncertainty_unavailable",
-      "luminosity_err_hi_erg_s": null,
-      "luminosity_err_lo_erg_s": null,
-      "luminosity_median_erg_s": 4.153940503165342e+45,
-      "method": "missing"
+      "band": "bolometric",
+      "flag": "",
+      "flux_err_hi_erg_s_cm2": 6.986457700858e-14,
+      "flux_err_lo_erg_s_cm2": 7.9002692118785e-14,
+      "flux_median_erg_s_cm2": 2.9742799517400916e-12,
+      "luminosity_err_hi_erg_s": 9.75653793024094e+43,
+      "luminosity_err_lo_erg_s": 1.1032669132934312e+44,
+      "luminosity_median_erg_s": 4.153560560560417e+45,
+      "method": "sherpa.sample_energy_flux",
+      "n_samples_requested": 3000,
+      "n_samples_used": 3000
     },
     "soft": {
-      "flag": "lx_uncertainty_unavailable",
-      "luminosity_err_hi_erg_s": null,
-      "luminosity_err_lo_erg_s": null,
-      "luminosity_median_erg_s": 8.523827256810345e+44,
-      "method": "missing"
+      "band": "soft",
+      "flag": "",
+      "flux_err_hi_erg_s_cm2": 1.9086600144702413e-14,
+      "flux_err_lo_erg_s_cm2": 1.7529193417692574e-14,
+      "flux_median_erg_s_cm2": 6.099348778349743e-13,
+      "luminosity_err_hi_erg_s": 2.6654299824682534e+43,
+      "luminosity_err_lo_erg_s": 2.447939253181825e+43,
+      "luminosity_median_erg_s": 8.517696700350713e+44,
+      "method": "sherpa.sample_energy_flux",
+      "n_samples_requested": 3000,
+      "n_samples_used": 3000
     }
   },
-  "lx_uncertainty_method": "missing",
+  "lx_uncertainty_method": "sherpa.sample_energy_flux",
   "method": "phase3_BC_annulus_constrained_xrb",
   "model_annulus": "lhb + phabs*(halo + cxb + icm_ann)",
   "model_selection_note": "For WSTAT fits compare variants with lower AIC/BIC; q_value is reported but is not the main selection criterion.",
@@ -89,6 +102,8 @@
   "rstat": 1.148926564694064,
   "soft_flux_unabsorbed_erg_s_cm2": 6.103738744718366e-13,
   "soft_luminosity_unabsorbed_erg_s": 8.523827256810345e+44,
+  "source_inner_r500": 0,
+  "source_outer_r500": 1,
   "source_prefit": {
     "apec_norm": 0.0032536164605265054,
     "dof": 858,
