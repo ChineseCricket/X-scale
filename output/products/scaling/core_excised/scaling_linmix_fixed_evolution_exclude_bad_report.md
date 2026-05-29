@@ -16,9 +16,9 @@ M500c is the weak-lensing mass for the mass-scaling relations. The redshift expo
 
 | Sample | Relation | N | quality counts | alpha | beta | fixed gamma | intrinsic scatter (dex) | observed RMS (dex) | self-similar beta/gamma |
 |---|---|---:|---|---:|---:|---:|---:|---:|---:|
-| exclude_bad | Lx-M500 | 12 | good:4, acceptable:4, high:4 | 0.402 -0.215/+0.240 | 0.984 -0.513/+0.504 | 2.000 -0.000/+0.000 | 0.166 -0.043/+0.072 | 0.144 | 1.333/2.000 |
-| exclude_bad | Tx-M500 | 12 | good:4, acceptable:4, high:4 | 0.771 -0.266/+0.228 | 0.483 -0.508/+0.550 | 0.667 -0.000/+0.000 | 0.191 -0.044/+0.064 | 0.157 | 0.667/0.667 |
-| exclude_bad | Lx-Tx | 12 | good:4, acceptable:4, high:4 | 0.687 -0.143/+0.140 | 0.716 -0.368/+0.385 | 1.000 -0.000/+0.000 | 0.210 -0.046/+0.068 | 0.168 | 2.000/1.000 |
+| exclude_bad | Lx-M500 | 13 | good:4, acceptable:4, high:5 | 0.345 -0.279/+0.223 | 1.178 -0.477/+0.564 | 2.000 -0.000/+0.000 | 0.172 -0.046/+0.068 | 0.156 | 1.333/2.000 |
+| exclude_bad | Tx-M500 | 13 | good:4, acceptable:4, high:5 | 0.787 -0.244/+0.215 | 0.448 -0.479/+0.496 | 0.667 -0.000/+0.000 | 0.174 -0.036/+0.062 | 0.150 | 0.667/0.667 |
+| exclude_bad | Lx-Tx | 13 | good:4, acceptable:4, high:5 | 0.694 -0.164/+0.157 | 0.784 -0.437/+0.421 | 1.000 -0.000/+0.000 | 0.236 -0.052/+0.067 | 0.189 | 2.000/1.000 |
 
 ## Figures
 
@@ -37,8 +37,8 @@ M500c is the weak-lensing mass for the mass-scaling relations. The redshift expo
 - Tx errors come from `Tx_err_lo/Tx_err_hi` and are used as Y errors for Tx-M500 or X errors for Lx-Tx.
 - R500 errors are propagated from M500 and documented as aperture provenance; they are not included as independent linmix errors.
 - Lx errors come from `Lx_bol_err_lo/Lx_bol_err_hi`; missing values fall back only where reported below.
-- exclude_bad Tx-M500: X fallback=none; Y fallback=Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129.
-- exclude_bad Lx-Tx: X fallback=Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129; Y fallback=none.
+- exclude_bad Tx-M500: X fallback=none; Y fallback=Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847.
+- exclude_bad Lx-Tx: X fallback=Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847; Y fallback=none.
 
 ## Literature Context
 
@@ -64,8 +64,8 @@ M500c is the weak-lensing mass for the mass-scaling relations. The redshift expo
 - All logarithms are base 10.
 - Rows with status != done or missing positive Y/M500 were excluded.
 - Tx errors from Tx_err_lo/Tx_err_hi; fallbacks are reported cluster-by-cluster.
-- Tx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129.
+- Tx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847.
 - Evolution exponent gamma is fixed to 0.666667 for literature-style comparison.
 - Tx errors from Tx_err_lo/Tx_err_hi.
-- Lx-Tx X fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129.
+- Lx-Tx X fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847.
 - Evolution exponent gamma is fixed to 1 for literature-style comparison.

@@ -3,7 +3,7 @@
     "sample": "exclude_bad",
     "sample_label": "excluding bad/failed fits",
     "relation": "Lx-M500",
-    "n_clusters": 12,
+    "n_clusters": 13,
     "clusters": [
       "Abell_0209",
       "Abell_0068",
@@ -16,12 +16,13 @@
       "MACSJ0429.6-0253",
       "MACSJ0647.7+7015",
       "MACSJ0744.9+3927",
-      "MACSJ1115.9+0129"
+      "MACSJ1115.9+0129",
+      "MACSJ1206.2-0847"
     ],
     "quality_counts": {
       "good": 4,
       "acceptable": 4,
-      "high": 4
+      "high": 5
     },
     "x_error_fallback_clusters": [],
     "mass_error_fallback_clusters": [],
@@ -32,18 +33,18 @@
     "model": "log10(Y / E(z)^gamma_fixed) = alpha + beta*log10(X / X_pivot)",
     "model_label": "$E(z)^{-2}L_X=A(M_{500c}/3\\times10^{14}M_\\odot)^\\beta$",
     "alpha": {
-      "median": 0.4018847941767787,
-      "err_lo": 0.21480016722564937,
-      "err_hi": 0.24015841708469587,
-      "p16": 0.18708462695112932,
-      "p84": 0.6420432112614746
+      "median": 0.34476836570964625,
+      "err_lo": 0.2785090461312242,
+      "err_hi": 0.22298548885640262,
+      "p16": 0.06625931957842209,
+      "p84": 0.5677538545660489
     },
     "beta": {
-      "median": 0.9844827232205089,
-      "err_lo": 0.5132991383671665,
-      "err_hi": 0.5035841325286008,
-      "p16": 0.47118358485334244,
-      "p84": 1.4880668557491097
+      "median": 1.178013493838399,
+      "err_lo": 0.4765372149433321,
+      "err_hi": 0.5641618584868224,
+      "p16": 0.7014762788950669,
+      "p84": 1.7421753523252215
     },
     "gamma": {
       "median": 2.0,
@@ -53,13 +54,13 @@
       "p84": 2.0
     },
     "intrinsic_scatter_dex": {
-      "median": 0.16603684471644922,
-      "err_lo": 0.043218712201397835,
-      "err_hi": 0.0722786259952877,
-      "p16": 0.12281813251505139,
-      "p84": 0.23831547071173692
+      "median": 0.1721067659348104,
+      "err_lo": 0.04592521461693713,
+      "err_hi": 0.06815742369275629,
+      "p16": 0.12618155131787326,
+      "p84": 0.24026418962756668
     },
-    "observed_rms_dex": 0.14372818495095202,
+    "observed_rms_dex": 0.15592126942600903,
     "n_chain": 1200,
     "self_similar": {
       "beta": 1.3333333333333333,
@@ -95,7 +96,7 @@
     "sample": "exclude_bad",
     "sample_label": "excluding bad/failed fits",
     "relation": "Tx-M500",
-    "n_clusters": 12,
+    "n_clusters": 13,
     "clusters": [
       "Abell_0209",
       "Abell_0068",
@@ -108,12 +109,13 @@
       "MACSJ0429.6-0253",
       "MACSJ0647.7+7015",
       "MACSJ0744.9+3927",
-      "MACSJ1115.9+0129"
+      "MACSJ1115.9+0129",
+      "MACSJ1206.2-0847"
     ],
     "quality_counts": {
       "good": 4,
       "acceptable": 4,
-      "high": 4
+      "high": 5
     },
     "x_error_fallback_clusters": [],
     "mass_error_fallback_clusters": [],
@@ -129,7 +131,8 @@
       "MACSJ0429.6-0253",
       "MACSJ0647.7+7015",
       "MACSJ0744.9+3927",
-      "MACSJ1115.9+0129"
+      "MACSJ1115.9+0129",
+      "MACSJ1206.2-0847"
     ],
     "x_definition": "log10(M500c / 3e14 Msun)",
     "e_definition": "log10(E(z)); Omega_M=0.300, Omega_L=0.700",
@@ -137,18 +140,18 @@
     "model": "log10(Y / E(z)^gamma_fixed) = alpha + beta*log10(X / X_pivot)",
     "model_label": "$E(z)^{-2/3}T_X=A(M_{500c}/3\\times10^{14}M_\\odot)^\\beta$",
     "alpha": {
-      "median": 0.7713809828048561,
-      "err_lo": 0.2658452168607265,
-      "err_hi": 0.22801586872729318,
-      "p16": 0.5055357659441296,
-      "p84": 0.9993968515321493
+      "median": 0.7869523423508566,
+      "err_lo": 0.24353035675646484,
+      "err_hi": 0.2145325993385092,
+      "p16": 0.5434219855943918,
+      "p84": 1.0014849416893659
     },
     "beta": {
-      "median": 0.4830758245548179,
-      "err_lo": 0.5082267425040774,
-      "err_hi": 0.5502370436186335,
-      "p16": -0.02515091794925954,
-      "p84": 1.0333128681734514
+      "median": 0.44797993424482746,
+      "err_lo": 0.4787948030089984,
+      "err_hi": 0.49601074010510254,
+      "p16": -0.03081486876417097,
+      "p84": 0.94399067434993
     },
     "gamma": {
       "median": 0.6666666666666666,
@@ -158,13 +161,13 @@
       "p84": 0.6666666666666666
     },
     "intrinsic_scatter_dex": {
-      "median": 0.19108208087923811,
-      "err_lo": 0.04369895773103005,
-      "err_hi": 0.06417896007263785,
-      "p16": 0.14738312314820806,
-      "p84": 0.25526104095187596
+      "median": 0.17383209494827004,
+      "err_lo": 0.036285249176475104,
+      "err_hi": 0.06185754092620244,
+      "p16": 0.13754684577179493,
+      "p84": 0.23568963587447248
     },
-    "observed_rms_dex": 0.15676516235211113,
+    "observed_rms_dex": 0.15035934311760227,
     "n_chain": 1200,
     "self_similar": {
       "beta": 0.6666666666666666,
@@ -191,7 +194,7 @@
       "Tx errors from Tx_err_lo/Tx_err_hi; fallbacks are reported cluster-by-cluster.",
       "R500 uncertainties are propagated from M500 for aperture provenance only and are not added as independent linmix errors.",
       "Excludes rows with exclude_from_main_scaling=True in the canonical spectral table.",
-      "Tx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129.",
+      "Tx-M500 Y fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847.",
       "Evolution exponent gamma is fixed to 0.666667 for literature-style comparison.",
       "All logarithms are base 10.",
       "Rows with status != done or missing positive Y/M500 were excluded."
@@ -201,7 +204,7 @@
     "sample": "exclude_bad",
     "sample_label": "excluding bad/failed fits",
     "relation": "Lx-Tx",
-    "n_clusters": 12,
+    "n_clusters": 13,
     "clusters": [
       "Abell_0209",
       "Abell_0068",
@@ -214,12 +217,13 @@
       "MACSJ0429.6-0253",
       "MACSJ0647.7+7015",
       "MACSJ0744.9+3927",
-      "MACSJ1115.9+0129"
+      "MACSJ1115.9+0129",
+      "MACSJ1206.2-0847"
     ],
     "quality_counts": {
       "good": 4,
       "acceptable": 4,
-      "high": 4
+      "high": 5
     },
     "x_error_fallback_clusters": [
       "Abell_0209",
@@ -233,7 +237,8 @@
       "MACSJ0429.6-0253",
       "MACSJ0647.7+7015",
       "MACSJ0744.9+3927",
-      "MACSJ1115.9+0129"
+      "MACSJ1115.9+0129",
+      "MACSJ1206.2-0847"
     ],
     "mass_error_fallback_clusters": [],
     "y_error_fallback_clusters": [],
@@ -243,18 +248,18 @@
     "model": "log10(Y / E(z)^gamma_fixed) = alpha + beta*log10(X / X_pivot)",
     "model_label": "$E(z)^{-1}L_X=A(T_X/5\\,{\\rm keV})^\\beta$",
     "alpha": {
-      "median": 0.686545339289085,
-      "err_lo": 0.14279516360475497,
-      "err_hi": 0.1397039754474544,
-      "p16": 0.54375017568433,
-      "p84": 0.8262493147365394
+      "median": 0.6936735581902174,
+      "err_lo": 0.16393690132665895,
+      "err_hi": 0.15689349095516103,
+      "p16": 0.5297366568635584,
+      "p84": 0.8505670491453784
     },
     "beta": {
-      "median": 0.7156891747196008,
-      "err_lo": 0.36768292328803254,
-      "err_hi": 0.38476854823267836,
-      "p16": 0.34800625143156827,
-      "p84": 1.1004577229522792
+      "median": 0.7842367417656475,
+      "err_lo": 0.43694726666963163,
+      "err_hi": 0.4210202998654593,
+      "p16": 0.3472894750960159,
+      "p84": 1.2052570416311068
     },
     "gamma": {
       "median": 1.0,
@@ -264,13 +269,13 @@
       "p84": 1.0
     },
     "intrinsic_scatter_dex": {
-      "median": 0.209911233813212,
-      "err_lo": 0.04643729038546321,
-      "err_hi": 0.06811862630467916,
-      "p16": 0.1634739434277488,
-      "p84": 0.27802986011789116
+      "median": 0.23623541297018902,
+      "err_lo": 0.052115193203788795,
+      "err_hi": 0.06650474894056774,
+      "p16": 0.18412021976640022,
+      "p84": 0.30274016191075676
     },
-    "observed_rms_dex": 0.16803195708367663,
+    "observed_rms_dex": 0.18924068794732238,
     "n_chain": 1200,
     "self_similar": {
       "beta": 2.0,
@@ -297,7 +302,7 @@
       "Lx errors from Lx_bol_err_lo/Lx_bol_err_hi; fallbacks are reported cluster-by-cluster.",
       "R500 uncertainties are propagated from M500 for aperture provenance only and are not added as independent linmix errors.",
       "Excludes rows with exclude_from_main_scaling=True in the canonical spectral table.",
-      "Lx-Tx X fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129.",
+      "Lx-Tx X fallback 10% fractional 1-sigma used for: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847.",
       "Evolution exponent gamma is fixed to 1 for literature-style comparison.",
       "All logarithms are base 10.",
       "Rows with status != done or missing positive Y/M500 were excluded."

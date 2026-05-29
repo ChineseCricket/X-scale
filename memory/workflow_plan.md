@@ -131,7 +131,7 @@ Raw try 的 `exclude_bad` 样本排除了 Abell_0750、MS2137-2353、ZwCl_0857.9
 - quality/exclude flag（主样本排除 bad；保留 high/suspect 标记）
 - `configs/m500_reference.csv` 是 M500 中心值和误差来源表：CLASH 用 Umetsu+16 Table 3；LoCuSS 用 Okabe+16 Table 2（Table 3 是 c-M 关系，不是 individual M500）。
 - 已修正 3 个 LoCuSS config 质量列错误：Abell_0697 和 ZwCl_0857.9+2107 之前误用了 M180m，Abell_0750 之前误用了 M1000；三者都在 exclude_bad 样本外。
-- 当前 JSON 中 Lx 误差多数来自 `confidence_interval_parameter_fallback`；未来 rerun 的 `fit_spectral_xrb.py` 会保存 Sherpa `sample_energy_flux` 原生区间。Abell_0068、MACSJ0647.7+7015 以及若干 bad 团暂无可用 Lx CI，scaling 报告中明确 fallback。
+- full-R500 重点缺失项已补齐：Abell_0068 和 MACSJ0647.7+7015 已 rerun 并写入 Sherpa `sample_energy_flux` 原生 Lx 区间；exclude_bad 主样本中这两团不再使用 Lx fallback。若干 bad/excluded 团仍有 Lx fallback 或缺失，但不影响主样本。
 
 ### 4b. linmix 拟合 ✅ (2026-05-29 full-R500 uncertainty + sensitivity upgrade)
 
@@ -163,7 +163,40 @@ good_only 结果：
 - 计算 scatter in log Y at fixed M500
 - 与 self-similar 预言对比
 - high/suspect leave-one-out 已完成（尤其 Abell_0068、Abell_0611、MACSJ0647、MACSJ1206）
-- 下一步：替换 missing/fallback Lx uncertainties、bootstrap 稳健性测试、以及 core-excised 版本
+- 下一步：如论文需要，可补 bootstrap/jackknife 稳健性表；full-R500 主线已经可进入最终整理。
+
+### 4d. Core-excised blank-sky XRB 分支（进行中，2026-05-29）
+
+已在 `src/02_spectral/fit_spectral_xrb.py` 加入正式 core-excised aperture 支持：
+- `--excise-core/--no-excise-core`
+- `--core-inner-r500 0.15`
+- source aperture = `0.15-1.0 R500`
+- full-R500 输出保持在 `processed_joint_bxc/`、`output/products/spectral/`、`output/figures/spectral/`
+- core-excised 输出独立放在 `processed_joint_bxc_coreexcised/`、`output/products/spectral/core_excised/`、`output/figures/spectral/core_excised/`
+
+`src/03_scaling/build_spectral_summary.py` 已泛化为可指定 `--results-dir` 和 `--output`，用于生成：
+- full-R500 canonical: `output/products/spectral/spectral_summary.csv`
+- core-excised branch: `output/products/spectral/spectral_summary_core_excised.csv`
+
+`src/03_scaling/fit_scaling_relations.py` 支持独立 `--summary/--outdir/--figdir`，并且当 partial batch 的某个 sample 小于 5 团时会跳过该 sample 而不是中止整个 run。
+
+当前 core-excised 状态：
+- 13/23 已完成 result JSON；13/18 exclude_bad included clusters 已完成。
+- 已完成 included clusters: Abell_0209, Abell_0068, Abell_0267, Abell_0383, Abell_0586, Abell_0611, Abell_2261, MACSJ0329.7-0211, MACSJ0429.6-0253, MACSJ0647.7+7015, MACSJ0744.9+3927, MACSJ1115.9+0129, MACSJ1206.2-0847.
+- 尚未完成 included clusters: MACSJ1720.3+3536, MACSJ1931.8-2635, RXJ1532.9+3021, RXJ2129.7+0005, RXJ2248.7-4431.
+- Excluded bad clusters仍可选跑作 completeness，但不影响主 core-excised scaling。
+- 当前 core-excised JSON 都有 native Sherpa `sample_energy_flux` Lx 区间；但 T_X confidence intervals 仍缺失，因此 scaling 中 Tx-M500 和 Lx-Tx 的 Tx errors 使用脚本记录的 10% fallback。
+
+当前 core-excised exclude_bad N=13 初版结果：
+- Lx-M500: beta=1.18 -0.48/+0.56, intrinsic scatter=0.172 dex
+- Tx-M500: beta=0.45 -0.48/+0.50, intrinsic scatter=0.174 dex
+- Lx-Tx: beta=0.78 -0.44/+0.42, intrinsic scatter=0.236 dex
+
+Core-excised 下一步：
+1. 跑完剩余 5 个 included clusters。
+2. 重新生成 `spectral_summary_core_excised.csv` 和 `output/products/scaling/core_excised/`。
+3. 判断是否需要为 core-excised T_X 增加/回填 confidence intervals；否则在论文中明确 Tx error fallback。
+4. 若时间允许，再跑 5 个 excluded bad clusters 作完整性/附录，不纳入主样本。
 
 ---
 
@@ -173,3 +206,5 @@ good_only 结果：
 - 与文献结果叠加对比
 - 更新 README.md 加入最终结果
 - 完整参数表
+
+当前判断（2026-05-29）：项目已经接近最终阶段。full-R500 主结果基本可以冻结；最后主要剩下 core-excised included batch 收尾、方法/README/wiki 文档整理、最终图表与论文式表格。
